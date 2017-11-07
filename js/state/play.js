@@ -11,10 +11,7 @@ var playState = {
         //drawChessDefault
         Co.chessGroup = Co.game.add.physicsGroup();
         Co.chesses = [];
-        this.drawChessOnBoard(Co.configs.PIECE_DEFAULT);
-        //directGroup
-        Co.directGroup = Co.game.add.physicsGroup();
-        Co.directs = [
+        Co.chessesPos = [
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0],
@@ -27,9 +24,34 @@ var playState = {
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0]
         ];
-
+        this.drawChessOnBoard(Co.configs.PIECE_DEFAULT);
+        //directGroup
+        Co.directGroup = [];
+        Co.directs = [];
+        Co.directsP = [
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0]
+        ];
+        Co.chonco = Co.game.add.sprite(-100, -100, 'chonco');
+        Co.onMouseDown = false;
+        // Co.chonco.inputEnabled = true;
+        // if(Co.chonco.events.onInputDown.add(function(){
+        //     console.log("Click");
+        // }, this));
     },
     update: function(){
+        // if(Co.chonco.events.onInputDown.add(function(){
+        //     console.log("Click");
+        // }, this));
     },
     render: function(){
 
