@@ -53,6 +53,6 @@ class directPoint {
         }, this)
     }
     update(){
-        console.log("Come on");
+        console.log(Co.directGroup[1].position.x + 50 -this.x, Co.directGroup[1].position.y + 50 -this.y);
     }
 }

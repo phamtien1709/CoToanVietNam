@@ -27,7 +27,12 @@ var playState = {
         this.drawChessOnBoard(Co.configs.PIECE_DEFAULT);
         //directGroup
         Co.directGroup = [];
+        Co.directGroup.anchor = new Phaser.Point(0.5,0.5);
         Co.directs = [];
+        Co.directMoveto = {
+            x : 0,
+            y : 0
+        };
         Co.directsP = [
             [0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0],
