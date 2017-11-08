@@ -1,39 +1,41 @@
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update });
+
+var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
 function preload() {
 
-    game.load.image('ball', 'Assets/Bandau/codo1.png');
+    game.load.image('kirito', 'Assets/Bandau/codo8.png');
+    game.load.image('asuna', 'Assets/Bandau/codo8.png');
 
 }
 
-var ball;
+var text;
+var tweenA;
+var tweenB;
 
 function create() {
 
-    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.renderer.renderSession.roundPixels = true;
+    game.stage.backgroundColor = '#124184';
 
-    ball = game.add.sprite(game.world.randomX, 200, 'ball');
-    ball.anchor = new Phaser.Point(0.5, 0.5);
+    game.add.text(16, 16, "Tween Chain Demo", { font: "16px Arial", fill: "#ffffff" });
+    text = game.add.text(680, 16, "Click to Start", { font: "16px Arial", fill: "#ffffff" });
 
-    game.physics.arcade.enable(ball);
+    var spriteA = game.add.sprite(64, 100, 'kirito');
+    var spriteB = game.add.sprite(64, 300, 'asuna');
 
-    // game.physics.arcade.gravity.y = 200;
+    tweenA = game.add.tween(spriteA).to( { x: 300, y:400 }, 2000, "Quart.easeOut");
+    tweenB = game.add.tween(spriteB).to( { x: 600 }, 2000, "Quart.easeOut");
 
-    // ball.body.velocity.set(200, 200);
-    // ball.body.bounce.set(1, 1);
-    ball.body.collideWorldBounds = true;
+    // tweenA.chain(tweenB);
 
-    game.input.onDown.add(moveBall, this);
+    game.input.onDown.addOnce(start, this);
 
 }
 
-function update() {
-}
+function start() {
 
-function moveBall(pointer) {
+    tweenA.start();
 
-    ball.x = pointer.x;
-    ball.y = pointer.y;
-
+    text.visible = false;
 
 }

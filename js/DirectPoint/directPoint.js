@@ -45,14 +45,23 @@ class directPoint {
                 if(Co.directsP[i][j] == 11 ) Co.directGroup.push(Co.game.add.sprite(j*100 + this.x,i*100+this.y, 'huongdi'));
             }
         }
-        console.log(Co.directGroup);
-        Co.directGroup[1].inputEnabled = true;
-        console.log(Co.directGroup[1]);
-        Co.directGroup[1].events.onInputDown.add(()=>{
-            this.update();
-        }, this)
+        for(i=0; i<Co.directGroup.length; i++){
+            Co.directGroup[i].inputEnabled = true;
+            // Co.directGroup[i].anchor.set(0.5);
+        }
+        Co.exam = Co.directGroup.find((pos)=>{
+            pos.position.x == Co.directGroup[2].position.x;
+            pos.position.y == Co.directGroup[2].position.y;
+            return pos.position;
+        });
+        Co.exam.anchor = new Phaser.Point(0.5, 0.5);
+        console.log(Co.directGroup[1].position.x)
+        Co.exam.position.x = Co.exam.position.x + 50 -this.x;
+        Co.exam.position.y = Co.exam.position.y + 50 -this.y;
+        // this.update() = this.update.bind(this);
     }
     update(){
+        console.log(Co.directGroup);
         console.log(Co.directGroup[1].position.x + 50 -this.x, Co.directGroup[1].position.y + 50 -this.y);
     }
 }

@@ -47,16 +47,11 @@ var playState = {
             [0,0,0,0,0,0,0,0,0]
         ];
         Co.chonco = Co.game.add.sprite(-100, -100, 'chonco');
+        // Co.chonco1 = Co.game.add.sprite(100, 100, 'chonco');
+        // Co.chonco1.anchor.set(0.5);
         Co.onMouseDown = false;
-        // Co.chonco.inputEnabled = true;
-        // if(Co.chonco.events.onInputDown.add(function(){
-        //     console.log("Click");
-        // }, this));
     },
     update: function(){
-        // if(Co.chonco.events.onInputDown.add(function(){
-        //     console.log("Click");
-        // }, this));
     },
     render: function(){
 
