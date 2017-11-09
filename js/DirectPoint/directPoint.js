@@ -47,21 +47,11 @@ class directPoint {
         }
         for(i=0; i<Co.directGroup.length; i++){
             Co.directGroup[i].inputEnabled = true;
-            // Co.directGroup[i].anchor.set(0.5);
         }
-        Co.exam = Co.directGroup.find((pos)=>{
-            pos.position.x == Co.directGroup[2].position.x;
-            pos.position.y == Co.directGroup[2].position.y;
-            return pos.position;
-        });
-        Co.exam.anchor = new Phaser.Point(0.5, 0.5);
-        console.log(Co.directGroup[1].position.x)
-        Co.exam.position.x = Co.exam.position.x + 50 -this.x;
-        Co.exam.position.y = Co.exam.position.y + 50 -this.y;
         // this.update() = this.update.bind(this);
     }
     update(){
         console.log(Co.directGroup);
-        console.log(Co.directGroup[1].position.x + 50 -this.x, Co.directGroup[1].position.y + 50 -this.y);
+        console.log(Co.directGroup[2].position.x + 50 -this.x, Co.directGroup[2].position.y + 50 -this.y);
     }
 }

@@ -7,6 +7,8 @@ var playState = {
         
         //drawMap
         Co.drawBoard = false;
+        Co.newPos = [0,0];
+        Co.blueFirst = true;
         this.drawBoardDefault(Co.configs.BOARD_DEFAULT, Co.drawBoard);
         //drawChessDefault
         Co.chessGroup = Co.game.add.physicsGroup();

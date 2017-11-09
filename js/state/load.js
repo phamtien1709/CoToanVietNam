@@ -38,14 +38,14 @@ var loadState = {
         Co.tengame = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'tengame');
         Co.tengame.anchor = new Phaser.Point(0.5,0.5);
         Co.checkPlay = 0;
-        this.start();
+        // this.start();
     },
-    // update: function(){
-    //     Co.checkPlay += 1;
-    //     if (Co.checkPlay === 300){
-    //         this.start();
-    //     }
-    // },
+    update: function(){
+        Co.checkPlay += 1;
+        if (Co.checkPlay === 60){
+            this.start();
+        }
+    },
     start: function(){
         Co.game.state.start('menu');
     }

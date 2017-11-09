@@ -8,28 +8,18 @@ class ChessController{
         this.sprite.inputEnabled = true;
         this.sprite.update = this.update.bind(this);
         this.sprite.events.onInputDown.add(function () {
+            console.log(this.sprite.type);
             if(Co.onMouseDown == false){
-                console.log("In");
                 this.direct();
                 return Co.onMouseDown = true;
             }
             if(Co.onMouseDown == true){
-                console.log("Out");
                 this.offDirect();
             }
         }, this);
         this.sprite.update = this.update.bind(this);        
     }
     update() {
-        // if(Co.directGroup[1] !== undefined){
-        //     // console.log("dir");
-        //     Co.directGroup[1].events.onInputDown.add(()=>{
-        //         console.log("dir");
-                // Co.tweenChonco = Co.game.add.tween(this.sprite).to( { x: Co.directGroup[1].position.x + 50 -this.x, y:Co.directGroup[1].position.y + 50 -this.y}, 2000, "Quart.easeOut");
-                // Co.tweenChonco.start();
-        //     }, this)
-        // }
-
     }
     offDirect(){
         let dir;
@@ -37,9 +27,6 @@ class ChessController{
             Co.directGroup[i].destroy();
         }
         Co.directGroup = [];
-        Co.exam.destroy();
-        Co.exam = [];
-        console.log(Co.exam);
         Co.chonco.destroy();
         this.resetArr(Co.directsP);
         return Co.onMouseDown = false;
@@ -48,15 +35,28 @@ class ChessController{
         Co.directs.push(new directPoint(this.x, this.y, {
             step: this.sprite.STEP
         }));
-        console.log(Co.directGroup[2].events);
-        Co.directGroup[2].events.onInputDown.add(()=>{
-            Co.tweenChonco = Co.game.add.tween(this.sprite).to( { x: Co.exam.position.x, y:Co.exam.position.y}, 600, "Quart.easeOut");
-            Co.tweenChonco.start();
-            this.x = Co.exam.position.x;
-            this.y = Co.exam.position.y;
-            this.offDirect();
-        }
-        )
+        for(i=0; i<Co.directGroup.length; i++){
+            Co.directGroup[i].events.onInputDown.add((i)=>{
+                Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;                
+                Co.exam = {
+                    x : 0,
+                    y : 0
+                };
+                Co.exam.anchor = new Phaser.Point(0.5, 0.5);
+                Co.exam.x = i.position.x + 50 - 39;
+                Co.exam.y = i.position.y + 50 - 38.5;
+                Co.tweenChonco = Co.game.add.tween(this.sprite).to( 
+                    { 
+                        x : Co.exam.x, 
+                        y : Co.exam.y 
+                    }, 600, "Quart.easeOut");
+                Co.tweenChonco.start();
+                Co.chessesPos[(Co.exam.y - 50)/100][(Co.exam.x - 50)/100] = 12;
+                this.x = Co.exam.x;
+                this.y = Co.exam.y;
+                this.offDirect();
+            });
+        };
     }
     resetArr(arr) {
         for (i = 0; i < arr.length; i++) {

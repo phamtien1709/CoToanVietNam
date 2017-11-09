@@ -1,41 +1,45 @@
 
-var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+// var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
 
-function preload() {
+// function preload() {
 
-    game.load.image('kirito', 'Assets/Bandau/codo8.png');
-    game.load.image('asuna', 'Assets/Bandau/codo8.png');
+//     game.load.image('kirito', 'Assets/Bandau/codo8.png');
+//     game.load.image('asuna', 'Assets/Bandau/codo8.png');
 
-}
+// }
 
-var text;
-var tweenA;
-var tweenB;
+// var text;
+// var tweenA;
+// var tweenB;
 
-function create() {
+// function create() {
 
-    game.renderer.renderSession.roundPixels = true;
-    game.stage.backgroundColor = '#124184';
+//     game.renderer.renderSession.roundPixels = true;
+//     game.stage.backgroundColor = '#124184';
 
-    game.add.text(16, 16, "Tween Chain Demo", { font: "16px Arial", fill: "#ffffff" });
-    text = game.add.text(680, 16, "Click to Start", { font: "16px Arial", fill: "#ffffff" });
+//     game.add.text(16, 16, "Tween Chain Demo", { font: "16px Arial", fill: "#ffffff" });
+//     text = game.add.text(680, 16, "Click to Start", { font: "16px Arial", fill: "#ffffff" });
 
-    var spriteA = game.add.sprite(64, 100, 'kirito');
-    var spriteB = game.add.sprite(64, 300, 'asuna');
+//     game.spriteA = game.add.sprite(64, 100, 'kirito');
+//     game.spriteA.anchor.set(0.5);
+//     var spriteB = game.add.sprite(64, 300, 'asuna');
 
-    tweenA = game.add.tween(spriteA).to( { x: 300, y:400 }, 2000, "Quart.easeOut");
-    tweenB = game.add.tween(spriteB).to( { x: 600 }, 2000, "Quart.easeOut");
+//     tweenB = game.add.tween(spriteB).to( { x: 600 }, 2000, "Quart.easeOut");
 
-    // tweenA.chain(tweenB);
+//     // tweenA.chain(tweenB);
 
-    game.input.onDown.addOnce(start, this);
+//     game.input.onDown.addOnce(start, this);
 
-}
+// }
 
-function start() {
+// function start() {
+//     console.log(game.input.activePointer.position);
+//     let x1 = game.input.activePointer.position.x;
+//     let y1 = game.input.activePointer.position.y;
+//     tweenA = game.add.tween(game.spriteA).to( { x: x1, y:y1 }, 2000, "Quart.easeOut");
+//     tweenA.anchor = new Phaser.Point(0.5, 0.5);
+//     tweenA.start();
 
-    tweenA.start();
+//     text.visible = false;
 
-    text.visible = false;
-
-}
+// }
