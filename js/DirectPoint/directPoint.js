@@ -38,6 +38,9 @@ class directPoint {
                 if((Co.directsP[i][k] == 11)&&(Co.chessesPos[i][k] == 12)){
                     Co.directsP[i][k] = 0;
                 }
+                if((Co.directsP[i][k] == 11)&&(Co.chessesPos[i][k] == 13)){
+                    Co.directsP[i][k] = 0;
+                }
             }
         }
         for(i = 0; i<Co.directsP.length; i++){

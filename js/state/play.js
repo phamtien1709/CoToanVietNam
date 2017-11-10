@@ -8,7 +8,7 @@ var playState = {
         //drawMap
         Co.drawBoard = false;
         Co.newPos = [0,0];
-        Co.blueFirst = true;
+        Co.blueFirst = 'blue';
         this.drawBoardDefault(Co.configs.BOARD_DEFAULT, Co.drawBoard);
         //drawChessDefault
         Co.chessGroup = Co.game.add.physicsGroup();
@@ -49,8 +49,6 @@ var playState = {
             [0,0,0,0,0,0,0,0,0]
         ];
         Co.chonco = Co.game.add.sprite(-100, -100, 'chonco');
-        // Co.chonco1 = Co.game.add.sprite(100, 100, 'chonco');
-        // Co.chonco1.anchor.set(0.5);
         Co.onMouseDown = false;
     },
     update: function(){
