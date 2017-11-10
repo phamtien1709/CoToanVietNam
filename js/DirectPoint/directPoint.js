@@ -32,6 +32,7 @@ class directPoint {
                 Co.directsP[0.01*y + i - 0.5][0.01*x - i - 0.5] = 11;  
             }     
         }
+        console.log(Co.directsP);
         for( i=0; i<11; i++){
             let k;
             for(k=0; k<Co.chessesPos[i].length;k++ ){
@@ -51,6 +52,11 @@ class directPoint {
         for(i=0; i<Co.directGroup.length; i++){
             Co.directGroup[i].inputEnabled = true;
         }
+        //xác định fields quang 8 ô, tính các nước ăn theo step.
+
+
+        // defined pheps cộng trc
+        // hiện nước đi
         // this.update() = this.update.bind(this);
     }
     update(){

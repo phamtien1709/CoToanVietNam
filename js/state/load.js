@@ -11,6 +11,8 @@ var loadState = {
     
 
         Co.game.load.image('tengame', 'Assets/Loading/tengame.png');
+        Co.game.load.image('gui_BG', 'Assets/Setting/GUiBG2.png');
+        Co.game.load.image('bg', 'Assets/Loading/BG.png'); 
         Co.game.load.image('red10', 'Assets/Bandau/codo10.png');
         Co.game.load.image('red9', 'Assets/Bandau/codo9.png');
         Co.game.load.image('red8', 'Assets/Bandau/codo8.png');
@@ -32,17 +34,24 @@ var loadState = {
         Co.game.load.image('blue2', 'Assets/Bandau/coxanh2.png');
         Co.game.load.image('blue1', 'Assets/Bandau/coxanh1.png');
         Co.game.load.image('chonco', 'Assets/Bandau/Chonco.png');
-        Co.game.load.image('huongdi', 'Assets/Bandau/huongdi.png')
+        Co.game.load.image('huongdi', 'Assets/Bandau/huongdi.png');
+        Co.game.load.image('quancoto', 'Assets/Loading/quanCoTo.png');
+        Co.game.load.image('text_loading', 'Assets/Loading/text_loading.png');
+
     },
     create: function(){
-        Co.tengame = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'tengame');
+        var bg = Co.game.add.sprite(0, 0, 'bg');      
+        Co.tengame = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY-300, 'tengame');
         Co.tengame.anchor = new Phaser.Point(0.5,0.5);
-        Co.checkPlay = 0;
-        // this.start();
+        var quanCoTo = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY,'quancoto');
+        quanCoTo.anchor.set(0.5);
+        var txt_loading = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY+150, 'text_loading')
+        txt_loading.anchor.set(0.5);
+        Co.checkPlay = 0;  
     },
     update: function(){
         Co.checkPlay += 1;
-        if (Co.checkPlay === 60){
+        if (Co.checkPlay === 30){
             this.start();
         }
     },
