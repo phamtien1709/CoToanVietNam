@@ -7,7 +7,7 @@ class ChessController{
         this.sprite.inputEnabled = true;
         this.sprite.update = this.update.bind(this);
         this.sprite.events.onInputDown.add(function () {
-            console.log(Co.blueFirst);
+            // console.log(Co.blueFirst);
             if(this.sprite.type == Co.blueFirst){
                 if(!Co.onMouseDown){
                     if(Co.blueFirst == 'blue'){
@@ -35,7 +35,7 @@ class ChessController{
         }
         Co.directGroup = [];
         Co.chonco.destroy();
-        console.log(Co.chessesPos);
+        // console.log(Co.chessesPos);
         this.resetArr(Co.directsP);
         return Co.onMouseDown = false;
     }
@@ -45,7 +45,9 @@ class ChessController{
         }));
         for(i=0; i<Co.directGroup.length; i++){
             Co.directGroup[i].events.onInputDown.add((i)=>{
-                Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;                
+                Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;
+                Co.chessesValue[(this.y - 50)/100][(this.x -50)/100] = 0;
+                Co.chessesType[(this.y - 50)/100][(this.x -50)/100] = 0;                          
                 Co.exam = {
                     x : 0,
                     y : 0
@@ -59,7 +61,10 @@ class ChessController{
                         y : Co.exam.y 
                     }, 600, "Quart.easeOut");
                 Co.tweenChonco.start();
+                //lắp giá trị
                 Co.chessesPos[(Co.exam.y - 50)/100][(Co.exam.x - 50)/100] = 12;
+                Co.chessesValue[(Co.exam.y - 50)/100][(Co.exam.x - 50)/100] = this.sprite.STEP;
+                Co.chessesType[(Co.exam.y - 50)/100][(Co.exam.x - 50)/100] = this.sprite.type;
                 this.x = Co.exam.x;
                 this.y = Co.exam.y;
                 this.offDirect();
@@ -73,7 +78,9 @@ class ChessController{
         }));
         for(i=0; i<Co.directGroup.length; i++){
             Co.directGroup[i].events.onInputDown.add((i)=>{
-                Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;                
+                Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;     
+                Co.chessesValue[(this.y - 50)/100][(this.x -50)/100] = 0;
+                Co.chessesType[(this.y - 50)/100][(this.x -50)/100] = 0;                                     
                 Co.exam = {
                     x : 0,
                     y : 0
@@ -87,7 +94,10 @@ class ChessController{
                         y : Co.exam.y 
                     }, 600, "Quart.easeOut");
                 Co.tweenChonco.start();
+                //lắp giá trị
                 Co.chessesPos[(Co.exam.y - 50)/100][(Co.exam.x - 50)/100] = 13;
+                Co.chessesValue[(Co.exam.y - 50)/100][(Co.exam.x - 50)/100] = this.sprite.STEP;
+                Co.chessesType[(Co.exam.y - 50)/100][(Co.exam.x - 50)/100] = this.sprite.type;
                 this.x = Co.exam.x;
                 this.y = Co.exam.y;
                 this.offDirect();
