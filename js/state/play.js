@@ -1,6 +1,6 @@
 var playState = {
     preload: function(){
-
+        
     },
     create: function(){
         Co.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -41,6 +41,9 @@ var playState = {
             [0, 0, 0, 0, 10, 0, 0, 0, 0],
             [1, 2, 3, 4, 5, 6, 7, 8, 9]
         ];
+        //groupKill
+        Co.posKillGroup = [];
+        Co.killGroup = [];
         //loại cờ
         Co.chessesType = [
             ['blue','blue','blue','blue','blue','blue','blue','blue','blue'],

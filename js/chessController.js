@@ -28,12 +28,18 @@ class ChessController{
     }
     update() {
     }
+    //trả lại hết giá trị khi đi xong
     offDirect(){
         let dir;
         for(i=0; i< Co.directGroup.length; i++){
             Co.directGroup[i].destroy();
         }
+        for(i=0; i< Co.killGroup.length; i++){
+            Co.killGroup[i].destroy();
+        }
         Co.directGroup = [];
+        Co.killGroup = [];
+        Co.posKillGroup = [];
         Co.chonco.destroy();
         // console.log(Co.chessesPos);
         this.resetArr(Co.directsP);

@@ -112,7 +112,26 @@ class directPoint {
         }
         //xác định fields quanh 8 ô, tính các nước ăn theo step.
         this.findObNear();
-
+        console.log(Co.posKillGroup);
+        for(i in Co.posKillGroup){
+            if(((0.01*this.x1 - 0.5 - 1)>Co.posKillGroup[i].x)&&((0.01*this.y1 -0.5 - 1)>Co.posKillGroup[i].y)){
+                for(j=0.01*this.y1 -0.5 - 1;j>Co.posKillGroup[i].y; j--){
+                    let k;
+                    for(k = 0.01*this.x1 -0.5 -1; k>Co.posKillGroup[i].x; k--){
+                        
+                    }
+                }
+            }
+            // if(){}
+            // if(){}
+            // if(){}
+            // if(){}
+            // if(){}
+            // if(){}
+            // if(){}
+            // if(){}
+            Co.killGroup.push(Co.game.add.sprite(Co.posKillGroup[i].x*100+19.5,Co.posKillGroup[i].y*100+19.5, 'oAnDuoc'));
+        }
         // defined pheps cộng trc
         // hiện nước ăn
         // this.update() = this.update.bind(this);
@@ -123,15 +142,181 @@ class directPoint {
     }
     //tìm quân cờ nằm cạnh quân đã chọn
     findObNear(){
-        console.log(Co.chessesPos);
-        console.log((this.x1/100)-0.5, (this.y1/100)-0.5);
-        console.log(Co.chessesValue);
-        console.log(Co.chessesType);
-        for(i=0; i<Co.chessesValue.length; i++){
-            for(j=0; j<Co.chessesValue[i].length;j++){
-                // if((i-1)>
-                // if(()){}
+        // console.log(Co.chessesPos);
+        // // console.log((this.x1/100)-0.5, (this.y1/100)-0.5);
+        // console.log(Co.chessesValue);
+        // console.log(Co.chessesType);
+        //sumToEat
+        function sumToEat(cmp1, cmp2, add1, add2, posx, posy, posx1, posy1){
+            if(cmp1 === cmp2){
+                // console.log("Same");
+                let sumx;
+                let sumy;
+                if (add1 == 10) add1 = 0;
+                if((posx>posx1)&&(posy>posy1)){
+                    sumx = -add1 -add2 -1;
+                    sumy = -add1 -add2 -1;
+                }
+                if((posx==posx1)&&(posy>posy1)){
+                    sumx = 0;
+                    sumy = -add1 -add2 -1;
+                }
+                if((posx<posx1)&&(posy>posy1)){
+                    sumx = add1 + add2 + 1;
+                    sumy = -add1 -add2 - 1;
+                }
+                if((posx<posx1)&&(posy==posy1)){
+                    sumx = add1 + add2 +1;
+                    sumy = 0;
+                }
+                if((posx<posx1)&&(posy<posy1)){
+                    sumx = add1 + add2 +1;
+                    sumy = add1 + add2 +1;
+                }
+                if((posx==posx1)&&(posy<posy1)){
+                    sumx = 0;
+                    sumy = add1 + add2 +1;
+                }
+                if((posx>posx1)&&(posy<posy1)){
+                    sumx = -add1 -add2 -1;
+                    sumy = add1 + add2 +1;
+                }
+                if((posx>posx1)&&(posy==posy1)){
+                    sumx = -add1 -add2 -1;
+                    sumy = 0;
+                }
+                if((0<=posx + sumx)&&(9>posx +sumx)&&(posy+sumy>=0)&&(posy+sumy<11)){
+                    Co.posKillGroup.push({
+                        x: posx + sumx,
+                        y: posy + sumy
+                    });
+                }
+            }
+            else{
+                // console.log("not same");
             }
         }
+        //tìm các quân cờ xung quanh
+        if(((0.01*this.y1 -0.5 -1>=0)&&((0.01*this.x1 - 0.5 - 1)>=0))){
+            if((Co.chessesValue[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5 - 1])!==0){
+                console.log("Top Left");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5 - 1], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5 - 1,
+                    0.01*this.y1 -0.5 -1
+                );
+            };
+        }
+        if((0.01*this.y1 -0.5 -1>=0)){
+            if((Co.chessesValue[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5])!==0){
+                console.log("Top");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5],
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5,
+                    0.01*this.y1 -0.5 -1
+                );
+            };
+        }     
+        if(((0.01*this.y1 -0.5 -1)>=0)&&((0.01*this.x1 - 0.5 + 1)<9)){
+            if((Co.chessesValue[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5 + 1])!==0){
+                console.log("Top Right");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5 + 1], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5 -1][0.01*this.x1 - 0.5 + 1], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5],
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5 + 1,
+                    0.01*this.y1 - 0.5 - 1
+                );
+            };
+        }
+        if((0.01*this.x1 -0.5 + 1)<9){
+            if((Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 - 0.5 + 1])!==0){
+                console.log("Right");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 - 0.5 + 1], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 - 0.5 + 1], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5],
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5 + 1,
+                    0.01*this.y1 - 0.5
+                );
+            };
+        }
+        if(((0.01*this.y1 -0.5 +1)<=10)&&((0.01*this.x1 -0.5 +1)<9)){
+            if((Co.chessesValue[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5 + 1])!==0){
+                console.log("Bot Right");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5 + 1], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5 + 1], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5],
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5 + 1,
+                    0.01*this.y1 -0.5 +1
+                );
+            };
+        }
+        if((0.01*this.y1 -0.5 +1)<=10){
+            if((Co.chessesValue[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5])!==0){
+                console.log("Bot");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5],
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5,
+                    0.01*this.y1 -0.5 +1
+                );
+            };
+        }   
+        if(((0.01*this.x1 -0.5 -1)>=0)&&((0.01*this.y1 -0.5 +1)<=10)){
+            if((Co.chessesValue[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5 - 1])!==0){
+                console.log("Bot Left");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5 - 1], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5 +1][0.01*this.x1 - 0.5 - 1], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5],
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5 - 1,
+                    0.01*this.y1 -0.5 + 1
+                );
+            };
+        }
+        if((0.01*this.x1 -0.5 -1)>=0){
+            if((Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 - 0.5 - 1])!==0){
+                console.log("Left");
+                sumToEat(
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 - 0.5 - 1], 
+                    Co.chessesType[0.01*this.y1 -0.5][0.01*this.x1 -0.5], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 - 0.5 - 1], 
+                    Co.chessesValue[0.01*this.y1 -0.5][0.01*this.x1 -0.5],
+                    0.01*this.x1 -0.5,
+                    0.01*this.y1 -0.5,
+                    0.01*this.x1 - 0.5 - 1,
+                    0.01*this.y1 - 0.5
+                );
+            };
+        }
+        // console.log(Co.posKillGroup);    
     }
 }

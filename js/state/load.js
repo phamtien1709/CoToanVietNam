@@ -37,6 +37,7 @@ var loadState = {
         Co.game.load.image('huongdi', 'Assets/Bandau/huongdi.png');
         Co.game.load.image('quancoto', 'Assets/Loading/quanCoTo.png');
         Co.game.load.image('text_loading', 'Assets/Loading/text_loading.png');
+        Co.game.load.image('oAnDuoc', 'Assets/Bandau/Quancothean.png');
 
     },
     create: function(){
