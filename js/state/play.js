@@ -60,6 +60,9 @@ var playState = {
             ['red','red','red','red','red','red','red','red','red']
         ];
         this.drawChessOnBoard(Co.configs.PIECE_DEFAULT);
+        //get point
+        Co.pointBlue = 0;
+        Co.pointRed = 0;
         //directGroup
         Co.directGroup = [];
         Co.directGroup.anchor = new Phaser.Point(0.5,0.5);

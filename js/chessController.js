@@ -120,6 +120,7 @@ class ChessController{
             }
         }
     }
+    //ăn chess
     eatEnemyChess(){
         for(i=0; i<Co.killGroup.length; i++){
             Co.killGroup[i].events.onInputDown.add((i)=>{
@@ -130,6 +131,14 @@ class ChessController{
                 console.log(Co.chessesValue[posEatY][posEatX]);
                 console.log(Co.chessesType[posEatY][posEatX]);
                 // if có quân khác màu => ăn
+                if((Co.chessesType[posEatY][posEatX] !== 0)&&(Co.chessesType[posEatY][posEatX] !== Co.chessesType[(this.y-50)/100][(this.x-50)/100])){
+                    console.log("eat eat eat");
+                    // Co.chessGroup
+                    // i.destroy();
+                }
+                else{
+                    console.log("kidding me?");
+                }
                 // else todo
             });
         }
