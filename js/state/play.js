@@ -44,6 +44,7 @@ var playState = {
         //groupKill
         Co.posKillGroup = [];
         Co.killGroup = [];
+        Co.SUM = [];
         //loại cờ
         Co.chessesType = [
             ['blue','blue','blue','blue','blue','blue','blue','blue','blue'],

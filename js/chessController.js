@@ -77,6 +77,7 @@ class ChessController{
                 Co.blueFirst = 'red';
             });
         };
+        this.eatEnemyChess();
     }
     directRed() {
         Co.directs.push(new directPoint(this.x, this.y, {
@@ -110,12 +111,27 @@ class ChessController{
                 Co.blueFirst = 'blue';
             });
         };
+        this.eatEnemyChess();
     }
     resetArr(arr) {
         for (i = 0; i < arr.length; i++) {
             for (j = 0; j < arr[i].length; j++) {
                 arr[i][j] = 0;
             }
+        }
+    }
+    eatEnemyChess(){
+        for(i=0; i<Co.killGroup.length; i++){
+            Co.killGroup[i].events.onInputDown.add((i)=>{
+                var posEatX = (i.position.x -19.5)/100;
+                var posEatY = (i.position.y-19.5)/100;
+                console.log(posEatX, posEatY);
+                console.log(Co.chessesType[(this.y-50)/100][(this.x-50)/100]);
+                console.log(Co.chessesValue[posEatY][posEatX]);
+                console.log(Co.chessesType[posEatY][posEatX]);
+                // if có quân khác màu => ăn
+                // else todo
+            });
         }
     }
 }
