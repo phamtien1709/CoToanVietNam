@@ -170,7 +170,7 @@ class directPoint {
         // // console.log((this.x1/100)-0.5, (this.y1/100)-0.5);
         // console.log(Co.chessesValue);
         // console.log(Co.chessesType);
-        //SUMTOEAT
+        //SUMTOEAT--------------------------------------------
         function sumToEat(cmp1, cmp2, add1, add2, posx, posy, posx1, posy1) {
             if (cmp1 === cmp2) {
                 // console.log("Same");

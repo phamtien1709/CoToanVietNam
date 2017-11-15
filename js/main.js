@@ -1,7 +1,9 @@
 var Co = {};
 Co.configs = {
     GAME_WIDTH : 900,
-    GAME_HEIGHT : 1100,
+    GAME_HEIGHT : 1500,
+    WIN_POINT : 5,
+    HEAD_HEIGHT: 200,
     BOARD_DEFAULT : [
         [1, 2, 1, 2, 1, 2, 1, 2, 1],
         [2, 1, 2, 1, 3, 1, 2, 1, 2],
@@ -49,5 +51,6 @@ window.onload = function(){
     Co.game.state.add('load', loadState);
     Co.game.state.add('menu', menuState);
     Co.game.state.add('play', playState);
+    Co.game.state.add('win', winState);
     Co.game.state.start('load');
 }

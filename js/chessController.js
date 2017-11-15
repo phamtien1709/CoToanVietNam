@@ -12,10 +12,16 @@ class ChessController{
                 if(!Co.onMouseDown){
                     if(Co.blueFirst == 'blue'){
                         this.directBlue();
+                        // console.log(Co.chessesType);
+                        // console.log(Co.chessesValue);
+                        // console.log(Co.chessesPos);
                         return Co.onMouseDown = true;
                     }
                     if(Co.blueFirst == 'red'){
                         this.directRed();
+                        // console.log(Co.chessesType);
+                        // console.log(Co.chessesValue);
+                        // console.log(Co.chessesPos);
                         return Co.onMouseDown = true;
                     }
                 }
@@ -30,7 +36,6 @@ class ChessController{
     }
     //trả lại hết giá trị khi đi xong
     offDirect(){
-        let dir;
         for(i=0; i< Co.directGroup.length; i++){
             Co.directGroup[i].destroy();
         }
@@ -77,7 +82,7 @@ class ChessController{
                 Co.blueFirst = 'red';
             });
         };
-        this.eatEnemyChess();
+        this.eatEnemyChessBlue();
     }
     directRed() {
         Co.directs.push(new directPoint(this.x, this.y, {
@@ -87,7 +92,7 @@ class ChessController{
             Co.directGroup[i].events.onInputDown.add((i)=>{
                 Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;     
                 Co.chessesValue[(this.y - 50)/100][(this.x -50)/100] = 0;
-                Co.chessesType[(this.y - 50)/100][(this.x -50)/100] = 0;                                     
+                Co.chessesType[(this.y - 50)/100][(this.x -50)/100] = 0;  
                 Co.exam = {
                     x : 0,
                     y : 0
@@ -111,7 +116,7 @@ class ChessController{
                 Co.blueFirst = 'blue';
             });
         };
-        this.eatEnemyChess();
+        this.eatEnemyChessRed();
     }
     resetArr(arr) {
         for (i = 0; i < arr.length; i++) {
@@ -121,19 +126,119 @@ class ChessController{
         }
     }
     //ăn chess
-    eatEnemyChess(){
+    eatEnemyChessBlue(){
         for(i=0; i<Co.killGroup.length; i++){
             Co.killGroup[i].events.onInputDown.add((i)=>{
                 var posEatX = (i.position.x -19.5)/100;
                 var posEatY = (i.position.y-19.5)/100;
-                console.log(posEatX, posEatY);
-                console.log(Co.chessesType[(this.y-50)/100][(this.x-50)/100]);
-                console.log(Co.chessesValue[posEatY][posEatX]);
-                console.log(Co.chessesType[posEatY][posEatX]);
+                var posRealX = i.position.x - 19.5 +50;
+                var posRealY = i.position.y -19.5 +50;
+                // console.log(posRealX, posRealY);
+                // console.log(Co.chessesType[(this.y-50)/100][(this.x-50)/100]);
+                // console.log(Co.chessesValue[posEatY][posEatX]);
+                // console.log(Co.chessesType[posEatY][posEatX]);
                 // if có quân khác màu => ăn
                 if((Co.chessesType[posEatY][posEatX] !== 0)&&(Co.chessesType[posEatY][posEatX] !== Co.chessesType[(this.y-50)/100][(this.x-50)/100])){
                     console.log("eat eat eat");
-                    // Co.chessGroup
+                    // console.log(Co.chessGroup);
+                    var obj = Co.chessGroup.children.find(function(obj){
+                        if((obj.position.x === posRealX)&&(obj.position.y === posRealY)){
+                            return obj;
+                        }
+                    })
+                    // console.log(obj);
+                    for(i=0; i<Co.chesses.length; i++){
+                        if((Co.chesses[i].x == obj.position.x)&&(Co.chesses[i].y == obj.position.y)&&(this.sprite.type !== obj.type)){
+                            Co.chesses[i].sprite.destroy();
+                            Co.chesses.splice(i, 1);
+                            Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;     
+                            Co.chessesValue[(this.y - 50)/100][(this.x -50)/100] = 0;
+                            Co.chessesType[(this.y - 50)/100][(this.x -50)/100] = 0;  
+                            Co.tweenAncoBlue = Co.game.add.tween(this.sprite).to( 
+                                { 
+                                    x : obj.position.x, 
+                                    y : obj.position.y 
+                                }, 600, "Quart.easeOut");
+                            Co.tweenAncoBlue.start();
+                            //lắp giá trị
+                            Co.chessesPos[(obj.position.y - 50)/100][(obj.position.x - 50)/100] = 12;
+                            //cộng điểm
+                            if(Co.chessesValue[(obj.position.y - 50)/100][(obj.position.x - 50)/100] === 10){
+                                Co.pointBlueNow += 100;
+                            }else{
+                                Co.pointBlueNow += Co.chessesValue[(obj.position.y - 50)/100][(obj.position.x - 50)/100];
+                            }
+                            Co.chessesValue[(obj.position.y - 50)/100][(obj.position.x - 50)/100] = this.sprite.STEP;
+                            Co.chessesType[(obj.position.y - 50)/100][(obj.position.x - 50)/100] = this.sprite.type;
+                            this.x = obj.position.x;
+                            this.y = obj.position.y;
+                            this.offDirect();
+                            Co.blueFirst = 'red';
+                            break;
+                        }
+                    }
+                    // console.log(Co.chesses);
+                    // i.destroy();
+                }
+                else{
+                    console.log("kidding me?");
+                }
+                // else todo
+            });
+        }
+    }
+    eatEnemyChessRed(){
+        for(i=0; i<Co.killGroup.length; i++){
+            Co.killGroup[i].events.onInputDown.add((i)=>{
+                var posEatX = (i.position.x -19.5)/100;
+                var posEatY = (i.position.y-19.5)/100;
+                var posRealX = i.position.x - 19.5 +50;
+                var posRealY = i.position.y -19.5 +50;
+                // console.log(posRealX, posRealY);
+                // console.log(Co.chessesType[(this.y-50)/100][(this.x-50)/100]);
+                // console.log(Co.chessesValue[posEatY][posEatX]);
+                // console.log(Co.chessesType[posEatY][posEatX]);
+                // if có quân khác màu => ăn
+                if((Co.chessesType[posEatY][posEatX] !== 0)&&(Co.chessesType[posEatY][posEatX] !== Co.chessesType[(this.y-50)/100][(this.x-50)/100])){
+                    console.log("eat eat eat");
+                    // console.log(Co.chessGroup);
+                    var obj = Co.chessGroup.children.find(function(obj){
+                        if((obj.position.x === posRealX)&&(obj.position.y === posRealY)){
+                            return obj;
+                        }
+                    })
+                    // console.log(obj);
+                    for(i=0; i<Co.chesses.length; i++){
+                        if((Co.chesses[i].x == obj.position.x)&&(Co.chesses[i].y == obj.position.y)&&(this.sprite.type !== obj.type)){
+                            Co.chesses[i].sprite.destroy();
+                            Co.chesses.splice(i, 1);
+                            Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 0;     
+                            Co.chessesValue[(this.y - 50)/100][(this.x -50)/100] = 0;
+                            Co.chessesType[(this.y - 50)/100][(this.x -50)/100] = 0;  
+                            Co.tweenAncoBlue = Co.game.add.tween(this.sprite).to( 
+                                { 
+                                    x : obj.position.x, 
+                                    y : obj.position.y 
+                                }, 600, "Quart.easeOut");
+                            Co.tweenAncoBlue.start();
+                            //lắp giá trị
+                            Co.chessesPos[(obj.position.y - 50)/100][(obj.position.x - 50)/100] = 13;
+                            //Cộng điểm
+                            if(Co.chessesValue[(obj.position.y - 50)/100][(obj.position.x - 50)/100] === 10){
+                                Co.pointRedNow += 100;
+                            }else{
+                                Co.pointRedNow += Co.chessesValue[(obj.position.y - 50)/100][(obj.position.x - 50)/100];
+                            }
+                            Co.chessesValue[(obj.position.y - 50)/100][(obj.position.x - 50)/100] = this.sprite.STEP;
+                            Co.chessesType[(obj.position.y - 50)/100][(obj.position.x - 50)/100] = this.sprite.type;
+                            this.x = obj.position.x;
+                            this.y = obj.position.y;
+                            this.offDirect();
+                            Co.blueFirst = 'blue';
+                            break;
+                        }
+                    }
+                    // console.log(Co.chesses);
                     // i.destroy();
                 }
                 else{

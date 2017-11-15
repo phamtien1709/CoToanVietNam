@@ -4,7 +4,9 @@ var playState = {
     },
     create: function(){
         Co.game.physics.startSystem(Phaser.Physics.ARCADE);
-        
+        //win get
+        Co.blueWin = false;
+        Co.redWin = false;
         //drawMap
         Co.drawBoard = false;
         Co.newPos = [0,0];
@@ -44,7 +46,6 @@ var playState = {
         //groupKill
         Co.posKillGroup = [];
         Co.killGroup = [];
-        Co.SUM = [];
         //loại cờ
         Co.chessesType = [
             ['blue','blue','blue','blue','blue','blue','blue','blue','blue'],
@@ -61,8 +62,13 @@ var playState = {
         ];
         this.drawChessOnBoard(Co.configs.PIECE_DEFAULT);
         //get point
-        Co.pointBlue = 0;
-        Co.pointRed = 0;
+        Co.pointBlueNow = 0;
+        Co.pointBluePrev = 0;
+        Co.pointRedNow = 0;
+        Co.pointRedPrev = 0;
+        Co.style = { font: "30px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" };
+        Co.displayingPointBlue = Co.game.add.text(10, 1120, `Blue: ${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, Co.style);
+        Co.displayingPointRed = Co.game.add.text(700, 1120, `Red: ${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, Co.style);
         //directGroup
         Co.directGroup = [];
         Co.directGroup.anchor = new Phaser.Point(0.5,0.5);
@@ -88,6 +94,21 @@ var playState = {
         Co.onMouseDown = false;
     },
     update: function(){
+        if(Co.pointBlueNow !== Co.pointBluePrev){
+            Co.pointBluePrev = Co.pointBlueNow;
+            Co.displayingPointBlue.setText(`Blue: ${Co.pointBluePrev}/${Co.configs.WIN_POINT}`);
+        }
+        if(Co.pointRedNow !== Co.pointRedPrev){
+            Co.pointRedPrev = Co.pointRedNow;
+            Co.displayingPointRed.setText(`Red: ${Co.pointRedPrev}/${Co.configs.WIN_POINT}`);
+        }
+        if((Co.pointBluePrev >= Co.configs.WIN_POINT)||(Co.pointRedPrev >= Co.configs.WIN_POINT)){
+            if(Co.pointBluePrev >= Co.configs.WIN_POINT) Co.blueWin = true;
+            if(Co.pointRedPrev >= Co.configs.WIN_POINT) Co.redWin = true;
+            setTimeout(function(){
+                Co.game.state.start('win');
+            }, 1200);;
+        }
     },
     render: function(){
 
