@@ -9,28 +9,28 @@ class directPoint {
         Co.chonco.anchor = new Phaser.Point(0.5, 0.5);
         for (i = 0; i <= this.configs.step; i++) {
             if ((0.01 * x + i) < 9) {
-                Co.directsP[0.01 * y - 0.5][0.01 * x + i - 0.5] = 11;
+                Co.directsP[0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5] = 11;
             }
             if ((0.01 * x - i) > 0) {
-                Co.directsP[0.01 * y - 0.5][0.01 * x - i - 0.5] = 11;
+                Co.directsP[0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5] = 11;
             }
-            if ((0.01 * y - i) > 0) {
-                Co.directsP[0.01 * y - i - 0.5][0.01 * x - 0.5] = 11;
+            if ((0.01 * y - i - Co.configs.HEAD_HEIGHT/100) > 0) {
+                Co.directsP[0.01 * y - i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - 0.5] = 11;
             }
-            if ((0.01 * y + i) < 11) {
-                Co.directsP[0.01 * y + i - 0.5][0.01 * x - 0.5] = 11;
+            if ((0.01 * y + i - Co.configs.HEAD_HEIGHT/100) < 11) {
+                Co.directsP[0.01 * y + i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - 0.5] = 11;
             }
-            if ((0.01 * x + i < 9) && (0.01 * y + i < 11)) {
-                Co.directsP[0.01 * y + i - 0.5][0.01 * x + i - 0.5] = 11;
+            if ((0.01 * x + i < 9) && (0.01 * y + i - Co.configs.HEAD_HEIGHT/100< 11)) {
+                Co.directsP[0.01 * y + i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5] = 11;
             }
-            if ((0.01 * x - i > 0) && (0.01 * y - i > 0)) {
-                Co.directsP[0.01 * y - i - 0.5][0.01 * x - i - 0.5] = 11;
+            if ((0.01 * x - i > 0) && (0.01 * y - i - Co.configs.HEAD_HEIGHT/100> 0)) {
+                Co.directsP[0.01 * y - i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5] = 11;
             }
-            if ((0.01 * x + i < 9) && (0.01 * y - i > 0)) {
-                Co.directsP[0.01 * y - i - 0.5][0.01 * x + i - 0.5] = 11;
+            if ((0.01 * x + i < 9) && (0.01 * y - i - Co.configs.HEAD_HEIGHT/100 > 0)) {
+                Co.directsP[0.01 * y - i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5] = 11;
             }
-            if ((0.01 * x - i > 0) && (0.01 * y + i < 11)) {
-                Co.directsP[0.01 * y + i - 0.5][0.01 * x - i - 0.5] = 11;
+            if ((0.01 * x - i > 0) && (0.01 * y + i - Co.configs.HEAD_HEIGHT/100< 11)) {
+                Co.directsP[0.01 * y + i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5] = 11;
             }
         }
         for (i = 0; i < 11; i++) {
@@ -47,64 +47,64 @@ class directPoint {
         for (i = 0; i <= this.configs.step; i++) {
             if ((0.01 * x + i) < 9) {
                 if (((0.01 * x + i - 0.5 - 1) > (0.01 * x - 0.5))) {
-                    if (Co.directsP[0.01 * y - 0.5][0.01 * x + i - 0.5 - 1] == 0) {
-                        Co.directsP[0.01 * y - 0.5][0.01 * x + i - 0.5] = 0;
+                    if (Co.directsP[0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5 - 1] == 0) {
+                        Co.directsP[0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5] = 0;
                     }
                 }
             }
             if ((0.01 * x - i) > 0) {
                 if ((0.01 * x - i - 0.5 + 1) < (0.01 * x - 0.5)) {
-                    if (Co.directsP[0.01 * y - 0.5][0.01 * x - i - 0.5 + 1] == 0) {
-                        Co.directsP[0.01 * y - 0.5][0.01 * x - i - 0.5] = 0;
+                    if (Co.directsP[0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5 + 1] == 0) {
+                        Co.directsP[0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5] = 0;
                     }
                 }
             }
-            if ((0.01 * y - i) > 0) {
-                if ((0.01 * y - i - 0.5 + 1) < (0.01 * y - 0.5)) {
-                    if (Co.directsP[0.01 * y - i - 0.5 + 1][0.01 * x - 0.5] == 0) {
-                        Co.directsP[0.01 * y - i - 0.5][0.01 * x - 0.5] = 0;
+            if ((0.01 * y - i - Co.configs.HEAD_HEIGHT/100) > 0) {
+                if ((0.01 * y - i - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100) < (0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100)) {
+                    if (Co.directsP[0.01 * y - i - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * x - 0.5] == 0) {
+                        Co.directsP[0.01 * y - i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - 0.5] = 0;
                     }
                 }
             }
-            if ((0.01 * y + i) < 11) {
-                if ((0.01 * y + i - 0.5 - 1) > (0.01 * y - 0.5)) {
-                    if (Co.directsP[0.01 * y + i - 0.5 - 1][0.01 * x - 0.5] == 0) {
-                        Co.directsP[0.01 * y + i - 0.5][0.01 * x - 0.5] = 0;
+            if ((0.01 * y + i - Co.configs.HEAD_HEIGHT/100) < 11) {
+                if ((0.01 * y + i - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100) > (0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100)) {
+                    if (Co.directsP[0.01 * y + i - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * x - 0.5] == 0) {
+                        Co.directsP[0.01 * y + i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - 0.5] = 0;
                     }
                 }
             }
-            if ((0.01 * x + i < 9) && (0.01 * y + i < 11)) {
-                if (((0.01 * y + i - 0.5 - 1) > (0.01 * y - 0.5)) && ((0.01 * x + i - 0.5 - 1) > (0.01 * x - 0.5))) {
-                    if (Co.directsP[0.01 * y + i - 0.5 - 1][0.01 * x + i - 0.5 - 1] == 0) {
-                        Co.directsP[0.01 * y + i - 0.5][0.01 * x + i - 0.5] = 0;
+            if ((0.01 * x + i < 9) && (0.01 * y + i - Co.configs.HEAD_HEIGHT/100 < 11)) {
+                if (((0.01 * y + i - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100) > (0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100)) && ((0.01 * x + i - 0.5 - 1) > (0.01 * x - 0.5))) {
+                    if (Co.directsP[0.01 * y + i - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5 - 1] == 0) {
+                        Co.directsP[0.01 * y + i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5] = 0;
                     }
                 }
             }
-            if ((0.01 * x - i > 0) && (0.01 * y - i > 0)) {
-                if (((0.01 * y - i - 0.5 + 1) < (0.01 * y - 0.5)) && ((0.01 * x - i - 0.5 + 1) < (0.01 * x - 0.5))) {
-                    if (Co.directsP[0.01 * y - i - 0.5 + 1][0.01 * x - i - 0.5 + 1] == 0) {
-                        Co.directsP[0.01 * y - i - 0.5][0.01 * x - i - 0.5] = 0;
+            if ((0.01 * x - i > 0) && (0.01 * y - i - Co.configs.HEAD_HEIGHT/100 > 0)) {
+                if (((0.01 * y - i - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100) < (0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100)) && ((0.01 * x - i - 0.5 + 1) < (0.01 * x - 0.5))) {
+                    if (Co.directsP[0.01 * y - i - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5 + 1] == 0) {
+                        Co.directsP[0.01 * y - i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5] = 0;
                     }
                 }
             }
-            if ((0.01 * x + i < 9) && (0.01 * y - i > 0)) {
-                if (((0.01 * y - i - 0.5 + 1) < (0.01 * y - 0.5)) && ((0.01 * x + i - 0.5 - 1) > (0.01 * x - 0.5))) {
-                    if (Co.directsP[0.01 * y - i - 0.5 + 1][0.01 * x + i - 0.5 - 1] == 0) {
-                        Co.directsP[0.01 * y - i - 0.5][0.01 * x + i - 0.5] = 0;
+            if ((0.01 * x + i < 9) && (0.01 * y - i  - Co.configs.HEAD_HEIGHT/100> 0)) {
+                if (((0.01 * y - i - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100) < (0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100)) && ((0.01 * x + i - 0.5 - 1) > (0.01 * x - 0.5))) {
+                    if (Co.directsP[0.01 * y - i - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5 - 1] == 0) {
+                        Co.directsP[0.01 * y - i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x + i - 0.5] = 0;
                     }
                 }
             }
-            if ((0.01 * x - i > 0) && (0.01 * y + i < 11)) {
-                if (((0.01 * y + i - 0.5 - 1) > (0.01 * y - 0.5)) && ((0.01 * x - i - 0.5 + 1) < (0.01 * x - 0.5))) {
-                    if (Co.directsP[0.01 * y + i - 0.5 - 1][0.01 * x - i - 0.5 + 1] == 0) {
-                        Co.directsP[0.01 * y + i - 0.5][0.01 * x - i - 0.5] = 0;
+            if ((0.01 * x - i > 0) && (0.01 * y + i - Co.configs.HEAD_HEIGHT/100 < 11)) {
+                if (((0.01 * y + i - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100) > (0.01 * y - 0.5 - Co.configs.HEAD_HEIGHT/100)) && ((0.01 * x - i - 0.5 + 1) < (0.01 * x - 0.5))) {
+                    if (Co.directsP[0.01 * y + i - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5 + 1] == 0) {
+                        Co.directsP[0.01 * y + i - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * x - i - 0.5] = 0;
                     }
                 }
             }
         }
         for (i = 0; i < Co.directsP.length; i++) {
             for (j = 0; j < Co.directsP[i].length; j++) {
-                if (Co.directsP[i][j] == 11) Co.directGroup.push(Co.game.add.sprite(j * 100 + this.x, i * 100 + this.y, 'huongdi'));
+                if (Co.directsP[i][j] == 11) Co.directGroup.push(Co.game.add.sprite(j * 100 + this.x, i * 100 + this.y + Co.configs.HEAD_HEIGHT, 'huongdi'));
             }
         }
         for (i = 0; i < Co.directGroup.length; i++) {
@@ -116,7 +116,7 @@ class directPoint {
         // console.log(0.01*this.x1 -0.5, 0.01*this.y1-0.5);
         // console.log(Co.posKillGroup);
         for (i in Co.posKillGroup) {
-            Co.killGroup.push(Co.game.add.sprite(Co.posKillGroup[i].x * 100 + 19.5, Co.posKillGroup[i].y * 100 + 19.5, 'oAnDuoc'));
+            Co.killGroup.push(Co.game.add.sprite(Co.posKillGroup[i].x * 100 + 19.5, Co.posKillGroup[i].y * 100 + 19.5 + Co.configs.HEAD_HEIGHT, 'oAnDuoc'));
         }
         for(i in Co.killGroup){
             Co.killGroup[i].inputEnabled = true;
@@ -158,12 +158,15 @@ class directPoint {
             // if(){}
         // defined pheps cộng trc
         // hiện nước ăn
-        // this.update() = this.update.bind(this);
+        //update is test function!!!!
+        // this.update();
     }
-    update() {
-        console.log(Co.directGroup);
-        console.log(Co.directGroup[2].position.x + 50 - this.x, Co.directGroup[2].position.y + 50 - this.y);
-    }
+    // update() {
+    //     console.log(Co.directGroup);
+    //     console.log(Co.chessesPos);
+    //     console.log(Co.chessesType);
+    //     console.log(Co.chessesValue);
+    // }
     //tìm quân cờ nằm cạnh quân đã chọn
     findObNear() {
         // console.log(Co.chessesPos);
@@ -398,123 +401,123 @@ class directPoint {
             }
         }
         //tìm các quân cờ xung quanh
-        if (((0.01 * this.y1 - 0.5 - 1 >= 0) && ((0.01 * this.x1 - 0.5 - 1) >= 0))) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5 - 1]) !== 0) {
+        if (((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100 >= 0) && ((0.01 * this.x1 - 0.5 - 1) >= 0))) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1]) !== 0) {
                 // console.log("Top Left");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - 1
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }
-        if ((0.01 * this.y1 - 0.5 - 1 >= 0)) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5]) !== 0) {
+        if ((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100 >= 0)) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5]) !== 0) {
                 // console.log("Top");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - 1
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }
-        if (((0.01 * this.y1 - 0.5 - 1) >= 0) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5 + 1]) !== 0) {
+        if (((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100) >= 0) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1]) !== 0) {
                 // console.log("Top Right");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - 1
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }
         if ((0.01 * this.x1 - 0.5 + 1) < 9) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5 + 1]) !== 0) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1]) !== 0) {
                 // console.log("Right");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }
-        if (((0.01 * this.y1 - 0.5 + 1) <= 10) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5 + 1]) !== 0) {
+        if (((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100) <= 10) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1]) !== 0) {
                 // console.log("Bot Right");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 + 1
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }
-        if ((0.01 * this.y1 - 0.5 + 1) <= 10) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5]) !== 0) {
+        if ((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100) <= 10) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5]) !== 0) {
                 // console.log("Bot");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 + 1
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }
-        if (((0.01 * this.x1 - 0.5 - 1) >= 0) && ((0.01 * this.y1 - 0.5 + 1) <= 10)) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5 - 1]) !== 0) {
+        if (((0.01 * this.x1 - 0.5 - 1) >= 0) && ((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100) <= 10)) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1]) !== 0) {
                 // console.log("Bot Left");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 + 1
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }
         if ((0.01 * this.x1 - 0.5 - 1) >= 0) {
-            if ((Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5 - 1]) !== 0) {
+            if ((Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1]) !== 0) {
                 // console.log("Left");
                 sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100][0.01 * this.x1 - 0.5],
                     0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100,
                     0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT/100
                 );
             };
         }

@@ -3,6 +3,6 @@ class chess5Red extends ChessController {
         super(x, y, 'red5');
         this.sprite.STEP = 5;
         this.sprite.type = 'red';
-        Co.chessesPos[(this.y - 50)/100][(this.x - 50)/100] = 13;
+        Co.chessesPos[(this.y - 50 - Co.configs.HEAD_HEIGHT)/100][(this.x - 50)/100] = 13;
     }
 }

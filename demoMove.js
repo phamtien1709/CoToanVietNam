@@ -1,45 +1,51 @@
+// Phaser current version test environment
+// Simple countdown timer
 
-// var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create });
+var game = new Phaser.Game(600, 400, Phaser.AUTO, 'test', null, false, false);
 
-// function preload() {
+var BasicGame = function (game) {};
 
-//     game.load.image('kirito', 'Assets/Bandau/codo8.png');
-//     game.load.image('asuna', 'Assets/Bandau/codo8.png');
+BasicGame.Boot = function (game) {};
 
-// }
+var timer, timerEvent;
 
-// var text;
-// var tweenA;
-// var tweenB;
+BasicGame.Boot.prototype = {
+    preload: function () {
+        
+    },
+    create: function () {
+        // Create a custom timer
+        timer = game.time.create();
+        
+        // Create a delayed event 1m and 30s from now
+        timerEvent = timer.add(Phaser.Timer.MINUTE * 1 + Phaser.Timer.SECOND * 30, this.endTimer, this);
+        
+        // Start the timer
+        timer.start();
+    },
+    update: function () {
+        
+    },
+    render: function () {
+        // If our timer is running, show the time in a nicely formatted way, else show 'Done!'
+        if (timer.running) {
+            game.debug.text(this.formatTime(Math.round((timerEvent.delay - timer.ms) / 1000)), 2, 14, "#ff0");
+        }
+        else {
+            game.debug.text("Done!", 2, 14, "#0f0");
+        }
+    },
+    endTimer: function() {
+        // Stop the timer when the delayed event triggers
+        timer.stop();
+    },
+    formatTime: function(s) {
+        // Convert seconds (s) to a nicely formatted and padded time string
+        var minutes = "0" + Math.floor(s / 60);
+        var seconds = "0" + (s - minutes * 60);
+        return minutes.substr(-2) + ":" + seconds.substr(-2);   
+    }
+};
 
-// function create() {
-
-//     game.renderer.renderSession.roundPixels = true;
-//     game.stage.backgroundColor = '#124184';
-
-//     game.add.text(16, 16, "Tween Chain Demo", { font: "16px Arial", fill: "#ffffff" });
-//     text = game.add.text(680, 16, "Click to Start", { font: "16px Arial", fill: "#ffffff" });
-
-//     game.spriteA = game.add.sprite(64, 100, 'kirito');
-//     game.spriteA.anchor.set(0.5);
-//     var spriteB = game.add.sprite(64, 300, 'asuna');
-
-//     tweenB = game.add.tween(spriteB).to( { x: 600 }, 2000, "Quart.easeOut");
-
-//     // tweenA.chain(tweenB);
-
-//     game.input.onDown.addOnce(start, this);
-
-// }
-
-// function start() {
-//     console.log(game.input.activePointer.position);
-//     let x1 = game.input.activePointer.position.x;
-//     let y1 = game.input.activePointer.position.y;
-//     tweenA = game.add.tween(game.spriteA).to( { x: x1, y:y1 }, 2000, "Quart.easeOut");
-//     tweenA.anchor = new Phaser.Point(0.5, 0.5);
-//     tweenA.start();
-
-//     text.visible = false;
-
-// }
+game.state.add('Boot', BasicGame.Boot);
+game.state.start('Boot');

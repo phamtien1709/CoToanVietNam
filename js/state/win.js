@@ -23,7 +23,7 @@ var winState = {
             Co.game.add.tween(win_img.scale).to({x:1.3, y:1.3}, 600, Phaser.Easing.Quadratic.InOut, true);
             Co.game.add.tween(winRed.scale).to({x:1.5, y:1.5}, 600, Phaser.Easing.Quadratic.InOut, true);    
         }
-        var btn_thoatgame = Co.game.add.sprite(Co.game.world.centerX, 1050, 'btn_thoatgame');
+        var btn_thoatgame = Co.game.add.sprite(Co.game.world.centerX, 1050 + Co.configs.HEAD_HEIGHT, 'btn_thoatgame');
         btn_thoatgame.anchor.set(0.5);
         btn_thoatgame.inputEnabled = true;
         btn_thoatgame.input.priorityID = 3;
