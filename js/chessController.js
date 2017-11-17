@@ -139,7 +139,7 @@ class ChessController{
                 // console.log(Co.chessesType[posEatY][posEatX]);
                 // if có quân khác màu => ăn
                 if((Co.chessesType[posEatY - Co.configs.HEAD_HEIGHT/100][posEatX] !== 0)&&(Co.chessesType[posEatY - Co.configs.HEAD_HEIGHT/100][posEatX] !== Co.chessesType[(this.y-50 - Co.configs.HEAD_HEIGHT)/100][(this.x-50)/100])){
-                    console.log("eat eat eat");
+                    // console.log("eat eat eat");
                     // console.log(Co.chessGroup);
                     var obj = Co.chessGroup.children.find(function(obj){
                         if((obj.position.x === posRealX)&&(obj.position.y === posRealY)){
@@ -149,7 +149,8 @@ class ChessController{
                     // console.log(obj);
                     for(i=0; i<Co.chesses.length; i++){
                         if((Co.chesses[i].x == obj.position.x)&&(Co.chesses[i].y == obj.position.y)&&(this.sprite.type !== obj.type)){
-                            Co.chesses[i].sprite.destroy();
+                            Co.chesses[i].sprite.kill();
+                            Co.ateList.blue.push(Co.chesses[i]);
                             Co.chesses.splice(i, 1);
                             Co.chessesPos[(this.y - 50 - Co.configs.HEAD_HEIGHT)/100][(this.x - 50)/100] = 0;     
                             Co.chessesValue[(this.y - 50 - Co.configs.HEAD_HEIGHT)/100][(this.x -50)/100] = 0;
@@ -181,7 +182,7 @@ class ChessController{
                     // i.destroy();
                 }
                 else{
-                    console.log("kidding me?");
+                    // console.log("kidding me?");
                 }
                 // else todo
             });
@@ -200,7 +201,7 @@ class ChessController{
                 // console.log(Co.chessesType[posEatY][posEatX]);
                 // if có quân khác màu => ăn
                 if((Co.chessesType[posEatY - Co.configs.HEAD_HEIGHT/100][posEatX] !== 0)&&(Co.chessesType[posEatY - Co.configs.HEAD_HEIGHT/100][posEatX] !== Co.chessesType[(this.y-50 - Co.configs.HEAD_HEIGHT)/100][(this.x-50)/100])){
-                    console.log("eat eat eat");
+                    // console.log("eat eat eat");
                     // console.log(Co.chessGroup);
                     var obj = Co.chessGroup.children.find(function(obj){
                         if((obj.position.x === posRealX)&&(obj.position.y === posRealY)){
@@ -210,7 +211,8 @@ class ChessController{
                     // console.log(obj);
                     for(i=0; i<Co.chesses.length; i++){
                         if((Co.chesses[i].x == obj.position.x)&&(Co.chesses[i].y == obj.position.y)&&(this.sprite.type !== obj.type)){
-                            Co.chesses[i].sprite.destroy();
+                            Co.chesses[i].sprite.kill();
+                            Co.ateList.red.push(Co.chesses[i]);
                             Co.chesses.splice(i, 1);
                             Co.chessesPos[(this.y - 50 - Co.configs.HEAD_HEIGHT)/100][(this.x - 50)/100] = 0;     
                             Co.chessesValue[(this.y - 50 - Co.configs.HEAD_HEIGHT)/100][(this.x -50)/100] = 0;
@@ -242,7 +244,7 @@ class ChessController{
                     // i.destroy();
                 }
                 else{
-                    console.log("kidding me?");
+                    // console.log("kidding me?");
                 }
                 // else todo
             });

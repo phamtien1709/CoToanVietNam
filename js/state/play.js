@@ -3,12 +3,11 @@ var playState = {
         Co.game.load.image('bg_quandaan', 'Assets/Bandau/BG_quandaan.png');
         Co.game.load.image('bg_time', 'Assets/Bandau/BG_Time.png');
         Co.game.load.image('ava', 'Assets/Bandau/kichthuocAvatar.png');
+        Co.game.load.image('gui_setting', 'Assets/Chat/Guichat2.png');
         Co.game.time.advancedTiming = true;
     },
     create: function(){
         Co.game.add.sprite(0, 0, 'bg');
-        var btn_caidat = Co.game.add.button(50, 100, 'caidat');
-        btn_caidat.anchor.set(0.5);
         var bg_quandaan = Co.game.add.sprite(750, 100, 'bg_quandaan');
         bg_quandaan.anchor.set(0.5);
         var bg_timeRed = Co.game.add.sprite(150, 1350, 'bg_time');
@@ -22,8 +21,8 @@ var playState = {
         //TIMINGGG
         Co.timerBlue = Co.game.time.create();
         Co.timerRed = Co.game.time.create();
-        Co.timerBlueEvent = Co.timerBlue.add(Phaser.Timer.MINUTE *15+ Phaser.Timer.SECOND *59, this.endTimerBlue, this);
-        Co.timerRedEvent = Co.timerRed.add(Phaser.Timer.MINUTE *15+ Phaser.Timer.SECOND *59, this.endTimerRed, this);
+        Co.timerBlueEvent = Co.timerBlue.add(Phaser.Timer.MINUTE *15 + Phaser.Timer.SECOND *59, this.endTimerBlue, this);
+        Co.timerRedEvent = Co.timerRed.add(Phaser.Timer.MINUTE *15 + Phaser.Timer.SECOND *59, this.endTimerRed, this);
 
         Co.game.physics.startSystem(Phaser.Physics.ARCADE);
         //win get
@@ -88,9 +87,51 @@ var playState = {
         Co.pointBluePrev = 0;
         Co.pointRedNow = 0;
         Co.pointRedPrev = 0;
-        Co.style = { font: "30px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" };
-        Co.displayingPointBlue = Co.game.add.text(10,Co.configs.HEAD_HEIGHT-100, `Blue: ${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, Co.style);
-        Co.displayingPointRed = Co.game.add.text(700,Co.configs.HEAD_HEIGHT-100, `Red: ${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, Co.style);
+        Co.style = { font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" };
+        Co.style2 = { font: "30px Arial", fill: "#33cc33", boundsAlignH: "center", boundsAlignV: "middle" };
+        Co.displayingPointBlue = Co.game.add.text(130,1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.displayingPointRed = Co.game.add.text(730,1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.turnPlayer = Co.game.add.text(330, 1400, '', Co.style2);
+        Co.game.add.text(480, 60,'Xanh ăn: ', { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.game.add.text(480, 110,'Đỏ ăn: ', { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+        //render quân đã ăn
+        Co.ateList = {
+           blue: [], 
+           red:  []
+        };
+        //popup setting ingame
+        var btn_caidat = Co.game.add.button(50, 100, 'caidat', openPopup, this);
+        btn_caidat.anchor.set(0.5);
+        btn_caidat.input.useHandCursor = true;
+        var popup_setting = Co.game.add.sprite(250, 200, 'gui_setting');
+        popup_setting.alpha = 0.8;
+        popup_setting.anchor.set(0.5);
+        popup_setting.inputEnabled = true;
+        popup_setting.input.enableDrag();
+        popup_setting.scale.set(0);
+        var btn_thoat = Co.game.make.sprite(220, -250, 'btn_thoat');
+        btn_thoat.inputEnabled = true;
+        btn_thoat.input.priorityID = 1;
+        btn_thoat.input.useHandCursor = true;
+        btn_thoat.events.onInputDown.add(closePopup, this);
+
+        popup_setting.addChild(btn_thoat);
+        var tween = null;
+        function openPopup(){
+            if ((tween !== null && tween.isRunning) || popup_setting.scale.x === 1)
+            {
+                return;
+            } 
+            tween = Co.game.add.tween(popup_setting.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Elastic.Out, true);           
+        };
+        function closePopup(){
+            if (tween && tween.isRunning || popup_setting.scale.x === 0.1)
+            {
+                return;
+            }
+            tween = Co.game.add.tween(popup_setting.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
+        };
+
         //directGroup
         Co.directGroup = [];
         Co.directGroup.anchor = new Phaser.Point(0.5,0.5);
@@ -119,12 +160,14 @@ var playState = {
     },
     update: function(){
         if(Co.pointBlueNow !== Co.pointBluePrev){
+            // console.log(Co.ateList);
             Co.pointBluePrev = Co.pointBlueNow;
-            Co.displayingPointBlue.setText(`Blue: ${Co.pointBluePrev}/${Co.configs.WIN_POINT}`);
+            Co.displayingPointBlue.setText(`${Co.pointBluePrev}/${Co.configs.WIN_POINT}`);
         }
         if(Co.pointRedNow !== Co.pointRedPrev){
+            // console.log(Co.ateList[0].sprite.__proto__.revive());
             Co.pointRedPrev = Co.pointRedNow;
-            Co.displayingPointRed.setText(`Red: ${Co.pointRedPrev}/${Co.configs.WIN_POINT}`);
+            Co.displayingPointRed.setText(`${Co.pointRedPrev}/${Co.configs.WIN_POINT}`);
         }
         if((Co.pointBluePrev >= Co.configs.WIN_POINT)||(Co.pointRedPrev >= Co.configs.WIN_POINT)){
             if(Co.pointBluePrev >= Co.configs.WIN_POINT) Co.blueWin = true;
@@ -134,28 +177,59 @@ var playState = {
             }, 1200);;
         }
         if(Co.blueFirst == 'blue'){
+            Co.turnPlayer.setText(`Lượt bên XANH..`);
             Co.timerRed.pause();
             Co.timerBlue.resume();
         }
         if(Co.blueFirst == 'red'){
+            Co.turnPlayer.setText(`Lượt bên ĐỎ..`);
             Co.timerRed.resume();
             Co.timerBlue.pause();
         }
     },
     render: function(){
         var fps = Co.game.debug.text(`FPS: ${Co.game.time.fps} `, 800, 30);
+        if(Co.ateList.blue.length>0){
+            for(item in Co.ateList.blue){
+                Co.ateList.blue[item].sprite.position.x = 650 + item*30;
+                Co.ateList.blue[item].sprite.position.y = 70;
+                Co.ateList.blue[item].sprite.scale.x = 0.5;
+                Co.ateList.blue[item].sprite.scale.y = 0.5;
+                Co.ateList.blue[item].sprite.revive();
+            }
+            // Co.ateList[0].sprite.position.x = 100;
+            // Co.ateList[0].sprite.position.y = 100;
+            // Co.ateList[0].sprite.revive();
+        }
+        if(Co.ateList.red.length>0){
+            for(item in Co.ateList.red){
+                Co.ateList.red[item].sprite.position.x = 650 + item*30;
+                Co.ateList.red[item].sprite.position.y = 120;
+                Co.ateList.red[item].sprite.scale.x = 0.5;
+                Co.ateList.red[item].sprite.scale.y = 0.5;
+                Co.ateList.red[item].sprite.revive();
+            }
+        }
         var font;
         if (Co.timerBlue.running) {
-            font = Co.game.debug.text(this.formatTime(Math.round((Co.timerBlueEvent.delay - Co.timerBlue.ms) / 1000)), 120, 1350, "#000");
+            font = Co.game.debug.text(this.formatTime(Math.round((Co.timerBlueEvent.delay - Co.timerBlue.ms) / 1000)), 140, 1350, "#000");
         }
         else {
-            Co.game.debug.text("Done!", 120, 1350, "#0f0");
+            Co.game.debug.text("Hết giờ!", 140, 1350, "#B20044");
+            Co.redWin = true;
+            setTimeout(function(){
+                Co.game.state.start('win');
+            }, 1200);;
         }
         if (Co.timerRed.running) {
-            Co.game.debug.text(this.formatTime(Math.round((Co.timerRedEvent.delay - Co.timerRed.ms) / 1000)), 720, 1350, "#000");
+            Co.game.debug.text(this.formatTime(Math.round((Co.timerRedEvent.delay - Co.timerRed.ms) / 1000)), 740, 1350, "#000");
         }
         else {
-            Co.game.debug.text("Done!", 720, 1350, "#0f0");
+            Co.game.debug.text("Hết giờ!", 750, 1350, "#B20044");
+            Co.blueWin = true;
+            setTimeout(function(){
+                Co.game.state.start('win');
+            }, 1200);;
         }
         // console.log(fps);
         // fps.font = 'Arial';

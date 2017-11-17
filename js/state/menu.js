@@ -19,7 +19,8 @@ var menuState = {
         Co.game.load.image('gui_BG', 'Assets/Setting/GUiBG2.png');
         Co.game.load.image('bg', 'Assets/Loading/BG.png'); 
         Co.game.load.image('check', 'Assets/Setting/Chon.png');    
-        Co.game.load.image('uncheck', 'Assets/Setting/Khongchon.png');           
+        Co.game.load.image('uncheck', 'Assets/Setting/Khongchon.png');
+        Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');           
     },
     create: function () {
         var tween = null;
@@ -60,7 +61,12 @@ var menuState = {
         btn_huongdan.input.priorityID = 2;
         btn_huongdan.input.useHandCursor = true;
         btn_huongdan.events.onInputDown.add(()=>{
-            console.log("tutorial");
+            var run_tut = null;
+            if ((run_tut !== null && run_tut.isRunning) || popup_tut.scale.x === 1)
+            {
+                return;
+            } 
+            run_tut = Co.game.add.tween(popup_tut.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);           
         },this);
         //btn thoat game
         var btn_thoatgame = Co.game.make.sprite(-200, 160, 'btn_thoatgame');
@@ -99,6 +105,50 @@ var menuState = {
         popup.addChild(uncheck_rung);
         popup.scale.set(0);
 
+
+        var text_tuts = [
+            'Cách đi quân:',
+            'Quân số "0" không được di chuyển những quân còn lại đều ',
+            'được đi thẳng theo 4 hướng tiến, lùi, trái, phải và 4   ',
+            'phương chéo Đông, Tây, Nam, Bắc.                        ',
+            'Số bước đi thực hiện theo trị số riêng của từng quân cờ.',
+            'Những quân có trị số nhiều có thể đi nhiều hơn.         ',
+            'Cách bắt quân:',
+            'Muốn bắt quân đối phương phải có 2 quân bên mình ở trong',
+            '2 ô liền kề với nhau để lấy trị số của 2 quân cơ ấy',
+            'mà tính nhẩm cộng, trừ, nhân, chia với nhau. Hướng bắt',
+            'quân cũng thực hiện theo 4 phương 4 hướng.',
+            'Đáp số của mỗi phép tính ấy là điểm được bắt quân đối',
+            'phương. Chỉ đánh số nguyên đơn từ 1 đến 9. Quá 10, 20, ',
+            '30.. Thì trừ đi 10, 20, 30..',
+            'Kết thúc ván cờ:',
+            '1_ Thắng tuyệt đối: Bên nào bắt được quân số "0" trước',
+            '                                  là thắng Tuyệt đối.',
+            '2_ Thắng điểm: Mỗi dấu chấm tròn trên mặt quân cờ tương',
+            '                                  ứng với 1 điểm.',
+            '* Hai bên tự thỏa thuận thang điểm cho mỗi ván đấu(25,',
+            '20 điểm), tự thỏa thuận người đi trước, số ván đấu,',
+            'cách bắt quân'
+        ];
+        var initX = 10;
+        //popup hướng dẫn
+        var popup_tut = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_tut');
+        popup_tut.alpha = 1;
+        popup_tut.anchor.set(0.5);
+        popup_tut.inputEnabled = true;
+        popup_tut.input.enableDrag();
+        popup_tut.scale.set(0);
+
+        for (var i = 0; i < text_tuts.length; i++) {
+            this.index = this.game.add.text( -290, initX -340, text_tuts[i],
+                        { font: 'bold 20px Arial',fill:'black', align: "center" });
+            popup_tut.addChild(this.index);
+            this.index.anchor.set(0);
+            initX += 30;
+        }
+
+
+        //function settings
         function uncheckSound(){
             tween_mini1 = Co.game.add.tween(uncheck_amthanh.scale).to({x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
             tween_mini2 = Co.game.add.tween(check_amthanh.scale).to({x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
