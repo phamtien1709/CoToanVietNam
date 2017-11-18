@@ -1,9 +1,14 @@
 var playState = {
     preload: function(){
         Co.game.load.image('bg_quandaan', 'Assets/Bandau/BG_quandaan.png');
+        Co.game.load.image('btn_cauhoa', 'Assets/Bandau/Button_cauhoa.png');
+        Co.game.load.image('btn_xinthua', 'Assets/Bandau/Button_Xinthua.png');
+        Co.game.load.image('btn_roiban', 'Assets/Bandau/Button_Roiban.png');
         Co.game.load.image('bg_time', 'Assets/Bandau/BG_Time.png');
         Co.game.load.image('ava', 'Assets/Bandau/kichthuocAvatar.png');
-        Co.game.load.image('gui_setting', 'Assets/Chat/Guichat2.png');
+        Co.game.load.image('gui_setting', 'Assets/Chat/Guichat3.png');
+        Co.game.load.image('bg_trudiem', 'Assets/Bandau/BG_trudiem.png');
+        Co.game.load.image('bg_congdiem', 'Assets/Bandau/BG_congdiem.png');
         Co.game.time.advancedTiming = true;
     },
     create: function(){
@@ -82,6 +87,12 @@ var playState = {
             ['red','red','red','red','red','red','red','red','red']
         ];
         this.drawChessOnBoard(Co.configs.PIECE_DEFAULT);
+        //point user
+        Co.userBluePoint = 2000;
+        Co.userRedPoint = 2000;
+        Co.displayingUserBluePoint = Co.game.add.text(130, 1385, `${Co.userBluePoint} $`,{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.displayingUserRedPoint = Co.game.add.text(730, 1385, `${Co.userRedPoint} $`,{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+
         //get point
         Co.pointBlueNow = 0;
         Co.pointBluePrev = 0;
@@ -91,7 +102,8 @@ var playState = {
         Co.style2 = { font: "30px Arial", fill: "#33cc33", boundsAlignH: "center", boundsAlignV: "middle" };
         Co.displayingPointBlue = Co.game.add.text(130,1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.displayingPointRed = Co.game.add.text(730,1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
-        Co.turnPlayer = Co.game.add.text(330, 1400, '', Co.style2);
+        Co.turnPlayer = Co.game.add.text(455, 1400, '', Co.style2);
+        Co.turnPlayer.anchor.set(0.5);
         Co.game.add.text(480, 60,'Xanh ăn: ', { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.game.add.text(480, 110,'Đỏ ăn: ', { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
         //render quân đã ăn
@@ -99,23 +111,37 @@ var playState = {
            blue: [], 
            red:  []
         };
+
+        //button in setting game
+        var btn_roiban = Co.game.make.button(0, -150, 'btn_roiban');
+        btn_roiban.anchor.set(0.5);
+        btn_roiban.scale.set(2);
+        var btn_cauhoa = Co.game.make.button(0, 0, 'btn_cauhoa');
+        btn_cauhoa.scale.set(2);
+        btn_cauhoa.anchor.set(0.5);
+        var btn_xinthua = Co.game.make.button(0, 150, 'btn_xinthua');
+        btn_xinthua.scale.set(2);
+        btn_xinthua.anchor.set(0.5);
         //popup setting ingame
         var btn_caidat = Co.game.add.button(50, 100, 'caidat', openPopup, this);
         btn_caidat.anchor.set(0.5);
         btn_caidat.input.useHandCursor = true;
-        var popup_setting = Co.game.add.sprite(250, 200, 'gui_setting');
-        popup_setting.alpha = 0.8;
+        var popup_setting = Co.game.add.sprite(200, 200, 'gui_setting');
+        popup_setting.alpha = 1;
         popup_setting.anchor.set(0.5);
         popup_setting.inputEnabled = true;
         popup_setting.input.enableDrag();
         popup_setting.scale.set(0);
-        var btn_thoat = Co.game.make.sprite(220, -250, 'btn_thoat');
+        var btn_thoat = Co.game.make.sprite(140, -260, 'btn_thoat');
         btn_thoat.inputEnabled = true;
         btn_thoat.input.priorityID = 1;
         btn_thoat.input.useHandCursor = true;
         btn_thoat.events.onInputDown.add(closePopup, this);
 
         popup_setting.addChild(btn_thoat);
+        popup_setting.addChild(btn_roiban);
+        popup_setting.addChild(btn_cauhoa);
+        popup_setting.addChild(btn_xinthua);        
         var tween = null;
         function openPopup(){
             if ((tween !== null && tween.isRunning) || popup_setting.scale.x === 1)
@@ -163,11 +189,37 @@ var playState = {
             // console.log(Co.ateList);
             Co.pointBluePrev = Co.pointBlueNow;
             Co.displayingPointBlue.setText(`${Co.pointBluePrev}/${Co.configs.WIN_POINT}`);
+            //create add and sub point user
+            var bg_congdiem = Co.game.add.sprite(120, 1385, 'bg_congdiem');
+            var diemcong = Co.game.add.text(170, 1390, '+100',{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+            Co.userBluePoint += 100;
+            var bg_trudiem = Co.game.add.sprite(720, 1385, 'bg_trudiem');
+            var diemtru = Co.game.add.text(770, 1390, '-100',{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+            Co.userRedPoint -= 100;
+            Co.game.add.tween(bg_congdiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemcong).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(bg_trudiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemtru).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.displayingUserBluePoint.setText(`${Co.userBluePoint} $`);
+            Co.displayingUserRedPoint.setText(`${Co.userRedPoint} $`);
         }
         if(Co.pointRedNow !== Co.pointRedPrev){
             // console.log(Co.ateList[0].sprite.__proto__.revive());
             Co.pointRedPrev = Co.pointRedNow;
             Co.displayingPointRed.setText(`${Co.pointRedPrev}/${Co.configs.WIN_POINT}`);
+            //create add and sub point user
+            var bg_congdiem = Co.game.add.sprite(720, 1385, 'bg_congdiem');
+            var diemcong = Co.game.add.text(770, 1390, '+100',{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+            Co.userRedPoint += 100;
+            var bg_trudiem = Co.game.add.sprite(120, 1385, 'bg_trudiem');
+            var diemtru = Co.game.add.text(170, 1390, '-100',{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+            Co.userBluePoint -= 100;
+            Co.game.add.tween(bg_congdiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemcong).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(bg_trudiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemtru).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.displayingUserBluePoint.setText(`${Co.userBluePoint} $`);
+            Co.displayingUserRedPoint.setText(`${Co.userRedPoint} $`);
         }
         if((Co.pointBluePrev >= Co.configs.WIN_POINT)||(Co.pointRedPrev >= Co.configs.WIN_POINT)){
             if(Co.pointBluePrev >= Co.configs.WIN_POINT) Co.blueWin = true;

@@ -16,6 +16,7 @@
     <script src="./js/state/menu.js"></script>
     <script src="./js/state/play.js"></script>
     <script src="./js/state/win.js"></script>
+    <script src="socket.io/socket.io.js"></script>
     <script src="./js/chessController.js"></script>
     <script src="./js/Blue/chess1Blue.js"></script>
     <script src="./js/Blue/chess2Blue.js"></script>
@@ -38,7 +39,10 @@
     <script src="./js/Red/chess9Red.js"></script>
     <script src="./js/Red/chess10Red.js"></script>  
     <script src="./js/DirectPoint/directPoint.js"></script>  
-    <script src="js/main.js"></script>    
+    <script src="js/main.js"></script>  
+    <script>
+        var socket = io("http://localhost:6969");
+    </script>  
 </head>
 <body>
     

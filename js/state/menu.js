@@ -128,9 +128,11 @@ var menuState = {
             '                                  ứng với 1 điểm.',
             '* Hai bên tự thỏa thuận thang điểm cho mỗi ván đấu(25,',
             '20 điểm), tự thỏa thuận người đi trước, số ván đấu,',
-            'cách bắt quân'
+            'cách bắt quân.'
         ];
         var initX = 10;
+        var txt_huongdan = Co.game.make.sprite(-230, -470, 'txt_huongdan');
+        var btn_back = Co.game.make.button(-300, -450, 'btn_back', backTuts);
         //popup hướng dẫn
         var popup_tut = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_tut');
         popup_tut.alpha = 1;
@@ -138,10 +140,12 @@ var menuState = {
         popup_tut.inputEnabled = true;
         popup_tut.input.enableDrag();
         popup_tut.scale.set(0);
+        popup_tut.addChild(txt_huongdan);
+        popup_tut.addChild(btn_back);
 
         for (var i = 0; i < text_tuts.length; i++) {
             this.index = this.game.add.text( -290, initX -340, text_tuts[i],
-                        { font: 'bold 20px Arial',fill:'black', align: "center" });
+                        { font: 'bold 20px Arial',fill:'white', align: "center" });
             popup_tut.addChild(this.index);
             this.index.anchor.set(0);
             initX += 30;
@@ -149,6 +153,10 @@ var menuState = {
 
 
         //function settings
+        function backTuts(){
+            var run_tut = null; 
+            run_tut = Co.game.add.tween(popup_tut.scale).to( { x: 0, y: 0 }, 700, Phaser.Easing.Elastic.In, true);
+        }
         function uncheckSound(){
             tween_mini1 = Co.game.add.tween(uncheck_amthanh.scale).to({x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
             tween_mini2 = Co.game.add.tween(check_amthanh.scale).to({x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
