@@ -11,6 +11,8 @@
           margin: 0;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
     <script src="./libs/phaser.min.js"></script>
     <script src="./js/state/load.js"></script>
     <script src="./js/state/menu.js"></script>
@@ -39,12 +41,16 @@
     <script src="./js/Red/chess9Red.js"></script>
     <script src="./js/Red/chess10Red.js"></script>  
     <script src="./js/DirectPoint/directPoint.js"></script>  
-    <script src="js/main.js"></script>  
+    <script src="js/main.js"></script>
+    <script src="js/socket.js"></script>
     <script>
-        var socket = io("http://localhost:6969");
+        // $(document).ready(function(){
+        //     $("#connect-index").ready(function(){
+        //         socket.emit("Send-player", "player enjoy");
+        //     })
+        // })
     </script>  
 </head>
 <body>
-    
 </body>
 </html>

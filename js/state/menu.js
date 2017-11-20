@@ -27,6 +27,7 @@ var menuState = {
         var tween_mini1 = null;
         var tween_mini2 = null;
         var checkPlay = false;
+        var ok = 0;
         var drawBoard = false;
         this.drawBoardDefault(Co.configs.BOARD_DEFAULT, this.drawBoard);
         var bg = Co.game.add.sprite(0, 0, 'bg');
@@ -36,7 +37,12 @@ var menuState = {
         var btn_batdau = Co.game.add.button(Co.game.world.centerX - 205, Co.game.world.centerY, 'batdau', function(){
             checkPlay = true;
             btn_batdau.pendingDestroy = true;
-            this.start();
+            //socket
+            socket.emit("start", "start");
+            socket.on("server-send-data", (data)=>{
+                ok = data;
+                this.start(ok);
+            })
         }, this);
         //nut Setting
         var btn_setting = Co.game.add.button(815, 20, 'caidat', openPopup, this);
@@ -192,8 +198,10 @@ var menuState = {
             tween = Co.game.add.tween(popup.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
         };
     },
-    start: function(){
-        Co.game.state.start('play');
+    start: function(ok){
+        if(ok == 2){
+            Co.game.state.start('play');
+        }
     },
     drawBoardDefault: function (boardArr, drawBoard) {
         for (i = 0; i < boardArr.length; i++) {

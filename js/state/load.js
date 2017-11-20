@@ -24,7 +24,7 @@ var loadState = {
         Co.game.load.image('red2', 'Assets/Bandau/codo2.png');
         Co.game.load.image('red1', 'Assets/Bandau/codo1.png');
         Co.game.load.image('blue10', 'Assets/Bandau/coxanh10.png');
-        Co.game.load.image('blue9', 'Assets/Bandau/coxanh8.png');
+        Co.game.load.image('blue9', 'Assets/Bandau/coxanh9.png');
         Co.game.load.image('blue8', 'Assets/Bandau/coxanh8.png');
         Co.game.load.image('blue7', 'Assets/Bandau/coxanh7.png');
         Co.game.load.image('blue6', 'Assets/Bandau/coxanh6.png');
@@ -48,7 +48,7 @@ var loadState = {
         quanCoTo.anchor.set(0.5);
         var txt_loading = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY+150, 'text_loading')
         txt_loading.anchor.set(0.5);
-        Co.checkPlay = 0;  
+        Co.checkPlay = 0; 
     },
     update: function(){
         Co.checkPlay += 1;

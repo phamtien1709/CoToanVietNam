@@ -82,7 +82,8 @@ class ChessController{
                 Co.blueFirst = 'red';
             });
         };
-        this.eatEnemyChessBlue();
+        //socket
+        socket.emit("blue-move",this.eatEnemyChessBlue());
     }
     directRed() {
         Co.directs.push(new directPoint(this.x, this.y, {
@@ -116,7 +117,8 @@ class ChessController{
                 Co.blueFirst = 'blue';
             });
         };
-        this.eatEnemyChessRed();
+        //socket.io
+        socket.emit("red-move", this.eatEnemyChessRed());
     }
     resetArr(arr) {
         for (i = 0; i < arr.length; i++) {

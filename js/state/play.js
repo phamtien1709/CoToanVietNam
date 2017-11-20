@@ -36,6 +36,8 @@ var playState = {
         //drawMap
         Co.drawBoard = false;
         Co.newPos = [0,0];
+        Co.changeTurn = [Co.idBlue, Co.idRed];
+        console.log(Co.changeTurn);
         Co.blueFirst = 'blue';
         this.drawBoardDefault(Co.configs.BOARD_DEFAULT, Co.drawBoard);
         //drawChessDefault
