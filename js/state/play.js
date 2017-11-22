@@ -1,5 +1,5 @@
 var playState = {
-    preload: function(){
+    preload: function () {
         Co.game.load.image('bg_quandaan', 'Assets/Bandau/BG_quandaan.png');
         Co.game.load.image('btn_cauhoa', 'Assets/Bandau/Button_cauhoa.png');
         Co.game.load.image('btn_xinthua', 'Assets/Bandau/Button_Xinthua.png');
@@ -11,7 +11,7 @@ var playState = {
         Co.game.load.image('bg_congdiem', 'Assets/Bandau/BG_congdiem.png');
         Co.game.time.advancedTiming = true;
     },
-    create: function(){
+    create: function () {
         Co.game.add.sprite(0, 0, 'bg');
         var bg_quandaan = Co.game.add.sprite(750, 100, 'bg_quandaan');
         bg_quandaan.anchor.set(0.5);
@@ -23,11 +23,12 @@ var playState = {
         ava_blue.anchor.set(0.5);
         var ava_red = Co.game.add.sprite(670, 1420, 'ava');
         ava_red.anchor.set(0.5);
+        //test room
         //TIMINGGG
         Co.timerBlue = Co.game.time.create();
         Co.timerRed = Co.game.time.create();
-        Co.timerBlueEvent = Co.timerBlue.add(Phaser.Timer.MINUTE *15 + Phaser.Timer.SECOND *59, this.endTimerBlue, this);
-        Co.timerRedEvent = Co.timerRed.add(Phaser.Timer.MINUTE *15 + Phaser.Timer.SECOND *59, this.endTimerRed, this);
+        Co.timerBlueEvent = Co.timerBlue.add(Phaser.Timer.MINUTE * 15 + Phaser.Timer.SECOND * 59, this.endTimerBlue, this);
+        Co.timerRedEvent = Co.timerRed.add(Phaser.Timer.MINUTE * 15 + Phaser.Timer.SECOND * 59, this.endTimerRed, this);
 
         Co.game.physics.startSystem(Phaser.Physics.ARCADE);
         //win get
@@ -35,9 +36,9 @@ var playState = {
         Co.redWin = false;
         //drawMap
         Co.drawBoard = false;
-        Co.newPos = [0,0];
+        Co.newPos = [0, 0];
         Co.changeTurn = [Co.idBlue, Co.idRed];
-        console.log(Co.changeTurn);
+        // console.log(Co.changeTurn);
         Co.blueFirst = 'blue';
         this.drawBoardDefault(Co.configs.BOARD_DEFAULT, Co.drawBoard);
         //drawChessDefault
@@ -45,17 +46,17 @@ var playState = {
         Co.chesses = [];
         //vị trí cờ
         Co.chessesPos = [
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0]
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ];
         //giá trị cờ
         Co.chessesValue = [
@@ -76,24 +77,24 @@ var playState = {
         Co.killGroup = [];
         //loại cờ
         Co.chessesType = [
-            ['blue','blue','blue','blue','blue','blue','blue','blue','blue'],
-            [0,0,0,0,'blue',0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,'red',0,0,0,0],
-            ['red','red','red','red','red','red','red','red','red']
+            ['blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue', 'blue'],
+            [0, 0, 0, 0, 'blue', 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 'red', 0, 0, 0, 0],
+            ['red', 'red', 'red', 'red', 'red', 'red', 'red', 'red', 'red']
         ];
         this.drawChessOnBoard(Co.configs.PIECE_DEFAULT);
         //point user
         Co.userBluePoint = 2000;
         Co.userRedPoint = 2000;
-        Co.displayingUserBluePoint = Co.game.add.text(130, 1385, `${Co.userBluePoint} $`,{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
-        Co.displayingUserRedPoint = Co.game.add.text(730, 1385, `${Co.userRedPoint} $`,{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.displayingUserBluePoint = Co.game.add.text(130, 1385, `${Co.userBluePoint} $`, { font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.displayingUserRedPoint = Co.game.add.text(730, 1385, `${Co.userRedPoint} $`, { font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
 
         //get point
         Co.pointBlueNow = 0;
@@ -102,16 +103,16 @@ var playState = {
         Co.pointRedPrev = 0;
         Co.style = { font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" };
         Co.style2 = { font: "30px Arial", fill: "#33cc33", boundsAlignH: "center", boundsAlignV: "middle" };
-        Co.displayingPointBlue = Co.game.add.text(130,1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
-        Co.displayingPointRed = Co.game.add.text(730,1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.displayingPointBlue = Co.game.add.text(130, 1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.displayingPointRed = Co.game.add.text(730, 1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.turnPlayer = Co.game.add.text(455, 1400, '', Co.style2);
         Co.turnPlayer.anchor.set(0.5);
-        Co.game.add.text(480, 60,'Xanh ăn: ', { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
-        Co.game.add.text(480, 110,'Đỏ ăn: ', { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.game.add.text(480, 60, 'Xanh ăn: ', { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.game.add.text(480, 110, 'Đỏ ăn: ', { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
         //render quân đã ăn
         Co.ateList = {
-           blue: [], 
-           red:  []
+            blue: [],
+            red: []
         };
 
         //button in setting game
@@ -143,109 +144,110 @@ var playState = {
         popup_setting.addChild(btn_thoat);
         popup_setting.addChild(btn_roiban);
         popup_setting.addChild(btn_cauhoa);
-        popup_setting.addChild(btn_xinthua);        
+        popup_setting.addChild(btn_xinthua);
         var tween = null;
-        function openPopup(){
-            if ((tween !== null && tween.isRunning) || popup_setting.scale.x === 1)
-            {
-                return;
-            } 
-            tween = Co.game.add.tween(popup_setting.scale).to( { x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Elastic.Out, true);           
-        };
-        function closePopup(){
-            if (tween && tween.isRunning || popup_setting.scale.x === 0.1)
-            {
+        function openPopup() {
+            if ((tween !== null && tween.isRunning) || popup_setting.scale.x === 1) {
                 return;
             }
-            tween = Co.game.add.tween(popup_setting.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
+            tween = Co.game.add.tween(popup_setting.scale).to({ x: 0.5, y: 0.5 }, 1000, Phaser.Easing.Elastic.Out, true);
+        };
+        function closePopup() {
+            if (tween && tween.isRunning || popup_setting.scale.x === 0.1) {
+                return;
+            }
+            tween = Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
         };
 
         //directGroup
         Co.directGroup = [];
-        Co.directGroup.anchor = new Phaser.Point(0.5,0.5);
+        Co.directGroup.anchor = new Phaser.Point(0.5, 0.5);
         Co.directs = [];
         Co.directMoveto = {
-            x : 0,
-            y : 0
+            x: 0,
+            y: 0
         };
         Co.directsP = [
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0]
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ];
+        //Text chỉ bên
+        if(socket.id == Co.idBlue) Co.game.add.text(100, 100, "Bạn quân XANH",{ font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
+        if(socket.id == Co.idRed) Co.game.add.text(100, 100, "Bạn quân ĐỎ",{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.chonco = Co.game.add.sprite(-100, -100, 'chonco');
         Co.onMouseDown = false;
         Co.timerBlue.start();
         Co.timerRed.start();
     },
-    update: function(){
-        if(Co.pointBlueNow !== Co.pointBluePrev){
+    update: function () {
+        if (Co.pointBlueNow !== Co.pointBluePrev) {
             // console.log(Co.ateList);
             Co.pointBluePrev = Co.pointBlueNow;
             Co.displayingPointBlue.setText(`${Co.pointBluePrev}/${Co.configs.WIN_POINT}`);
             //create add and sub point user
             var bg_congdiem = Co.game.add.sprite(120, 1385, 'bg_congdiem');
-            var diemcong = Co.game.add.text(170, 1390, '+100',{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+            var diemcong = Co.game.add.text(170, 1390, '+100', { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
             Co.userBluePoint += 100;
             var bg_trudiem = Co.game.add.sprite(720, 1385, 'bg_trudiem');
-            var diemtru = Co.game.add.text(770, 1390, '-100',{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+            var diemtru = Co.game.add.text(770, 1390, '-100', { font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
             Co.userRedPoint -= 100;
-            Co.game.add.tween(bg_congdiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
-            Co.game.add.tween(diemcong).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
-            Co.game.add.tween(bg_trudiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
-            Co.game.add.tween(diemtru).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(bg_congdiem).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemcong).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(bg_trudiem).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemtru).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
             Co.displayingUserBluePoint.setText(`${Co.userBluePoint} $`);
             Co.displayingUserRedPoint.setText(`${Co.userRedPoint} $`);
         }
-        if(Co.pointRedNow !== Co.pointRedPrev){
+        if (Co.pointRedNow !== Co.pointRedPrev) {
             // console.log(Co.ateList[0].sprite.__proto__.revive());
             Co.pointRedPrev = Co.pointRedNow;
             Co.displayingPointRed.setText(`${Co.pointRedPrev}/${Co.configs.WIN_POINT}`);
             //create add and sub point user
             var bg_congdiem = Co.game.add.sprite(720, 1385, 'bg_congdiem');
-            var diemcong = Co.game.add.text(770, 1390, '+100',{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+            var diemcong = Co.game.add.text(770, 1390, '+100', { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
             Co.userRedPoint += 100;
             var bg_trudiem = Co.game.add.sprite(120, 1385, 'bg_trudiem');
-            var diemtru = Co.game.add.text(170, 1390, '-100',{ font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+            var diemtru = Co.game.add.text(170, 1390, '-100', { font: "30px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
             Co.userBluePoint -= 100;
-            Co.game.add.tween(bg_congdiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
-            Co.game.add.tween(diemcong).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
-            Co.game.add.tween(bg_trudiem).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
-            Co.game.add.tween(diemtru).to({alpha:0}, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(bg_congdiem).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemcong).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(bg_trudiem).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(diemtru).to({ alpha: 0 }, 3000, Phaser.Easing.Linear.None, true);
             Co.displayingUserBluePoint.setText(`${Co.userBluePoint} $`);
             Co.displayingUserRedPoint.setText(`${Co.userRedPoint} $`);
         }
-        if((Co.pointBluePrev >= Co.configs.WIN_POINT)||(Co.pointRedPrev >= Co.configs.WIN_POINT)){
-            if(Co.pointBluePrev >= Co.configs.WIN_POINT) Co.blueWin = true;
-            if(Co.pointRedPrev >= Co.configs.WIN_POINT) Co.redWin = true;
-            setTimeout(function(){
+        if ((Co.pointBluePrev >= Co.configs.WIN_POINT) || (Co.pointRedPrev >= Co.configs.WIN_POINT)) {
+            if (Co.pointBluePrev >= Co.configs.WIN_POINT) Co.blueWin = true;
+            if (Co.pointRedPrev >= Co.configs.WIN_POINT) Co.redWin = true;
+            setTimeout(function () {
                 Co.game.state.start('win');
             }, 1200);;
         }
-        if(Co.blueFirst == 'blue'){
+        if (Co.blueFirst == 'blue') {
             Co.turnPlayer.setText(`Lượt bên XANH..`);
             Co.timerRed.pause();
             Co.timerBlue.resume();
         }
-        if(Co.blueFirst == 'red'){
+        if (Co.blueFirst == 'red') {
             Co.turnPlayer.setText(`Lượt bên ĐỎ..`);
             Co.timerRed.resume();
             Co.timerBlue.pause();
         }
     },
-    render: function(){
+    render: function () {
         var fps = Co.game.debug.text(`FPS: ${Co.game.time.fps} `, 800, 30);
-        if(Co.ateList.blue.length>0){
-            for(item in Co.ateList.blue){
-                Co.ateList.blue[item].sprite.position.x = 650 + item*30;
+        if (Co.ateList.blue.length > 0) {
+            for (item in Co.ateList.blue) {
+                Co.ateList.blue[item].sprite.position.x = 650 + item * 30;
                 Co.ateList.blue[item].sprite.position.y = 70;
                 Co.ateList.blue[item].sprite.scale.x = 0.5;
                 Co.ateList.blue[item].sprite.scale.y = 0.5;
@@ -255,9 +257,9 @@ var playState = {
             // Co.ateList[0].sprite.position.y = 100;
             // Co.ateList[0].sprite.revive();
         }
-        if(Co.ateList.red.length>0){
-            for(item in Co.ateList.red){
-                Co.ateList.red[item].sprite.position.x = 650 + item*30;
+        if (Co.ateList.red.length > 0) {
+            for (item in Co.ateList.red) {
+                Co.ateList.red[item].sprite.position.x = 650 + item * 30;
                 Co.ateList.red[item].sprite.position.y = 120;
                 Co.ateList.red[item].sprite.scale.x = 0.5;
                 Co.ateList.red[item].sprite.scale.y = 0.5;
@@ -271,9 +273,9 @@ var playState = {
         else {
             Co.game.debug.text("Hết giờ!", 140, 1350, "#B20044");
             Co.redWin = true;
-            setTimeout(function(){
+            setTimeout(function () {
                 Co.game.state.start('win');
-            }, 1200);;
+            }, 1200);
         }
         if (Co.timerRed.running) {
             Co.game.debug.text(this.formatTime(Math.round((Co.timerRedEvent.delay - Co.timerRed.ms) / 1000)), 740, 1350, "#000");
@@ -281,26 +283,26 @@ var playState = {
         else {
             Co.game.debug.text("Hết giờ!", 750, 1350, "#B20044");
             Co.blueWin = true;
-            setTimeout(function(){
+            setTimeout(function () {
                 Co.game.state.start('win');
-            }, 1200);;
+            }, 1200);
         }
         // console.log(fps);
         // fps.font = 'Arial';
         // fps.fontSize = 12;
         // Co.game.debug.text("Tween running: " + !this.idleBallTween.pendingDelete, 2, 110);
     },
-    endTimerBlue: function(){
+    endTimerBlue: function () {
         Co.timerBlue.stop();
     },
-    endTimerRed: function(){
+    endTimerRed: function () {
         Co.timerRed.stop();
     },
-    formatTime: function(s) {
+    formatTime: function (s) {
         // Convert seconds (s) to a nicely formatted and padded time string
         var minutes = "0" + Math.floor(s / 60);
         var seconds = "0" + (s - minutes * 60);
-        return minutes.substr(-2) + ":" + seconds.substr(-2);   
+        return minutes.substr(-2) + ":" + seconds.substr(-2);
     },
     drawBoardDefault: function (boardArr, drawBoard) {
         for (i = 0; i < boardArr.length; i++) {
@@ -316,87 +318,87 @@ var playState = {
         }
         return drawBoard = true;
     },
-    drawChessOnBoard: function(chessArr){
-        for (i = 0; i < chessArr.length; i++){
-            for(j=0; j<chessArr[i].length; j++){
-                switch (chessArr[i][j]){
-                    case 1 : {
+    drawChessOnBoard: function (chessArr) {
+        for (i = 0; i < chessArr.length; i++) {
+            for (j = 0; j < chessArr[i].length; j++) {
+                switch (chessArr[i][j]) {
+                    case 1: {
                         Co.chesses.push(new chess1Blue(j, i));
                         break;
                     }
-                    case 2 : {
+                    case 2: {
                         Co.chesses.push(new chess2Blue(j, i));
                         break;
                     }
-                    case 3 : {
+                    case 3: {
                         Co.chesses.push(new chess3Blue(j, i));
                         break;
                     }
-                    case 4 : {
+                    case 4: {
                         Co.chesses.push(new chess4Blue(j, i));
                         break;
                     }
-                    case 5 : {
+                    case 5: {
                         Co.chesses.push(new chess5Blue(j, i));
                         break;
                     }
-                    case 6 : {
+                    case 6: {
                         Co.chesses.push(new chess6Blue(j, i));
                         break;
                     }
-                    case 7 : {
+                    case 7: {
                         Co.chesses.push(new chess7Blue(j, i));
                         break;
                     }
-                    case 8 : {
+                    case 8: {
                         Co.chesses.push(new chess8Blue(j, i));
                         break;
                     }
-                    case 9 : {
+                    case 9: {
                         Co.chesses.push(new chess9Blue(j, i));
                         break;
                     }
-                    case 10 : {
+                    case 10: {
                         Co.chesses.push(new chess10Blue(j, i));
                         break;
                     }
-                    case 100 : {
+                    case 100: {
                         Co.chesses.push(new chess10Red(j, i));
                         break;
                     }
-                    case 99 : {
+                    case 99: {
                         Co.chesses.push(new chess9Red(j, i));
                         break;
                     }
-                    case 98 : {
+                    case 98: {
                         Co.chesses.push(new chess8Red(j, i));
                         break;
                     }
-                    case 97 : {
+                    case 97: {
                         Co.chesses.push(new chess7Red(j, i));
                         break;
                     }
-                    case 96 : {
+                    case 96: {
                         Co.chesses.push(new chess6Red(j, i));
                         break;
                     }
-                    case 95 : {
+                    case 95: {
                         Co.chesses.push(new chess5Red(j, i));
                         break;
                     }
-                    case 94 : {
+                    case 94: {
                         Co.chesses.push(new chess4Red(j, i));
                         break;
                     }
-                    case 93 : {
+                    case 93: {
                         Co.chesses.push(new chess3Red(j, i));
                         break;
                     }
-                    case 92 : {
+                    case 92: {
                         Co.chesses.push(new chess2Red(j, i));
                         break;
                     }
-                    case 91 : {
+                    case 91: {
                         Co.chesses.push(new chess1Red(j, i));
                         break;
                     }

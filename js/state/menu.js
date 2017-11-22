@@ -37,8 +37,11 @@ var menuState = {
         var btn_batdau = Co.game.add.button(Co.game.world.centerX - 205, Co.game.world.centerY, 'batdau', function(){
             checkPlay = true;
             btn_batdau.pendingDestroy = true;
+            Co.game.add.text(Co.game.world.centerX - 140, Co.game.world.centerY - 50, "Waiting for a player...");
             //socket
-            socket.emit("start", "start");
+            socket.emit("start", {
+                join : 1
+            });
             socket.on("server-send-data", (data)=>{
                 ok = data;
                 this.start(ok);
