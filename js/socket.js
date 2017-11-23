@@ -3,24 +3,32 @@ var socket = io("http://localhost:6969");
 socket.on("send-id-player", (data) => {
     if (data.numid == 1) {
         Co.idBlue = data.id;
-        console.log(Co.idBlue);
+        // console.log(Co.idBlue);
     }
     if (data.numid == 2) {
         Co.idRed = data.id;
-        console.log(Co.idRed);
+        // console.log(Co.idRed);
     }
 });
 
 socket.on("server-call-user-out", (data)=>{
-    if(data == Co.idBlue) {
-        console.log("Red Win");
+    // console.log(data);
+    // console.log(Co.idBlue);
+    // console.log(Co.idRed);
+    // console.log(socket.adapter.rooms);
+    if(data === "blue") {
+        // console.log(data);
+        // console.log(Co.idBlue);
+        // console.log("Red Win");
         Co.redWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
         }, 1200);
     }
-    if(data == Co.idRed){
-        console.log("Blue Win");
+    if(data === "red"){
+        // console.log(data);
+        // console.log(Co.idRed);
+        // console.log("Blue Win");
         Co.blueWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
@@ -29,7 +37,7 @@ socket.on("server-call-user-out", (data)=>{
 })
 
 socket.on("server-send-room-number", (data)=>{
-    console.log(`ID ${data.id} go to room ${data.roomnumber}`);
+    // console.log(`ID ${data.id} go to room ${data.roomnumber}`);
 });
 
 socket.on("request-move", (data) => {
@@ -56,7 +64,7 @@ socket.on("request-move", (data) => {
     Co.chessesValue[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesValue;
     Co.chessesType[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesType;
     Co.blueFirst = data.turn;
-    console.log(Co.blueFirst);
+    // console.log(Co.blueFirst);
     // console.log(data);
     // console.log(Co.chessGroup);
     // console.log(Co.chesses);
@@ -106,7 +114,7 @@ socket.on("request-eat", (data)=>{
     Co.chessesValue[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesValue;
     Co.chessesType[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesType;
     Co.blueFirst = data.turn;
-    console.log(Co.blueFirst);
+    // console.log(Co.blueFirst);
     // console.log(data);
     // console.log(Co.chessesType);
     // console.log(Co.chessesValue);

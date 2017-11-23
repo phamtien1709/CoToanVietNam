@@ -9,6 +9,9 @@ var playState = {
         Co.game.load.image('gui_setting', 'Assets/Chat/Guichat3.png');
         Co.game.load.image('bg_trudiem', 'Assets/Bandau/BG_trudiem.png');
         Co.game.load.image('bg_congdiem', 'Assets/Bandau/BG_congdiem.png');
+        Co.game.load.image('gui_in_setting', 'Assets/Setting/Gui_Thoat.png');
+        Co.game.load.image('yes_img', 'Assets/Setting/Button_Dongy.png');
+        Co.game.load.image('no_img', 'Assets/Setting/Button_huy.png');
         Co.game.time.advancedTiming = true;
     },
     create: function () {
@@ -125,6 +128,44 @@ var playState = {
         var btn_xinthua = Co.game.make.button(0, 150, 'btn_xinthua');
         btn_xinthua.scale.set(2);
         btn_xinthua.anchor.set(0.5);
+
+        var btn_yes_cauhoa = Co.game.make.button(-155, 180, 'yes_img');
+        btn_yes_cauhoa.anchor.set(0.5);
+        var btn_no_cauhoa = Co.game.make.button(155, 180, "no_img");
+        btn_no_cauhoa.anchor.set(0.5);
+        //GUI roi ban
+        var popup_roiban = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_in_setting');
+        popup_roiban.alpha = 1;
+        popup_roiban.anchor.set(0.5);
+        popup_roiban.inputEnabled = true;
+        popup_roiban.input.enableDrag();
+        popup_roiban.scale.set(0);
+
+        popup_roiban.addChild(btn_yes_cauhoa);
+        popup_roiban.addChild(btn_no_cauhoa);
+        //GUI cau hoa
+        var popup_cauhoa
+        //GUI xin thua
+        var popup_xinthua
+        //skill button
+
+
+        btn_roiban.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_roiban.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+            Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+        });
+        btn_cauhoa.events.onInputDown.add(()=>{
+
+        });
+        btn_xinthua.events.onInputDown.add(()=>{
+
+        });
+        btn_no_cauhoa.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_roiban.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+        })
+        //Text chỉ bên
+        if(socket.id == Co.idBlue) Co.game.add.text(100, 100, "Bạn quân XANH",{ font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
+        if(socket.id == Co.idRed) Co.game.add.text(100, 100, "Bạn quân ĐỎ",{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
         //popup setting ingame
         var btn_caidat = Co.game.add.button(50, 100, 'caidat', openPopup, this);
         btn_caidat.anchor.set(0.5);
@@ -180,9 +221,6 @@ var playState = {
             [0, 0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0, 0]
         ];
-        //Text chỉ bên
-        if(socket.id == Co.idBlue) Co.game.add.text(100, 100, "Bạn quân XANH",{ font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
-        if(socket.id == Co.idRed) Co.game.add.text(100, 100, "Bạn quân ĐỎ",{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.chonco = Co.game.add.sprite(-100, -100, 'chonco');
         Co.onMouseDown = false;
         Co.timerBlue.start();
