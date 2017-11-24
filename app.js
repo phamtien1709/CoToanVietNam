@@ -56,12 +56,23 @@ io.on("connection", (socket) => {
   });
   socket.on("red-eat", (data)=>{
     console.log("red eat");
+    console.log(socket.Phong);
     io.sockets.in(socket.Phong).emit("request-eat", data);
   });
-
-  // if(num_player == 2){
-  //   console.log("ready");
-  //   io.sockets.emit("server-send-data", num_player);
-  // }
+  socket.on("get_out", (data)=>{
+    io.sockets.in(socket.Phong).emit("get_out_callback", socket.Mau);
+  });
+  socket.on("timeout_blue",(data)=>{
+    io.sockets.in(socket.Phong).emit("timeout_blue", data);
+  });
+  socket.on("timeout_red",(data)=>{
+    io.sockets.in(socket.Phong).emit("timeout_red", data);
+  });
+  socket.on("promise_deuce", (data)=>{
+    socket.broadcast.in(socket.Phong).emit("promise_deuce_callback", socket.Mau);
+  });
+  socket.on("agree_promise_deuce", (data)=>{
+    io.sockets.in(socket.Phong).emit("agree_promise_deuce_callback", "deuce");
+  })
 });
 

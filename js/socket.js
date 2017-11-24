@@ -12,29 +12,87 @@ socket.on("send-id-player", (data) => {
 });
 
 socket.on("server-call-user-out", (data)=>{
-    // console.log(data);
-    // console.log(Co.idBlue);
-    // console.log(Co.idRed);
-    // console.log(socket.adapter.rooms);
     if(data === "blue") {
-        // console.log(data);
-        // console.log(Co.idBlue);
-        // console.log("Red Win");
         Co.redWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
         }, 1200);
     }
     if(data === "red"){
-        // console.log(data);
-        // console.log(Co.idRed);
-        // console.log("Blue Win");
         Co.blueWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
         }, 1200);
     } 
-})
+});
+
+socket.on("timeout_blue", (data)=>{
+    if(data === "blue") {
+        Co.redWin = true;
+        setTimeout(function () {
+            Co.game.state.start('win');
+        }, 1200);
+    }
+});
+
+socket.on("timeout_red", (data)=>{
+    if(data === "red"){
+        Co.blueWin = true;
+        setTimeout(function () {
+            Co.game.state.start('win');
+        }, 1200);
+    } 
+});
+
+socket.on("get_out_callback", (data)=>{
+    if(data === "blue") {
+        Co.redWin = true;
+        setTimeout(function () {
+            Co.game.state.start('win');
+        }, 1200);
+    }
+    if(data === "red"){
+        Co.blueWin = true;
+        setTimeout(function () {
+            Co.game.state.start('win');
+        }, 1200);
+    }
+});
+
+socket.on("promise_deuce_callback", (data)=>{
+    // console.log(`${data} promise deuce!`);
+    var btn_yes_cauhoa = Co.game.make.button(-155, 180, 'yes_img');
+    btn_yes_cauhoa.anchor.set(0.5);
+    var btn_no_cauhoa = Co.game.make.button(155, 180, "no_img");
+    btn_no_cauhoa.anchor.set(0.5);
+    var popup_cauhoa = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_in_setting');
+    popup_cauhoa.alpha = 1;
+    popup_cauhoa.anchor.set(0.5);
+    popup_cauhoa.inputEnabled = true;
+    popup_cauhoa.input.enableDrag();
+    popup_cauhoa.scale.set(0);
+
+    popup_cauhoa.addChild(btn_yes_cauhoa);
+    popup_cauhoa.addChild(btn_no_cauhoa);
+
+    Co.game.add.tween(popup_cauhoa.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+
+    btn_no_cauhoa.events.onInputDown.add(()=>{
+        Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+    });
+    btn_yes_cauhoa.events.onInputDown.add(()=>{
+        Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+        //socket
+        socket.emit("agree_promise_deuce", socket.id);
+    });
+});
+
+socket.on("agree_promise_deuce_callback", (data)=>{
+    Co.deuceGame = true;
+    setTimeout(function () {
+        Co.game.state.start('win');
+    }, 1200);
+});
 
 socket.on("server-send-room-number", (data)=>{
     // console.log(`ID ${data.id} go to room ${data.roomnumber}`);
@@ -64,10 +122,6 @@ socket.on("request-move", (data) => {
     Co.chessesValue[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesValue;
     Co.chessesType[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesType;
     Co.blueFirst = data.turn;
-    // console.log(Co.blueFirst);
-    // console.log(data);
-    // console.log(Co.chessGroup);
-    // console.log(Co.chesses);
 });
 socket.on("request-eat", (data)=>{
     var obj = Co.chessGroup.children.find((obj) => {
@@ -114,9 +168,4 @@ socket.on("request-eat", (data)=>{
     Co.chessesValue[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesValue;
     Co.chessesType[data.positionAfterOnMatrix.y][data.positionAfterOnMatrix.x] = data.chessesType;
     Co.blueFirst = data.turn;
-    // console.log(Co.blueFirst);
-    // console.log(data);
-    // console.log(Co.chessesType);
-    // console.log(Co.chessesValue);
-    // console.log(Co.chessesPos);
 })

@@ -2,7 +2,7 @@ var Co = {};
 Co.configs = {
     GAME_WIDTH : 900,
     GAME_HEIGHT : 1500,
-    WIN_POINT : 5,
+    WIN_POINT : 20,
     HEAD_HEIGHT: 200,
     BOARD_DEFAULT : [
         [1, 2, 1, 2, 1, 2, 1, 2, 1],

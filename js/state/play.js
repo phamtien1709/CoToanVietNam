@@ -30,8 +30,8 @@ var playState = {
         //TIMINGGG
         Co.timerBlue = Co.game.time.create();
         Co.timerRed = Co.game.time.create();
-        Co.timerBlueEvent = Co.timerBlue.add(Phaser.Timer.MINUTE * 15 + Phaser.Timer.SECOND * 59, this.endTimerBlue, this);
-        Co.timerRedEvent = Co.timerRed.add(Phaser.Timer.MINUTE * 15 + Phaser.Timer.SECOND * 59, this.endTimerRed, this);
+        Co.timerBlueEvent = Co.timerBlue.add(Phaser.Timer.MINUTE * 19 + Phaser.Timer.SECOND * 59, this.endTimerBlue, this);
+        Co.timerRedEvent = Co.timerRed.add(Phaser.Timer.MINUTE * 19 + Phaser.Timer.SECOND * 59, this.endTimerRed, this);
 
         Co.game.physics.startSystem(Phaser.Physics.ARCADE);
         //win get
@@ -129,11 +129,11 @@ var playState = {
         btn_xinthua.scale.set(2);
         btn_xinthua.anchor.set(0.5);
 
-        var btn_yes_cauhoa = Co.game.make.button(-155, 180, 'yes_img');
-        btn_yes_cauhoa.anchor.set(0.5);
-        var btn_no_cauhoa = Co.game.make.button(155, 180, "no_img");
-        btn_no_cauhoa.anchor.set(0.5);
         //GUI roi ban
+        var btn_yes_roiban = Co.game.make.button(-155, 180, 'yes_img');
+        btn_yes_roiban.anchor.set(0.5);
+        var btn_no_roiban = Co.game.make.button(155, 180, "no_img");
+        btn_no_roiban.anchor.set(0.5);
         var popup_roiban = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_in_setting');
         popup_roiban.alpha = 1;
         popup_roiban.anchor.set(0.5);
@@ -141,28 +141,75 @@ var playState = {
         popup_roiban.input.enableDrag();
         popup_roiban.scale.set(0);
 
-        popup_roiban.addChild(btn_yes_cauhoa);
-        popup_roiban.addChild(btn_no_cauhoa);
-        //GUI cau hoa
-        var popup_cauhoa
-        //GUI xin thua
-        var popup_xinthua
-        //skill button
-
+        popup_roiban.addChild(btn_yes_roiban);
+        popup_roiban.addChild(btn_no_roiban);
 
         btn_roiban.events.onInputDown.add(()=>{
             Co.game.add.tween(popup_roiban.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-            Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Linear.None, true);
         });
+        btn_no_roiban.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_roiban.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+        });
+        btn_yes_roiban.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_roiban.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+            socket.emit("get_out", socket.id);
+        });
+        //GUI cau hoa
+        var btn_yes_cauhoa = Co.game.make.button(-155, 180, 'yes_img');
+        btn_yes_cauhoa.anchor.set(0.5);
+        var btn_no_cauhoa = Co.game.make.button(155, 180, "no_img");
+        btn_no_cauhoa.anchor.set(0.5);
+        var popup_cauhoa = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_in_setting');
+        popup_cauhoa.alpha = 1;
+        popup_cauhoa.anchor.set(0.5);
+        popup_cauhoa.inputEnabled = true;
+        popup_cauhoa.input.enableDrag();
+        popup_cauhoa.scale.set(0);
+
+        popup_cauhoa.addChild(btn_yes_cauhoa);
+        popup_cauhoa.addChild(btn_no_cauhoa);
+
         btn_cauhoa.events.onInputDown.add(()=>{
-
-        });
-        btn_xinthua.events.onInputDown.add(()=>{
-
+            Co.game.add.tween(popup_cauhoa.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+            Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Linear.None, true);
         });
         btn_no_cauhoa.events.onInputDown.add(()=>{
-            Co.game.add.tween(popup_roiban.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+            Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+        });
+        btn_yes_cauhoa.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+            //socket
+            socket.emit("promise_deuce", socket.id);
+        });
+        //GUI xin thua
+        var btn_yes_xinthua = Co.game.make.button(-155, 180, 'yes_img');
+        btn_yes_xinthua.anchor.set(0.5);
+        var btn_no_xinthua = Co.game.make.button(155, 180, "no_img");
+        btn_no_xinthua.anchor.set(0.5);
+        var popup_xinthua = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_in_setting');
+        popup_xinthua.alpha = 1;
+        popup_xinthua.anchor.set(0.5);
+        popup_xinthua.inputEnabled = true;
+        popup_xinthua.input.enableDrag();
+        popup_xinthua.scale.set(0);
+
+        popup_xinthua.addChild(btn_yes_xinthua);
+        popup_xinthua.addChild(btn_no_xinthua);
+
+        btn_xinthua.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_xinthua.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+            Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Linear.None, true);
+        });
+        btn_no_xinthua.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_xinthua.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+        });
+        btn_yes_xinthua.events.onInputDown.add(()=>{
+            Co.game.add.tween(popup_xinthua.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+            socket.emit("get_out", socket.id);
         })
+        //skill button
+
         //Text chỉ bên
         if(socket.id == Co.idBlue) Co.game.add.text(100, 100, "Bạn quân XANH",{ font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
         if(socket.id == Co.idRed) Co.game.add.text(100, 100, "Bạn quân ĐỎ",{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
@@ -223,6 +270,7 @@ var playState = {
         ];
         Co.chonco = Co.game.add.sprite(-100, -100, 'chonco');
         Co.onMouseDown = false;
+        Co.deuceGame = false;
         Co.timerBlue.start();
         Co.timerRed.start();
     },
@@ -291,9 +339,6 @@ var playState = {
                 Co.ateList.blue[item].sprite.scale.y = 0.5;
                 Co.ateList.blue[item].sprite.revive();
             }
-            // Co.ateList[0].sprite.position.x = 100;
-            // Co.ateList[0].sprite.position.y = 100;
-            // Co.ateList[0].sprite.revive();
         }
         if (Co.ateList.red.length > 0) {
             for (item in Co.ateList.red) {
@@ -310,25 +355,17 @@ var playState = {
         }
         else {
             Co.game.debug.text("Hết giờ!", 140, 1350, "#B20044");
-            Co.redWin = true;
-            setTimeout(function () {
-                Co.game.state.start('win');
-            }, 1200);
+            //socket
+            socket.emit("timeout_blue", "blue");
         }
         if (Co.timerRed.running) {
             Co.game.debug.text(this.formatTime(Math.round((Co.timerRedEvent.delay - Co.timerRed.ms) / 1000)), 740, 1350, "#000");
         }
         else {
             Co.game.debug.text("Hết giờ!", 750, 1350, "#B20044");
-            Co.blueWin = true;
-            setTimeout(function () {
-                Co.game.state.start('win');
-            }, 1200);
+            //socket
+            socket.emit("timeout_red", "red");
         }
-        // console.log(fps);
-        // fps.font = 'Arial';
-        // fps.fontSize = 12;
-        // Co.game.debug.text("Tween running: " + !this.idleBallTween.pendingDelete, 2, 110);
     },
     endTimerBlue: function () {
         Co.timerBlue.stop();
