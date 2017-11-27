@@ -20,7 +20,10 @@ var menuState = {
         Co.game.load.image('bg', 'Assets/Loading/BG.png'); 
         Co.game.load.image('check', 'Assets/Setting/Chon.png');    
         Co.game.load.image('uncheck', 'Assets/Setting/Khongchon.png');
-        Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');           
+        Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');   
+        Co.game.load.image('bg_black', 'Assets/Bandau/BG_Black.png');
+        Co.game.load.image('btn_fb', 'Assets/Loading/Button_FB.png');  
+        Co.game.load.image('ava_fb', 'https://graph.facebook.com/100003906550943/picture?width=100');      
     },
     create: function () {
         var tween = null;
@@ -29,12 +32,12 @@ var menuState = {
         var checkPlay = false;
         var ok = 0;
         var drawBoard = false;
-        this.drawBoardDefault(Co.configs.BOARD_DEFAULT, this.drawBoard);
+        // this.drawBoardDefault(Co.configs.BOARD_DEFAULT, this.drawBoard);
         var bg = Co.game.add.sprite(0, 0, 'bg');
         //ten game
         var tengame = Co.game.add.sprite(Co.game.world.centerX - 300,Co.game.world.centerY - 300, 'tengame');
         //btn batdau
-        var btn_batdau = Co.game.add.button(Co.game.world.centerX - 205, Co.game.world.centerY, 'batdau', function(){
+        var btn_batdau = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY, 'batdau', function(){
             checkPlay = true;
             btn_batdau.pendingDestroy = true;
             Co.game.add.text(Co.game.world.centerX - 140, Co.game.world.centerY - 50, "Waiting for a player...");
@@ -47,15 +50,20 @@ var menuState = {
                 this.start(ok);
             })
         }, this);
+        btn_batdau.anchor.set(0.5);
+        //btn login fb
+        Co.game.add.sprite(15, 15, 'ava_fb');
+        var btn_fb = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 550,"btn_fb");
+        btn_fb.anchor.set(0.5);
         //nut Setting
         var btn_setting = Co.game.add.button(815, 20, 'caidat', openPopup, this);
         btn_setting.input.useHandCursor = true;
 
-        var popup = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_BG');
+        var popup = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'bg_black');
         popup.alpha = 1;
         popup.anchor.set(0.5);
         popup.inputEnabled = true;
-        popup.input.enableDrag();
+        // popup.input.enableDrag();
         // nut thoat
         var btn_thoat = Co.game.make.sprite(240, -255, 'btn_thoat');
         btn_thoat.inputEnabled = true;
@@ -101,7 +109,11 @@ var menuState = {
         var uncheck_rung = Co.game.make.button(-150, -20, 'uncheck', checkVibrate);
         uncheck_rung.scale.set(0);
         uncheck_rung.anchor.set(0.5);
+        var gui_setting = Co.game.make.sprite(0,0, 'gui_BG');
+        // gui_setting.scale.set(0);
+        gui_setting.anchor.set(0.5);
 
+        popup.addChild(gui_setting);
         popup.addChild(btn_thoat);
         popup.addChild(txt_caidat);
         popup.addChild(btn_huongdan);
@@ -187,10 +199,12 @@ var menuState = {
         }
 
         function openPopup(){
+            // Co.game.add.sprite(0, 0, 'bg_black');
             if ((tween !== null && tween.isRunning) || popup.scale.x === 1)
             {
                 return;
-            } 
+            }
+            // Co.game.add.tween(bg_black.scale).to({ x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
             tween = Co.game.add.tween(popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);           
         };
         function closePopup(){
@@ -198,6 +212,7 @@ var menuState = {
             {
                 return;
             }
+            // Co.game.add.tween(bg_black.scale).to({ x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
             tween = Co.game.add.tween(popup.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
         };
     },
@@ -205,19 +220,5 @@ var menuState = {
         if(ok == 2){
             Co.game.state.start('play');
         }
-    },
-    drawBoardDefault: function (boardArr, drawBoard) {
-        for (i = 0; i < boardArr.length; i++) {
-            for (j = 0; j < boardArr[i].length; j++) {
-                if (boardArr[i][j] === 1) {
-                    Co.game.add.sprite(j * 100, i * 100, 'oden');
-                } else if (boardArr[i][j] === 2) {
-                    Co.game.add.sprite(j * 100, i * 100, 'otrang');
-                } else if (boardArr[i][j] === 3) {
-                    Co.game.add.sprite(j * 100, i * 100, 'otuong');
-                }
-            }
-        }
-        return drawBoard = true;
     }
 }

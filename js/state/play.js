@@ -108,7 +108,7 @@ var playState = {
         Co.style2 = { font: "30px Arial", fill: "#33cc33", boundsAlignH: "center", boundsAlignV: "middle" };
         Co.displayingPointBlue = Co.game.add.text(130, 1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.displayingPointRed = Co.game.add.text(730, 1430, `${Co.pointBluePrev}/${Co.configs.WIN_POINT}`, { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
-        Co.turnPlayer = Co.game.add.text(455, 1400, '', Co.style2);
+        Co.turnPlayer = Co.game.add.text(455, 1430, '', Co.style2);
         Co.turnPlayer.anchor.set(0.5);
         Co.game.add.text(480, 60, 'Xanh ăn: ', { font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.game.add.text(480, 110, 'Đỏ ăn: ', { font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
@@ -130,6 +130,7 @@ var playState = {
         btn_xinthua.anchor.set(0.5);
 
         //GUI roi ban
+        var txt_roiban = Co.game.make.text(-200, -50, "Rời bàn sẽ bị xử thua luôn, \n bạn có chắc chắn rời bàn?", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         var btn_yes_roiban = Co.game.make.button(-155, 180, 'yes_img');
         btn_yes_roiban.anchor.set(0.5);
         var btn_no_roiban = Co.game.make.button(155, 180, "no_img");
@@ -143,7 +144,7 @@ var playState = {
 
         popup_roiban.addChild(btn_yes_roiban);
         popup_roiban.addChild(btn_no_roiban);
-
+        popup_roiban.addChild(txt_roiban);
         btn_roiban.events.onInputDown.add(()=>{
             Co.game.add.tween(popup_roiban.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
             Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Linear.None, true);
@@ -156,6 +157,8 @@ var playState = {
             socket.emit("get_out", socket.id);
         });
         //GUI cau hoa
+        Co.deuceTime = 0;
+        var txt_cauhoa = Co.game.make.text(-210,-50, "Bạn chỉ có thể cầu hòa 1 lần. \n Bạn có chắc chắn cầu hòa?", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         var btn_yes_cauhoa = Co.game.make.button(-155, 180, 'yes_img');
         btn_yes_cauhoa.anchor.set(0.5);
         var btn_no_cauhoa = Co.game.make.button(155, 180, "no_img");
@@ -169,20 +172,31 @@ var playState = {
 
         popup_cauhoa.addChild(btn_yes_cauhoa);
         popup_cauhoa.addChild(btn_no_cauhoa);
+        popup_cauhoa.addChild(txt_cauhoa);
 
         btn_cauhoa.events.onInputDown.add(()=>{
-            Co.game.add.tween(popup_cauhoa.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-            Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Linear.None, true);
+            Co.deuceTime += 1;
+            if(Co.deuceTime == 1){
+                Co.game.add.tween(popup_cauhoa.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+                Co.game.add.tween(popup_setting.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Linear.None, true);
+            } else{
+                Co.cauhoa_text_limit_time = Co.game.add.text(Co.game.world.centerX -200, Co.game.world.centerY - 50, "Bạn đã cầu hòa 1 lần rồi!",{ font: "35px Arial", fill: "black", boundsAlignH: "center", boundsAlignV: "middle" });
+                setTimeout(function(){
+                    Co.cauhoa_text_limit_time.destroy();
+                }, 1200);
+            }
         });
         btn_no_cauhoa.events.onInputDown.add(()=>{
             Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
         });
         btn_yes_cauhoa.events.onInputDown.add(()=>{
             Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+            Co.waiting = Co.game.add.text(Co.game.world.centerX -220, Co.game.world.centerY - 50, "Đang chờ đối phương trả lời...",{ font: "35px Arial", fill: "black", boundsAlignH: "center", boundsAlignV: "middle" });
             //socket
             socket.emit("promise_deuce", socket.id);
         });
         //GUI xin thua
+        var txt_xinthua = Co.game.make.text(-200, -50, "Bạn có chắc chắn xin thua?", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         var btn_yes_xinthua = Co.game.make.button(-155, 180, 'yes_img');
         btn_yes_xinthua.anchor.set(0.5);
         var btn_no_xinthua = Co.game.make.button(155, 180, "no_img");
@@ -196,6 +210,7 @@ var playState = {
 
         popup_xinthua.addChild(btn_yes_xinthua);
         popup_xinthua.addChild(btn_no_xinthua);
+        popup_xinthua.addChild(txt_xinthua);
 
         btn_xinthua.events.onInputDown.add(()=>{
             Co.game.add.tween(popup_xinthua.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
@@ -221,7 +236,7 @@ var playState = {
         popup_setting.alpha = 1;
         popup_setting.anchor.set(0.5);
         popup_setting.inputEnabled = true;
-        popup_setting.input.enableDrag();
+        // popup_setting.input.enableDrag();
         popup_setting.scale.set(0);
         var btn_thoat = Co.game.make.sprite(140, -260, 'btn_thoat');
         btn_thoat.inputEnabled = true;

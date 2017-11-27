@@ -73,6 +73,9 @@ io.on("connection", (socket) => {
   });
   socket.on("agree_promise_deuce", (data)=>{
     io.sockets.in(socket.Phong).emit("agree_promise_deuce_callback", "deuce");
+  });
+  socket.on("disagree_deuce", (data) => {
+    socket.broadcast.in(socket.Phong).emit("disagree_deuce_callback", socket.Mau);
   })
 });
 

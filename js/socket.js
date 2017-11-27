@@ -13,12 +13,14 @@ socket.on("send-id-player", (data) => {
 
 socket.on("server-call-user-out", (data)=>{
     if(data === "blue") {
+        Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "Đối phương đã rời khỏi\n                bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.redWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
         }, 1200);
     }
     if(data === "red"){
+        Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "Đối phương đã rời khỏi\n                 bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.blueWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
@@ -46,21 +48,24 @@ socket.on("timeout_red", (data)=>{
 
 socket.on("get_out_callback", (data)=>{
     if(data === "blue") {
+        Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "XANH đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.redWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
-        }, 1200);
+        }, 1800);
     }
     if(data === "red"){
+        Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "ĐỎ đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.blueWin = true;
         setTimeout(function () {
             Co.game.state.start('win');
-        }, 1200);
+        }, 1800);
     }
 });
 
 socket.on("promise_deuce_callback", (data)=>{
     // console.log(`${data} promise deuce!`);
+    var txt_answer_cauhoa = Co.game.make.text(-210,-50, "Đối thủ của bạn muốn cầu \nhòa, bạn có đồng ý không?", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
     var btn_yes_cauhoa = Co.game.make.button(-155, 180, 'yes_img');
     btn_yes_cauhoa.anchor.set(0.5);
     var btn_no_cauhoa = Co.game.make.button(155, 180, "no_img");
@@ -74,11 +79,13 @@ socket.on("promise_deuce_callback", (data)=>{
 
     popup_cauhoa.addChild(btn_yes_cauhoa);
     popup_cauhoa.addChild(btn_no_cauhoa);
+    popup_cauhoa.addChild(txt_answer_cauhoa);
 
     Co.game.add.tween(popup_cauhoa.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
 
     btn_no_cauhoa.events.onInputDown.add(()=>{
         Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+        socket.emit("disagree_deuce", socket.id);
     });
     btn_yes_cauhoa.events.onInputDown.add(()=>{
         Co.game.add.tween(popup_cauhoa.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
@@ -88,10 +95,18 @@ socket.on("promise_deuce_callback", (data)=>{
 });
 
 socket.on("agree_promise_deuce_callback", (data)=>{
+    Co.cauhoa_answer_agree = Co.game.add.text(Co.game.world.centerX - 190,Co.game.world.centerY + 560, "Đối phương đồng ý", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
     Co.deuceGame = true;
     setTimeout(function () {
         Co.game.state.start('win');
     }, 1200);
+});
+socket.on("disagree_deuce_callback", (data)=>{
+    Co.waiting.destroy();
+    Co.cauhoa_answer_disagree = Co.game.add.text(Co.game.world.centerX - 190,Co.game.world.centerY + 560, "Đối phương không đồng ý", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
+    setTimeout(function(){
+        Co.cauhoa_answer_disagree.destroy();
+    }, 1800);
 });
 
 socket.on("server-send-room-number", (data)=>{
