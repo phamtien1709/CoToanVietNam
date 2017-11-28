@@ -152,6 +152,8 @@ socket.on("request-eat", (data)=>{
             if(data.chessesType == "blue") Co.ateList.blue.push(Co.chesses[i]);
             if(data.chessesType == "red") Co.ateList.red.push(Co.chesses[i]);
             Co.chesses.splice(i, 1);
+            // Co.chesses[i].destroy();
+            // Co.chesses[i].sprite.destroy();
         }
     };
     var obj2 = Co.chesses.find((obj) => {

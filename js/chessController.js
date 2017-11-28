@@ -30,6 +30,9 @@ class ChessController {
             }
             // }
         }, this);
+        // console.log(Co.chessesType);
+        // console.log(Co.chessesValue);
+        // console.log(Co.chessesPos);
         this.sprite.update = this.update.bind(this);
     }
     update() {

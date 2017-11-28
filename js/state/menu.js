@@ -21,9 +21,8 @@ var menuState = {
         Co.game.load.image('check', 'Assets/Setting/Chon.png');    
         Co.game.load.image('uncheck', 'Assets/Setting/Khongchon.png');
         Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');   
-        Co.game.load.image('bg_black', 'Assets/Bandau/BG_Black.png');
-        Co.game.load.image('btn_fb', 'Assets/Loading/Button_FB.png');  
-        Co.game.load.image('ava_fb', 'https://graph.facebook.com/100003906550943/picture?width=100');      
+        Co.game.load.image('bg_black', 'Assets/Bandau/BG_Black.png');  
+        Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);      
     },
     create: function () {
         var tween = null;
@@ -51,10 +50,8 @@ var menuState = {
             })
         }, this);
         btn_batdau.anchor.set(0.5);
-        //btn login fb
+        //ava fb
         Co.game.add.sprite(15, 15, 'ava_fb');
-        var btn_fb = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 550,"btn_fb");
-        btn_fb.anchor.set(0.5);
         //nut Setting
         var btn_setting = Co.game.add.button(815, 20, 'caidat', openPopup, this);
         btn_setting.input.useHandCursor = true;

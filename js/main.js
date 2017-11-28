@@ -48,9 +48,10 @@ Co.configs = {
 window.onload = function(){
     Co.game = new Phaser.Game(Co.configs.GAME_WIDTH, Co.configs.GAME_HEIGHT, Phaser.CANVAS,'', null, false, false);
     
+    Co.game.state.add('boot', bootState);
     Co.game.state.add('load', loadState);
     Co.game.state.add('menu', menuState);
     Co.game.state.add('play', playState);
     Co.game.state.add('win', winState);
-    Co.game.state.start('load');
+    Co.game.state.start('boot');
 }

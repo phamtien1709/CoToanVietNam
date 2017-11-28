@@ -350,6 +350,7 @@ var playState = {
             for (item in Co.ateList.blue) {
                 Co.ateList.blue[item].sprite.position.x = 650 + item * 30;
                 Co.ateList.blue[item].sprite.position.y = 70;
+                Co.ateList.blue[item].sprite.inputEnabled = false;
                 Co.ateList.blue[item].sprite.scale.x = 0.5;
                 Co.ateList.blue[item].sprite.scale.y = 0.5;
                 Co.ateList.blue[item].sprite.revive();
@@ -359,6 +360,7 @@ var playState = {
             for (item in Co.ateList.red) {
                 Co.ateList.red[item].sprite.position.x = 650 + item * 30;
                 Co.ateList.red[item].sprite.position.y = 120;
+                Co.ateList.red[item].sprite.inputEnabled = false;
                 Co.ateList.red[item].sprite.scale.x = 0.5;
                 Co.ateList.red[item].sprite.scale.y = 0.5;
                 Co.ateList.red[item].sprite.revive();

@@ -595,6 +595,234 @@ class directPoint {
             }
         }
         //SUB TO EAT------------------------------------------
+        //MULTI TO EAT ---------------------------------------
+        function mulToEat(cmp1, cmp2, mul1, mul2, posx, posy, posx1, posy1) {
+            if (cmp1 === cmp2) {
+                // console.log("Same");
+                let mulx;
+                let canEat = true;
+                let muly;
+                // if (mul1 == 10) mul1 = 0;
+                //top left
+                if ((posx > posx1) && (posy > posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 - i >= 0 && (posy1 - i) >= 0)) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1 - i][posx1 - i] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1 - i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = -mul1 * mul2 - 1;
+                        muly = -mul1 * mul2 - 1;
+                    };
+                }
+                //top
+                if ((posx == posx1) && (posy > posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 >= 0 && (posy1 - i) >= 0 && (posx1 < 9))) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1 - i][posx1] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1 - i][posx1] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = 0;
+                        muly = -mul1 * mul2 - 1;
+                    };
+                }
+                //top right
+                if ((posx < posx1) && (posy > posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 + i < 9) && (posy1 - i) >= 0) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1 - i][posx1 + i] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1 - i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = mul1 * mul2 + 1;
+                        muly = -mul1 * mul2 - 1;
+                    };
+                }
+                //right
+                if ((posx < posx1) && (posy == posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 + i < 9) && (posy1) >= 0 && (posy1 < 11)) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1][posx1 + i] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1][posx1 + i] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = mul1 * mul2 + 1;
+                        muly = 0;
+                    };
+                }
+                //bot right
+                if ((posx < posx1) && (posy < posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 + i < 9) && ((posy1 + i < 11))) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1 + i][posx1 + i] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1 + i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = mul1 * mul2 + 1;
+                        muly = mul1 * mul2 + 1;
+                    };
+                }
+                //bot
+                if ((posx == posx1) && (posy < posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 < 9) && (posx1 >= 0) && ((posy1 + i < 11))) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1 + i][posx1] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1 + i][posx1] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = 0;
+                        muly = mul1 * mul2 + 1;
+                    };
+                }
+                //bot left
+                if ((posx > posx1) && (posy < posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 - i >= 0) && ((posy1 + i < 11))) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1 + i][posx1 - i] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1 + i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = -mul1 * mul2 - 1;
+                        muly = mul1 * mul2 + 1;
+                    };
+                }
+                //left
+                if ((posx > posx1) && (posy == posy1)) {
+                    for (i = 0; i <= mul1 * mul2; i++) {
+                        if ((posx1 - i >= 0) && ((posy1 < 11) && (posy1 >= 0))) {
+                            if (i > 0) {
+                                if (Co.chessesValue[posy1][posx1 - i] !== 0) {
+                                    if (i == mul1 * mul2) {
+                                        if (Co.chessesType[posy1][posx1 - i] !== Co.chessesType[posy1][posx1]) {
+                                            canEat = true;
+                                        } else {
+                                            canEat = false;
+                                        }
+                                    } else {
+                                        canEat = false;
+                                    }
+                                } else {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+                    if (canEat) {
+                        mulx = -mul1 * mul2 - 1;
+                        muly = 0;
+                    };
+                }
+                if ((0 <= posx + mulx) && (9 > posx + mulx) && (posy + muly >= 0) && (posy + muly < 11)) {
+                    Co.posKillGroup.push({
+                        x: posx + mulx,
+                        y: posy + muly
+                    });
+                }
+            }
+            else {
+                // console.log("not same");
+            }
+        }
+        // Multi TO EAT
         //tìm các quân cờ xung quanh
         if (((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100 >= 0) && ((0.01 * this.x1 - 0.5 - 1) >= 0))) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1]) !== 0) {
@@ -610,6 +838,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
                 );
                 subToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 - 1,
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                );
+                mulToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
@@ -644,6 +882,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5,
                     0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
                 );
+                mulToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if (((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100) >= 0) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
@@ -660,6 +908,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
                 );
                 subToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 + 1,
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                );
+                mulToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
@@ -694,6 +952,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5 + 1,
                     0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
                 );
+                mulToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 + 1,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if (((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100) <= 10) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
@@ -710,6 +978,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
                 );
                 subToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 + 1,
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                );
+                mulToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
@@ -744,6 +1022,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5,
                     0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
                 );
+                mulToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if (((0.01 * this.x1 - 0.5 - 1) >= 0) && ((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100) <= 10)) {
@@ -769,6 +1057,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5 - 1,
                     0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
                 );
+                mulToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 - 1,
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if ((0.01 * this.x1 - 0.5 - 1) >= 0) {
@@ -785,6 +1083,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
                 );
                 subToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 - 1,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                );
+                mulToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
