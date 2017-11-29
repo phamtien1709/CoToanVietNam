@@ -1,4 +1,4 @@
-var socket = io("http://localhost:6969");
+var socket = io("192.168.11.57:6969");
 
 socket.on("send-id-player", (data) => {
     if (data.numid == 1) {
@@ -12,6 +12,7 @@ socket.on("send-id-player", (data) => {
 });
 
 socket.on("server-call-user-out", (data)=>{
+    console.log(Co.redWin, Co.blueWin, Co.deuceGame);
     if(data === "blue") {
         Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "Đối phương đã rời khỏi\n                bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.redWin = true;
@@ -56,6 +57,23 @@ socket.on("get_out_callback", (data)=>{
     }
     if(data === "red"){
         Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "ĐỎ đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.blueWin = true;
+        setTimeout(function () {
+            Co.game.state.start('win');
+        }, 1800);
+    }
+});
+
+socket.on("get_out_callback_client", (data)=>{
+    if(data === "blue") {
+        Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "Bạn đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
+        Co.redWin = true;
+        setTimeout(function () {
+            Co.game.state.start('win');
+        }, 1800);
+    }
+    if(data === "red"){
+        Co.game.add.text(Co.game.world.centerX - 180,Co.game.world.centerY + 560, "Bạn đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
         Co.blueWin = true;
         setTimeout(function () {
             Co.game.state.start('win');

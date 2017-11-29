@@ -25,6 +25,8 @@ var menuState = {
         Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);      
     },
     create: function () {
+        Co.idBlue = 0;
+        Co.idRed= 0;
         var tween = null;
         var tween_mini1 = null;
         var tween_mini2 = null;

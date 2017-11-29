@@ -150,7 +150,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 - i][posx1 - i] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1 - i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 - i + j][posx1 - i + j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -176,7 +183,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 - i][posx1] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1 - i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 - i + j][posx1] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -202,7 +216,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 - i][posx1 + i] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1 - i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 - i + j][posx1 + i - j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -228,7 +249,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1][posx1 + i] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1][posx1 + i - j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -254,7 +282,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 + i][posx1 + i] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1 + i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 + i - j][posx1 + i - j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -280,7 +315,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 + i][posx1] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1 + i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 + i - j][posx1] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -306,7 +348,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 + i][posx1 - i] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1 + i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 + i - j][posx1 - i + j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -332,7 +381,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1][posx1 - i] !== 0) {
                                     if (i == add1 + add2) {
                                         if (Co.chessesType[posy1][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1][posx1 - i + j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -379,7 +435,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1 - i][posx1 - i] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1 - i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1 - i + j][posx1 - i + j] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -405,7 +468,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1 - i][posx1] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1 - i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1 - i + j][posx1] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -431,7 +501,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1 - i][posx1 + i] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1 - i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1 - i + j][posx1 + i - j] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -457,7 +534,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1][posx1 + i] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1][posx1 + i - j] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -483,7 +567,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1 + i][posx1 + i] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1 + i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1 + i - j][posx1 + i - j] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -509,7 +600,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1 + i][posx1] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1 + i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1 + i - j][posx1] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -535,7 +633,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1 + i][posx1 - i] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1 + i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1 + i - j][posx1 - i + j] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -561,7 +666,14 @@ class directPoint {
                                     if (Co.chessesValue[posy1][posx1 - i] !== 0) {
                                         if (i == sub2 - sub1) {
                                             if (Co.chessesType[posy1][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                                canEat = true;
+                                                var count = 0;
+                                                for (j = 1; j <= i; j++) {
+                                                    if (Co.chessesValue[posy1][posx1 - i + j] == 0) {
+                                                        count++;
+                                                    }
+                                                }
+                                                if (count == i - 1) canEat = true;
+                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
@@ -586,7 +698,7 @@ class directPoint {
                         });
                     }
                 }
-                else{
+                else {
 
                 }
             }
@@ -611,7 +723,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 - i][posx1 - i] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1 - i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 - i + j][posx1 - i + j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -637,7 +756,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 - i][posx1] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1 - i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 - i + j][posx1] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -663,7 +789,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 - i][posx1 + i] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1 - i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 - i + j][posx1 + i - j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -689,7 +822,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1][posx1 + i] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1][posx1 + i - j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -715,7 +855,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 + i][posx1 + i] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1 + i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 + i - j][posx1 + i - j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -741,7 +888,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 + i][posx1] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1 + i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 + i - j][posx1] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -767,7 +921,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1 + i][posx1 - i] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1 + i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1 + i - j][posx1 - i + j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }
@@ -793,7 +954,14 @@ class directPoint {
                                 if (Co.chessesValue[posy1][posx1 - i] !== 0) {
                                     if (i == mul1 * mul2) {
                                         if (Co.chessesType[posy1][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                            canEat = true;
+                                            var count = 0;
+                                            for (j = 1; j <= i; j++) {
+                                                if (Co.chessesValue[posy1][posx1 - i + j] == 0) {
+                                                    count++;
+                                                }
+                                            }
+                                            if (count == i - 1) canEat = true;
+                                            else canEat = false;
                                         } else {
                                             canEat = false;
                                         }

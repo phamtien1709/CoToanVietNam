@@ -37,6 +37,7 @@ var playState = {
         //win get
         Co.blueWin = false;
         Co.redWin = false;
+        Co.deuceGame = false;
         //drawMap
         Co.drawBoard = false;
         Co.newPos = [0, 0];
@@ -226,8 +227,8 @@ var playState = {
         //skill button
 
         //Text chỉ bên
-        if(socket.id == Co.idBlue) Co.game.add.text(100, 100, "Bạn quân XANH",{ font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
         if(socket.id == Co.idRed) Co.game.add.text(100, 100, "Bạn quân ĐỎ",{ font: "30px Arial", fill: "#cc3300", boundsAlignH: "center", boundsAlignV: "middle" });
+        if(socket.id == Co.idBlue) Co.game.add.text(100, 100, "Bạn quân XANH",{ font: "30px Arial", fill: "#0099ff", boundsAlignH: "center", boundsAlignV: "middle" });
         //popup setting ingame
         var btn_caidat = Co.game.add.button(50, 100, 'caidat', openPopup, this);
         btn_caidat.anchor.set(0.5);
@@ -285,7 +286,6 @@ var playState = {
         ];
         Co.chonco = Co.game.add.sprite(-100, -100, 'chonco');
         Co.onMouseDown = false;
-        Co.deuceGame = false;
         Co.timerBlue.start();
         Co.timerRed.start();
     },
