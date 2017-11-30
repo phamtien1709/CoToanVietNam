@@ -26,7 +26,7 @@ socket.on("server-call-user-out", (data)=>{
         setTimeout(function () {
             Co.game.state.start('win');
         }, 1200);
-    } 
+    }
 });
 
 socket.on("timeout_blue", (data)=>{
@@ -44,7 +44,7 @@ socket.on("timeout_red", (data)=>{
         setTimeout(function () {
             Co.game.state.start('win');
         }, 1200);
-    } 
+    }
 });
 
 socket.on("get_out_callback", (data)=>{
@@ -129,6 +129,16 @@ socket.on("disagree_deuce_callback", (data)=>{
 
 socket.on("server-send-room-number", (data)=>{
     // console.log(`ID ${data.id} go to room ${data.roomnumber}`);
+});
+var ok = 0;
+socket.on("leave-room-callback", (data)=>{
+  socket.emit("start", {
+      join : 1
+  });
+  socket.on("server-send-data", (data)=>{
+      ok = data;
+      // this.start(ok);
+  });
 });
 
 socket.on("request-move", (data) => {

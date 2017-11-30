@@ -26,7 +26,7 @@
 //   window.fbAsyncInit = function() {
 //   FB.init({
 //     appId      : '167087887367673',
-//     cookie     : true,  // enable cookies to allow the server to access 
+//     cookie     : true,  // enable cookies to allow the server to access
 //                         // the session
 //     xfbml      : true,  // parse social plugins on this page
 //     version    : 'v2.8' // use graph api version 2.8
@@ -36,7 +36,7 @@
 //   //   if (response.status === 'connected') {
 //   //     // Logged into your app and Facebook.
 //   //   } else {
-//   //     // The person is not logged into this app or we are unable to tell. 
+//   //     // The person is not logged into this app or we are unable to tell.
 //   //   }
 //   // });
 //   // FB.getLoginStatus(function(response) {
@@ -69,6 +69,7 @@ function statusChangeCallback(response) {
     // Logged into your app and Facebook.
     testAPI();
     Co.checkConnect = response.status;
+    // console.log(response.id);
     // return response;
   } else {
   }
@@ -82,9 +83,9 @@ function checkLoginState() {
 window.fbAsyncInit = function() {
 FB.init({
   appId      : '167087887367673',
-  cookie     : true,  
-  xfbml      : true,  
-  version    : 'v2.8' 
+  cookie     : true,
+  xfbml      : true,
+  version    : 'v2.8'
 });
 };
 

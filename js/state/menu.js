@@ -1,5 +1,6 @@
 var menuState = {
     preload: function () {
+        checkLoginState();
         Co.game.load.image('background','Assets/Bandau/Banco.png');
         Co.game.load.image('oden', 'Assets/Bandau/oden.png');
         Co.game.load.image('otrang', 'Assets/Bandau/otrang.png');
@@ -17,12 +18,12 @@ var menuState = {
         Co.game.load.image('txt_amthanh', 'Assets/Setting/Text_Amthanh.png');
         Co.game.load.image('txt_rung', 'Assets/Setting/Text_Rung.png');
         Co.game.load.image('gui_BG', 'Assets/Setting/GUiBG2.png');
-        Co.game.load.image('bg', 'Assets/Loading/BG.png'); 
-        Co.game.load.image('check', 'Assets/Setting/Chon.png');    
+        Co.game.load.image('bg', 'Assets/Loading/BG.png');
+        Co.game.load.image('check', 'Assets/Setting/Chon.png');
         Co.game.load.image('uncheck', 'Assets/Setting/Khongchon.png');
-        Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');   
-        Co.game.load.image('bg_black', 'Assets/Bandau/BG_Black.png');  
-        Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);      
+        Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');
+        Co.game.load.image('bg_black', 'Assets/Bandau/BG_Black.png');
+        Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);
     },
     create: function () {
         Co.idBlue = 0;
@@ -49,7 +50,7 @@ var menuState = {
             socket.on("server-send-data", (data)=>{
                 ok = data;
                 this.start(ok);
-            })
+            });
         }, this);
         btn_batdau.anchor.set(0.5);
         //ava fb
@@ -81,8 +82,8 @@ var menuState = {
             if ((run_tut !== null && run_tut.isRunning) || popup_tut.scale.x === 1)
             {
                 return;
-            } 
-            run_tut = Co.game.add.tween(popup_tut.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);           
+            }
+            run_tut = Co.game.add.tween(popup_tut.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
         },this);
         //btn thoat game
         var btn_thoatgame = Co.game.make.sprite(-200, 160, 'btn_thoatgame');
@@ -174,7 +175,7 @@ var menuState = {
 
         //function settings
         function backTuts(){
-            var run_tut = null; 
+            var run_tut = null;
             run_tut = Co.game.add.tween(popup_tut.scale).to( { x: 0, y: 0 }, 700, Phaser.Easing.Elastic.In, true);
         }
         function uncheckSound(){
@@ -191,7 +192,7 @@ var menuState = {
             tween_mini1 = Co.game.add.tween(uncheck_amthanh.scale).to({x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
             tween_mini2 = Co.game.add.tween(check_amthanh.scale).to({x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
         }
-            
+
         function checkVibrate(){
             tween_mini1 = Co.game.add.tween(uncheck_rung.scale).to({x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
             tween_mini2 = Co.game.add.tween(check_rung.scale).to({x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
@@ -204,7 +205,7 @@ var menuState = {
                 return;
             }
             // Co.game.add.tween(bg_black.scale).to({ x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
-            tween = Co.game.add.tween(popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);           
+            tween = Co.game.add.tween(popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
         };
         function closePopup(){
             if (tween && tween.isRunning || popup.scale.x === 0.1)

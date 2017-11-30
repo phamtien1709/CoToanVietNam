@@ -1,9 +1,9 @@
 var loadState = {
     preload: function(){
         Co.game.time.advancedTiming = true;
-        Co.game.input.maxPointers = 1;   
+        Co.game.input.maxPointers = 1;
         Co.game.stage.disableVisibilityChange = true;
-        
+
         Co.game.scale.minWidth = 450;
         Co.game.scale.minHeight = 550;
         Co.game.scale.maxWidth = 900;
@@ -12,7 +12,7 @@ var loadState = {
         Co.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         Co.game.load.image('tengame', 'Assets/Loading/tengame.png');
         Co.game.load.image('gui_BG', 'Assets/Setting/GUiBG2.png');
-        Co.game.load.image('bg', 'Assets/Loading/BG.png'); 
+        Co.game.load.image('bg', 'Assets/Loading/BG.png');
         Co.game.load.image('red10', 'Assets/Bandau/codo10.png');
         Co.game.load.image('red9', 'Assets/Bandau/codo9.png');
         Co.game.load.image('red8', 'Assets/Bandau/codo8.png');
@@ -41,7 +41,7 @@ var loadState = {
         Co.game.load.image('btn_fb', 'Assets/Loading/Button_FB.png');
     },
     create: function(){
-        var bg = Co.game.add.sprite(0, 0, 'bg');      
+        var bg = Co.game.add.sprite(0, 0, 'bg');
         Co.tengame = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY-300, 'tengame');
         Co.tengame.anchor = new Phaser.Point(0.5,0.5);
         var quanCoTo = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY,'quancoto');
@@ -58,7 +58,7 @@ var loadState = {
     update: function(){
         checkLoginState();
         Co.checkPlay += 1;
-        if ((Co.checkPlay === 30)){
+        if ((Co.checkPlay === 300)){
             this.start();
         }
     },

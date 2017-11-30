@@ -86,6 +86,9 @@ io.on("connection", (socket) => {
     console.log(socket.Phong);
     socket.leave(socket.Phong);
     console.log(socket.adapter.rooms);
+  });
+  socket.on("leave-room-after-out", (data)=>{
+    socket.leave(socket.Phong);
+    socket.emit("leave-room-callback", socket.id);
   })
 });
-
