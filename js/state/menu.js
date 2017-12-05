@@ -24,13 +24,31 @@ var menuState = {
         Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');
         Co.game.load.image('bg_black', 'Assets/Bandau/BG_Black.png');
         Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);
+        Co.game.load.image('addMath', 'Assets/Loading/addMath.png');
+        Co.game.load.image('addMathChoose', 'Assets/Loading/addMathChoose.png');
+        Co.game.load.image('subMath', 'Assets/Loading/subMath.png');
+        Co.game.load.image('subMathChoose', 'Assets/Loading/subMathChoose.png');
+        Co.game.load.image('mulMath', 'Assets/Loading/mulMath.png');
+        Co.game.load.image('mulMathChoose', 'Assets/Loading/mulMathChoose.png');
+        Co.game.load.image('divMath', 'Assets/Loading/divMath.png');
+        Co.game.load.image('divMathChoose', 'Assets/Loading/divMathChoose.png');
+        Co.game.load.image('divPerMath', 'Assets/Loading/divPerMath.png');
+        Co.game.load.image('divPerMathChoose', 'Assets/Loading/divPerMathChoose.png');
+        Co.game.load.image('btn_chonpheptoan', 'Assets/Loading/btn_chonpheptoan.png');
+        Co.game.load.image('GUIchonpheptoan', 'Assets/Loading/GUInguoichoi.png');
     },
     create: function () {
+        Co.chooseAdd = true;
+        Co.chooseSub = true;
+        Co.chooseMul = false;
+        Co.chooseDiv = false;
+        Co.chooseDivPer = false;
         Co.idBlue = 0;
         Co.idRed= 0;
         var tween = null;
         var tween_mini1 = null;
         var tween_mini2 = null;
+        var tween_chooseMath = null;
         var checkPlay = false;
         var ok = 0;
         var drawBoard = false;
@@ -43,6 +61,7 @@ var menuState = {
             checkPlay = true;
             btn_batdau.pendingDestroy = true;
             Co.game.add.text(Co.game.world.centerX - 140, Co.game.world.centerY - 50, "Waiting for a player...");
+            btn_chonpheptoan.pendingDestroy = true;
             //socket
             socket.emit("start", {
                 join : 1
@@ -84,6 +103,8 @@ var menuState = {
                 return;
             }
             run_tut = Co.game.add.tween(popup_tut.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+            btn_huongdan.kill();
+            btn_thoatgame.kill();
         },this);
         //btn thoat game
         var btn_thoatgame = Co.game.make.sprite(-200, 160, 'btn_thoatgame');
@@ -93,6 +114,136 @@ var menuState = {
         btn_thoatgame.events.onInputDown.add(()=>{
             console.log("exit");
         },this);
+        //popup chon phep toan
+        var popup_pheptoan = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'bg_black');
+        popup_pheptoan.alpha = 1;
+        popup_pheptoan.anchor.set(0.5);
+        popup_pheptoan.scale.set(0);
+        popup.inputEnabled = true;
+        var gui_pheptoan = Co.game.make.sprite(0, 0, 'GUIchonpheptoan');
+        gui_pheptoan.anchor.set(0.5);
+        var btn_addMath = Co.game.make.button(-240, 0, 'addMath');
+        btn_addMath.anchor.set(0.5);
+        btn_addMath.scale.set(0.25);
+        btn_addMath.alpha = 0.5;
+        btn_addMath.kill();
+        var btn_subMath = Co.game.make.button(-120, 0, 'subMath');
+        btn_subMath.anchor.set(0.5);
+        btn_subMath.scale.set(0.25);
+        btn_subMath.kill();
+        btn_subMath.alpha = 0.5;
+        var btn_mulMath = Co.game.make.button(0, 0, 'mulMath');
+        btn_mulMath.anchor.set(0.5);
+        btn_mulMath.scale.set(0.25);
+        btn_mulMath.alpha = 0.5;
+        var btn_divMath = Co.game.make.button(120, 0, 'divMath');
+        btn_divMath.anchor.set(0.5);
+        btn_divMath.scale.set(0.25);
+        btn_divMath.alpha = 0.5;
+        var btn_divPerMath = Co.game.make.button(240, 0, 'divPerMath');
+        btn_divPerMath.anchor.set(0.5);
+        btn_divPerMath.scale.set(0.25);
+        btn_divPerMath.alpha = 0.5;
+        //choosed
+        var btn_addMathChoose = Co.game.make.button(-240, 0, 'addMathChoose');
+        btn_addMathChoose.anchor.set(0.5);
+        btn_addMathChoose.scale.set(0.25);
+        // btn_addMathChoose.kill();
+        var btn_subMathChoose = Co.game.make.button(-120, 0, 'subMathChoose');
+        btn_subMathChoose.anchor.set(0.5);
+        btn_subMathChoose.scale.set(0.25);
+        // btn_subMathChoose.kill();
+        var btn_mulMathChoose = Co.game.make.button(0, 0, 'mulMathChoose');
+        btn_mulMathChoose.anchor.set(0.5);
+        btn_mulMathChoose.scale.set(0.25);
+        btn_mulMathChoose.kill();
+        var btn_divMathChoose = Co.game.make.button(120, 0, 'divMathChoose');
+        btn_divMathChoose.anchor.set(0.5);
+        btn_divMathChoose.scale.set(0.25);
+        btn_divMathChoose.kill();
+        var btn_divPerMathChoose = Co.game.make.button(240, 0, 'divPerMathChoose');
+        btn_divPerMathChoose.anchor.set(0.5);
+        btn_divPerMathChoose.scale.set(0.25);
+        btn_divPerMathChoose.kill();
+
+        popup_pheptoan.addChild(gui_pheptoan);
+        popup_pheptoan.addChild(btn_addMath);
+        popup_pheptoan.addChild(btn_subMath);
+        popup_pheptoan.addChild(btn_mulMath);
+        popup_pheptoan.addChild(btn_divMath);
+        popup_pheptoan.addChild(btn_divPerMath);
+        popup_pheptoan.addChild(btn_addMathChoose);
+        popup_pheptoan.addChild(btn_subMathChoose);
+        popup_pheptoan.addChild(btn_mulMathChoose);
+        popup_pheptoan.addChild(btn_divMathChoose);
+        popup_pheptoan.addChild(btn_divPerMathChoose);
+
+        btn_addMath.events.onInputDown.add(()=>{
+            btn_addMath.kill();
+            btn_addMathChoose.revive();
+        });
+        btn_subMath.events.onInputDown.add(()=>{
+            btn_subMath.kill();
+            btn_subMathChoose.revive();
+        });
+        btn_mulMath.events.onInputDown.add(()=>{
+            btn_mulMath.kill();
+            btn_mulMathChoose.revive();
+        });
+        btn_divMath.events.onInputDown.add(()=>{
+            btn_divMath.kill();
+            btn_divMathChoose.revive();
+        });
+        btn_divPerMath.events.onInputDown.add(()=>{
+            btn_divPerMath.kill();
+            btn_divPerMathChoose.revive();
+        });
+        btn_addMathChoose.events.onInputDown.add(()=>{
+            btn_addMathChoose.kill();
+            btn_addMath.revive();
+        });
+        btn_subMathChoose.events.onInputDown.add(()=>{
+            btn_subMathChoose.kill();
+            btn_subMath.revive();
+        });
+        btn_mulMathChoose.events.onInputDown.add(()=>{
+            btn_mulMathChoose.kill();
+            btn_mulMath.revive();
+        });
+        btn_divMathChoose.events.onInputDown.add(()=>{
+            btn_divMathChoose.kill();
+            btn_divMath.revive();
+        });
+        btn_divPerMathChoose.events.onInputDown.add(()=>{
+            btn_divPerMathChoose.kill();
+            btn_divPerMath.revive();
+        });        
+        //btn chon phep toan
+        var txt_chonpheptoan = Co.game.make.text(0,0,'Chọn phép toán');
+        txt_chonpheptoan.anchor.set(0.5);
+        var btn_chonpheptoan = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 200, 'btn_chonpheptoan');
+        btn_chonpheptoan.anchor.set(0.5);
+        btn_chonpheptoan.addChild(txt_chonpheptoan);
+
+        var txt_okpheptoan = Co.game.make.text(0,0,'OK');
+        txt_okpheptoan.anchor.set(0.5);
+        var btn_okpheptoan = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 200, 'btn_chonpheptoan');
+        btn_okpheptoan.anchor.set(0.5);
+        btn_okpheptoan.addChild(txt_okpheptoan);
+        btn_okpheptoan.kill();
+
+        btn_chonpheptoan.events.onInputDown.add(()=>{
+            tween_chooseMath = Co.game.add.tween(popup_pheptoan.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+            btn_chonpheptoan.kill();
+            btn_batdau.kill();
+            btn_okpheptoan.revive();
+        });
+        btn_okpheptoan.events.onInputDown.add(()=>{
+            tween_chooseMath = Co.game.add.tween(popup_pheptoan.scale).to( { x: 0, y: 0 },500, Phaser.Easing.Elastic.In, true);
+            btn_okpheptoan.kill();
+            btn_chonpheptoan.revive();
+            btn_batdau.revive();
+        });
         //txt am thanh va rung
         var txt_amthanh = Co.game.make.sprite(-100, -130, 'txt_amthanh');
         var txt_rung = Co.game.make.sprite(-100, -40, 'txt_rung');
@@ -159,7 +310,7 @@ var menuState = {
         popup_tut.alpha = 1;
         popup_tut.anchor.set(0.5);
         popup_tut.inputEnabled = true;
-        popup_tut.input.enableDrag();
+        // popup_tut.input.enableDrag();
         popup_tut.scale.set(0);
         popup_tut.addChild(txt_huongdan);
         popup_tut.addChild(btn_back);
@@ -177,7 +328,9 @@ var menuState = {
         function backTuts(){
             var run_tut = null;
             run_tut = Co.game.add.tween(popup_tut.scale).to( { x: 0, y: 0 }, 700, Phaser.Easing.Elastic.In, true);
-        }
+            btn_huongdan.revive();
+            btn_thoatgame.revive();
+        };
         function uncheckSound(){
             tween_mini1 = Co.game.add.tween(uncheck_amthanh.scale).to({x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
             tween_mini2 = Co.game.add.tween(check_amthanh.scale).to({x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
@@ -206,6 +359,7 @@ var menuState = {
             }
             // Co.game.add.tween(bg_black.scale).to({ x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
             tween = Co.game.add.tween(popup.scale).to( { x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+            btn_chonpheptoan.kill();
         };
         function closePopup(){
             if (tween && tween.isRunning || popup.scale.x === 0.1)
@@ -214,6 +368,7 @@ var menuState = {
             }
             // Co.game.add.tween(bg_black.scale).to({ x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
             tween = Co.game.add.tween(popup.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
+            btn_chonpheptoan.revive();
         };
     },
     start: function(ok){

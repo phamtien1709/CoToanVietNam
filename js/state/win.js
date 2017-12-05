@@ -8,6 +8,7 @@ var winState = {
         Co.game.load.image('btn_replay', 'Assets/Bandau/button_replay.png');
     },
     create: function(){
+        document.getElementById('box-chat').style.display='none';
         Co.tweenLose = 0;
         Co.tweenWin = 0;
         Co.tweenDeuce = 0;

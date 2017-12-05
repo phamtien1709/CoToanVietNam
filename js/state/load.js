@@ -58,7 +58,7 @@ var loadState = {
     update: function(){
         checkLoginState();
         Co.checkPlay += 1;
-        if ((Co.checkPlay === 300)){
+        if ((Co.checkPlay === 30)){
             this.start();
         }
     },

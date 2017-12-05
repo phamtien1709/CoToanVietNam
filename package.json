@@ -14,5 +14,22 @@
     "lodash": "^4.17.4",
     "phaser-kinetic-scrolling-plugin": "^1.0.4",
     "socket.io": "^2.0.4"
+  },
+  "devDependencies": {
+    "phaser-input": "^1.2.6"
   }
 }
+// { 
+//   '6u7Tb-AC7llKVwz1AAAB': Room{ 
+//     sockets: { 
+//       '6u7Tb-AC7llKVwz1AAAB': true
+//     }, 
+//     length: 1
+//   },
+//   Room1: Room{ 
+//     sockets: { 
+//       '6u7Tb-AC7llKVwz1AAAB': true
+//     }, 
+//     length: 1
+//   }
+// }

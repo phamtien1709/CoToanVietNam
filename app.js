@@ -17,7 +17,7 @@ io.on("connection", (socket) => {
     console.log(`${socket.id} OUT!`);
     console.log(socket.Phong);
     console.log(socket.Mau);
-    // console.log(socket.adapter.rooms);
+    console.log(socket.adapter.rooms);
     // socket.leave(socket.Phong);
     io.sockets.in(socket.Phong).emit("server-call-user-out", socket.Mau);
     // num_player -= 1;
@@ -29,7 +29,11 @@ io.on("connection", (socket) => {
     socket.join(`Room${num_room}`);
     socket.Phong = `Room${num_room}`;
     socket.Mau = color[2-num_player];
+    var roomnumber = `Room${num_room}`;
+    var id = socket.id;
+    // console.log(roomnumber);
     //show room
+    // console.log(socket.adapter.rooms.roomnumber);
     console.log(socket.adapter.rooms);
     io.sockets.in(socket.Phong).emit("server-send-room-number", {
       roomnumber : num_room,
@@ -90,5 +94,13 @@ io.on("connection", (socket) => {
   socket.on("leave-room-after-out", (data)=>{
     socket.leave(socket.Phong);
     socket.emit("leave-room-callback", socket.id);
+  });
+  socket.on("user_chat", (data)=>{
+    console.log(socket.Mau);
+    console.log(data);
+    io.sockets.in(socket.Phong).emit("chat_callback", {
+      color: socket.Mau,
+      text : data
+    });
   })
 });

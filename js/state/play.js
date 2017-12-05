@@ -1,5 +1,5 @@
 var playState = {
-  preload: function() {
+  preload: function () {
     Co.game.load.image('bg_quandaan', 'Assets/Bandau/BG_quandaan.png');
     Co.game.load.image('btn_cauhoa', 'Assets/Bandau/Button_cauhoa.png');
     Co.game.load.image('btn_xinthua', 'Assets/Bandau/Button_Xinthua.png');
@@ -21,7 +21,7 @@ var playState = {
     Co.game.load.image('tooltip', 'Assets/Chat/tooltip.png');
     Co.game.time.advancedTiming = true;
   },
-  create: function() {
+  create: function () {
     Co.game.add.sprite(0, 0, 'bg');
     var bg_quandaan = Co.game.add.sprite(750, 100, 'bg_quandaan');
     bg_quandaan.anchor.set(0.5);
@@ -183,7 +183,22 @@ var playState = {
     var btn_xinthua = Co.game.make.button(0, 150, 'btn_xinthua');
     btn_xinthua.scale.set(2);
     btn_xinthua.anchor.set(0.5);
-
+    //input fields
+    // Co.game.add.inputField(100, 100, {
+    //   font: '18px Arial',
+    //   fill: '#212121',
+    //   fillAlpha: 0,
+    //   fontWeight: 'bold',
+    //   width: 150,
+    //   max: 20,
+    //   padding: 8,
+    //   borderWidth: 1,
+    //   borderColor: '#000',
+    //   borderRadius: 6,
+    //   placeHolder: 'Username',
+    //   textAlign: 'center',
+    //   zoom: true
+    // });
     //GUI roi ban
     var txt_roiban = Co.game.make.text(-200, -50, "Rời bàn sẽ bị xử thua luôn, \n bạn có chắc chắn rời bàn?", {
       font: "35px Arial",
@@ -269,7 +284,7 @@ var playState = {
           boundsAlignH: "center",
           boundsAlignV: "middle"
         });
-        setTimeout(function() {
+        setTimeout(function () {
           Co.cauhoa_text_limit_time.destroy();
         }, 1200);
       }
@@ -339,6 +354,33 @@ var playState = {
       }, 350, Phaser.Easing.Linear.None, true);
       socket.emit("get_out", socket.id);
     })
+    //text_tooltip
+    Co.textTooltipBlue = Co.game.add.text(30,-120,"abcdefg", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle",
+      wordWrap: true, wordWrapWidth: 200
+    });
+    // Co.textTootipBlue.anchor.set(0.5);
+    Co.textTooltipRed = Co.game.add.text(30,-120,"abcdefasdg", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle",
+      wordWrap: true, wordWrapWidth: 200
+    });
+    // Co.textTootipRed.anchor.set(0.5);
+    //tooltip chat
+    Co.tooltipBlue = Co.game.add.sprite(25, 1350, 'tooltip');
+    Co.tooltipBlue.anchor.set(0, 1);
+    Co.tooltipBlue.scale.set(0);
+    Co.tooltipRed = Co.game.add.sprite(630, 1350, 'tooltip');
+    Co.tooltipRed.anchor.set(0, 1);
+    Co.tooltipRed.scale.set(0);
+
+    Co.tooltipBlue.addChild(Co.textTooltipBlue);
+    Co.tooltipRed.addChild(Co.textTooltipRed);
     //popup_chat
     var popup_chat = Co.game.add.sprite(Co.game.world.centerX + 130, Co.game.world.centerY + 300, 'gui_chat2');
     popup_chat.anchor.set(0.5);
@@ -363,6 +405,55 @@ var playState = {
     btn_chatnhanh5.anchor.set(0.5);
     var btn_chatnhanh6 = Co.game.make.button(0, 190, 'btn_chatnhanh');
     btn_chatnhanh6.anchor.set(0.5);
+    var txt_chatnhanh = Co.game.add.text(0, 0, "Nhanh nào!", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle"
+    });
+    txt_chatnhanh.anchor.set(0.5);
+    var txt_chatnhanh2 = Co.game.add.text(0, 0, "Nước cờ hay đó", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle"
+    });
+    txt_chatnhanh2.anchor.set(0.5);
+    var txt_chatnhanh3 = Co.game.add.text(0, 0, "Tuyệt vời!", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle"
+    });
+    txt_chatnhanh3.anchor.set(0.5);
+    var txt_chatnhanh4 = Co.game.add.text(0, 0, "Sắp thua rồi", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle"
+    });
+    txt_chatnhanh4.anchor.set(0.5);
+    var txt_chatnhanh5 = Co.game.add.text(0, 0, "Không dễ thế đâu", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle"
+    });
+    txt_chatnhanh5.anchor.set(0.5);
+    var txt_chatnhanh6 = Co.game.add.text(0, 0, "Sắp thắng rồi", {
+      font: "30px Arial",
+      fill: "white",
+      boundsAlignH: "center",
+      boundsAlignV: "middle"
+    });
+    txt_chatnhanh6.anchor.set(0.5);
+
+    btn_chatnhanh.addChild(txt_chatnhanh);
+    btn_chatnhanh2.addChild(txt_chatnhanh2);
+    btn_chatnhanh3.addChild(txt_chatnhanh3);
+    btn_chatnhanh4.addChild(txt_chatnhanh4);
+    btn_chatnhanh5.addChild(txt_chatnhanh5);
+    btn_chatnhanh6.addChild(txt_chatnhanh6);
 
     popup_chat.addChild(gui_chat1);
     popup_chat.addChild(btn_chatbox);
@@ -373,18 +464,89 @@ var playState = {
     popup_chat.addChild(btn_chatnhanh5);
     popup_chat.addChild(btn_chatnhanh6);
     //btn_chat
-    btn_chat.events.onInputDown.add(()=>{
-      Co.chatBox = Co.game.add.tween(popup_chat.scale).to({x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
+    btn_chat.events.onInputDown.add(() => {
+      Co.chatBox = Co.game.add.tween(popup_chat.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
       Co.chatBox.start();
       btn_chat.kill();
       btn_chat2.revive();
+      document.getElementById('box-chat').style.display='block';
     });
-    btn_chat2.events.onInputDown.add(()=>{
-      Co.chatBox = Co.game.add.tween(popup_chat.scale).to({x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
+    btn_chat2.events.onInputDown.add(() => {
+      Co.chatBox = Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
       Co.chatBox.start();
       btn_chat.revive();
       btn_chat2.kill();
-    })
+      document.getElementById('box-chat').style.display='none';
+    });
+    //btn chat box
+    btn_chatbox.events.onInputDown.add(()=>{
+      if(document.getElementById('box-chat').value !== ''){
+        // console.log(document.getElementById('box-chat').value);
+        socket.emit("user_chat", document.getElementById('box-chat').value);
+        document.getElementById('box-chat').style.display='none';
+        Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
+        btn_chat.revive();
+        btn_chat2.kill();
+        document.getElementById('box-chat').value = '';
+      }
+    });
+    //click on chat nhanh
+    btn_chatnhanh.events.onInputDown.add(() => {
+      socket.emit("user_chat", btn_chatnhanh.children[0]._text);
+      Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
+      // Co.chatBox.start();
+      btn_chat.revive();
+      btn_chat2.kill();
+      document.getElementById('box-chat').style.display='none';
+      // console.log(btn_chatnhanh.children[0]._text);
+    });
+    btn_chatnhanh2.events.onInputDown.add(() => {
+      socket.emit("user_chat", btn_chatnhanh2.children[0]._text);
+      Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
+      // Co.chatBox.start();
+      btn_chat.revive();
+      btn_chat2.kill();
+      document.getElementById('box-chat').style.display='none';
+      // console.log(btn_chatnhanh2.children[0]._text);
+    });
+    btn_chatnhanh3.events.onInputDown.add(() => {
+      socket.emit("user_chat", btn_chatnhanh3.children[0]._text);
+      Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
+      // Co.chatBox.start();
+      btn_chat.revive();
+      btn_chat2.kill();
+      document.getElementById('box-chat').style.display='none';
+      // console.log(btn_chatnhanh3.children[0]._text);
+    });
+    btn_chatnhanh4.events.onInputDown.add(() => {
+      socket.emit("user_chat", btn_chatnhanh4.children[0]._text);
+      Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
+      // Co.chatBox.start();
+      btn_chat.revive();
+      btn_chat2.kill();
+      document.getElementById('box-chat').style.display='none';
+      // console.log(btn_chatnhanh4.children[0]._text);
+    });
+    btn_chatnhanh5.events.onInputDown.add(() => {
+      socket.emit("user_chat", btn_chatnhanh5.children[0]._text);
+      Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
+      // Co.chatBox.start();
+      btn_chat.revive();
+      btn_chat2.kill();
+      document.getElementById('box-chat').style.display='none';
+      // console.log(btn_chatnhanh5.children[0]._text);
+    });
+    btn_chatnhanh6.events.onInputDown.add(() => {
+      socket.emit("user_chat", btn_chatnhanh6.children[0]._text);
+      Co.game.add.tween(popup_chat.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
+      // Co.chatBox.start();
+      btn_chat.revive();
+      btn_chat2.kill();
+      document.getElementById('box-chat').style.display='none';
+      // console.log(btn_chatnhanh6.children[0]._text);
+    });
+    // console.log(list_chatnhanh[i].children[0]._text);
+    // console.log(list_chatnhanh);
     //Text chỉ bên
     if (socket.id == Co.idRed) Co.game.add.text(100, 100, "Bạn quân ĐỎ", {
       font: "30px Arial",
@@ -440,6 +602,17 @@ var playState = {
       }, 500, Phaser.Easing.Elastic.In, true);
     };
 
+    // var input = new CanvasInput({
+    //   canvas: document.getElementById('canvas'),
+    //   width: 260,
+    //   height: 30,
+    //   fontSize: 18,
+    //   fontFamily: 'Arial',
+    //   fontColor: '#212121',
+    //   padding: 0
+    // });
+    // console.log(input);
+    // input.scale.set(0);
     //directGroup
     Co.directGroup = [];
     Co.directGroup.anchor = new Phaser.Point(0.5, 0.5);
@@ -466,7 +639,7 @@ var playState = {
     Co.timerBlue.start();
     Co.timerRed.start();
   },
-  update: function() {
+  update: function () {
     if (Co.pointBlueNow !== Co.pointBluePrev) {
       // console.log(Co.ateList);
       Co.pointBluePrev = Co.pointBlueNow;
@@ -542,7 +715,7 @@ var playState = {
     if ((Co.pointBluePrev >= Co.configs.WIN_POINT) || (Co.pointRedPrev >= Co.configs.WIN_POINT)) {
       if (Co.pointBluePrev >= Co.configs.WIN_POINT) Co.blueWin = true;
       if (Co.pointRedPrev >= Co.configs.WIN_POINT) Co.redWin = true;
-      setTimeout(function() {
+      setTimeout(function () {
         Co.game.state.start('win');
       }, 1200);;
     }
@@ -557,7 +730,7 @@ var playState = {
       Co.timerBlue.pause();
     }
   },
-  render: function() {
+  render: function () {
     var fps = Co.game.debug.text(`FPS: ${Co.game.time.fps} `, 800, 30);
     if (Co.ateList.blue.length > 0) {
       for (item in Co.ateList.blue) {
@@ -595,19 +768,19 @@ var playState = {
       socket.emit("timeout_red", "red");
     }
   },
-  endTimerBlue: function() {
+  endTimerBlue: function () {
     Co.timerBlue.stop();
   },
-  endTimerRed: function() {
+  endTimerRed: function () {
     Co.timerRed.stop();
   },
-  formatTime: function(s) {
+  formatTime: function (s) {
     // Convert seconds (s) to a nicely formatted and padded time string
     var minutes = "0" + Math.floor(s / 60);
     var seconds = "0" + (s - minutes * 60);
     return minutes.substr(-2) + ":" + seconds.substr(-2);
   },
-  drawBoardDefault: function(boardArr, drawBoard) {
+  drawBoardDefault: function (boardArr, drawBoard) {
     for (i = 0; i < boardArr.length; i++) {
       for (j = 0; j < boardArr[i].length; j++) {
         if (boardArr[i][j] === 1) {
@@ -621,7 +794,7 @@ var playState = {
     }
     return drawBoard = true;
   },
-  drawChessOnBoard: function(chessArr) {
+  drawChessOnBoard: function (chessArr) {
     for (i = 0; i < chessArr.length; i++) {
       for (j = 0; j < chessArr[i].length; j++) {
         switch (chessArr[i][j]) {
