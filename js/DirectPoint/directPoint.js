@@ -1285,270 +1285,272 @@ class directPoint {
                 let canEat = true;
                 let divy;
                 // if (div1 == 10) div1 = 0;
-                if (div2 % div1 == 0) {
-                    //top left
-                    if ((posx > posx1) && (posy > posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 - i >= 0 && (posy1 - i) >= 0)) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1 - i][posx1 - i] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1 - i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1 - i + j][posx1 - i + j] == 0) {
-                                                        count++;
+                if(div2>div1){
+                    if ((div2 % div1 !== 0) &&(div2%div1 !== Infinity)) {
+                        //top left
+                        if ((posx > posx1) && (posy > posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 - i >= 0 && (posy1 - i) >= 0)) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1 - i][posx1 - i] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1 - i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1 - i + j][posx1 - i + j] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = -div2 % div1 - 1;
+                                divy = -div2 % div1 - 1;
+                            };
                         }
-                        if (canEat) {
-                            divx = -div2 / div1 - 1;
-                            divy = -div2 / div1 - 1;
-                        };
-                    }
-                    //top
-                    if ((posx == posx1) && (posy > posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 >= 0 && (posy1 - i) >= 0 && (posx1 < 9))) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1 - i][posx1] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1 - i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1 - i + j][posx1] == 0) {
-                                                        count++;
+                        //top
+                        if ((posx == posx1) && (posy > posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 >= 0 && (posy1 - i) >= 0 && (posx1 < 9))) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1 - i][posx1] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1 - i][posx1] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1 - i + j][posx1] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = 0;
+                                divy = -div2 % div1 - 1;
+                            };
                         }
-                        if (canEat) {
-                            divx = 0;
-                            divy = -div2 / div1 - 1;
-                        };
-                    }
-                    //top right
-                    if ((posx < posx1) && (posy > posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 + i < 9) && (posy1 - i) >= 0) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1 - i][posx1 + i] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1 - i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1 - i + j][posx1 + i - j] == 0) {
-                                                        count++;
+                        //top right
+                        if ((posx < posx1) && (posy > posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 + i < 9) && (posy1 - i) >= 0) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1 - i][posx1 + i] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1 - i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1 - i + j][posx1 + i - j] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = div2 % div1 + 1;
+                                divy = -div2 % div1 - 1;
+                            };
                         }
-                        if (canEat) {
-                            divx = div2 / div1 + 1;
-                            divy = -div2 / div1 - 1;
-                        };
-                    }
-                    //right
-                    if ((posx < posx1) && (posy == posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 + i < 9) && (posy1) >= 0 && (posy1 < 11)) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1][posx1 + i] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1][posx1 + i - j] == 0) {
-                                                        count++;
+                        //right
+                        if ((posx < posx1) && (posy == posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 + i < 9) && (posy1) >= 0 && (posy1 < 11)) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1][posx1 + i] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1][posx1 + i] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1][posx1 + i - j] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = div2 % div1 + 1;
+                                divy = 0;
+                            };
                         }
-                        if (canEat) {
-                            divx = div2 / div1 + 1;
-                            divy = 0;
-                        };
-                    }
-                    //bot right
-                    if ((posx < posx1) && (posy < posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 + i < 9) && ((posy1 + i < 11))) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1 + i][posx1 + i] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1 + i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1 + i - j][posx1 + i - j] == 0) {
-                                                        count++;
+                        //bot right
+                        if ((posx < posx1) && (posy < posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 + i < 9) && ((posy1 + i < 11))) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1 + i][posx1 + i] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1 + i][posx1 + i] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1 + i - j][posx1 + i - j] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = div2 % div1 + 1;
+                                divy = div2 % div1 + 1;
+                            };
                         }
-                        if (canEat) {
-                            divx = div2 / div1 + 1;
-                            divy = div2 / div1 + 1;
-                        };
-                    }
-                    //bot
-                    if ((posx == posx1) && (posy < posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 < 9) && (posx1 >= 0) && ((posy1 + i < 11))) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1 + i][posx1] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1 + i][posx1] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1 + i - j][posx1] == 0) {
-                                                        count++;
+                        //bot
+                        if ((posx == posx1) && (posy < posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 < 9) && (posx1 >= 0) && ((posy1 + i < 11))) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1 + i][posx1] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1 + i][posx1] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1 + i - j][posx1] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = 0;
+                                divy = div2 % div1 + 1;
+                            };
                         }
-                        if (canEat) {
-                            divx = 0;
-                            divy = div2 / div1 + 1;
-                        };
-                    }
-                    //bot left
-                    if ((posx > posx1) && (posy < posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 - i >= 0) && ((posy1 + i < 11))) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1 + i][posx1 - i] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1 + i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1 + i - j][posx1 - i + j] == 0) {
-                                                        count++;
+                        //bot left
+                        if ((posx > posx1) && (posy < posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 - i >= 0) && ((posy1 + i < 11))) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1 + i][posx1 - i] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1 + i][posx1 - i] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1 + i - j][posx1 - i + j] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = -div2 % div1 - 1;
+                                divy = div2 % div1 + 1;
+                            };
                         }
-                        if (canEat) {
-                            divx = -div2 / div1 - 1;
-                            divy = div2 / div1 + 1;
-                        };
-                    }
-                    //left
-                    if ((posx > posx1) && (posy == posy1)) {
-                        for (i = 0; i <= div2 / div1; i++) {
-                            if ((posx1 - i >= 0) && ((posy1 < 11) && (posy1 >= 0))) {
-                                if (i > 0) {
-                                    if (Co.chessesValue[posy1][posx1 - i] !== 0) {
-                                        if (i == div2 / div1) {
-                                            if (Co.chessesType[posy1][posx1 - i] !== Co.chessesType[posy1][posx1]) {
-                                                var count = 0;
-                                                for (j = 1; j <= i; j++) {
-                                                    if (Co.chessesValue[posy1][posx1 - i + j] == 0) {
-                                                        count++;
+                        //left
+                        if ((posx > posx1) && (posy == posy1)) {
+                            for (i = 0; i <= div2 % div1; i++) {
+                                if ((posx1 - i >= 0) && ((posy1 < 11) && (posy1 >= 0))) {
+                                    if (i > 0) {
+                                        if (Co.chessesValue[posy1][posx1 - i] !== 0) {
+                                            if (i == div2 % div1) {
+                                                if (Co.chessesType[posy1][posx1 - i] !== Co.chessesType[posy1][posx1]) {
+                                                    var count = 0;
+                                                    for (j = 1; j <= i; j++) {
+                                                        if (Co.chessesValue[posy1][posx1 - i + j] == 0) {
+                                                            count++;
+                                                        }
                                                     }
+                                                    if (count == i - 1) canEat = true;
+                                                    else canEat = false;
+                                                } else {
+                                                    canEat = false;
                                                 }
-                                                if (count == i - 1) canEat = true;
-                                                else canEat = false;
                                             } else {
                                                 canEat = false;
                                             }
                                         } else {
-                                            canEat = false;
+                                            continue;
                                         }
-                                    } else {
-                                        continue;
                                     }
                                 }
                             }
+                            if (canEat) {
+                                divx = -div2 % div1 - 1;
+                                divy = 0;
+                            };
                         }
-                        if (canEat) {
-                            divx = -div2 / div1 - 1;
-                            divy = 0;
-                        };
                     }
                 }
                 if ((0 <= posx + divx) && (9 > posx + divx) && (posy + divy >= 0) && (posy + divy < 11)) {
@@ -1607,6 +1609,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5 - 1,
                     0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
                 );
+                divperToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 - 1,
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if ((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100 >= 0)) {
@@ -1643,6 +1655,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
                 );
                 divToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                );
+                divperToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
@@ -1697,6 +1719,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5 + 1,
                     0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
                 );
+                divperToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 + 1,
+                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if ((0.01 * this.x1 - 0.5 + 1) < 9) {
@@ -1733,6 +1765,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
                 );
                 divToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 + 1,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                );
+                divperToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
@@ -1787,6 +1829,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5 + 1,
                     0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
                 );
+                divperToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 + 1,
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if ((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100) <= 10) {
@@ -1823,6 +1875,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
                 );
                 divToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                );
+                divperToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
@@ -1877,6 +1939,16 @@ class directPoint {
                     0.01 * this.x1 - 0.5 - 1,
                     0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
                 );
+                divperToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 - 1,
+                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                );
             };
         }
         if ((0.01 * this.x1 - 0.5 - 1) >= 0) {
@@ -1913,6 +1985,16 @@ class directPoint {
                     0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
                 );
                 divToEat(
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                    0.01 * this.x1 - 0.5,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                    0.01 * this.x1 - 0.5 - 1,
+                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                );
+                divperToEat(
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
                     Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
                     Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],

@@ -11,26 +11,37 @@ http.listen(6969, function () {
 
 io.on("connection", (socket) => {
   console.log("have connect! ID:" + socket.id);
+  // console.log(5/0);
+  // console.log(5%3-1);
+  // console.log(-(5%3)+1);
   socket.on("disconnect", () => {
     // console.log(Co.idBlue);
     var id_prev = socket.id;
     console.log(`${socket.id} OUT!`);
-    console.log(socket.Phong);
-    console.log(socket.Mau);
-    console.log(socket.adapter.rooms);
+    // console.log(socket.Phong);
+    // console.log(socket.Mau);
+    // console.log(socket.adapter.rooms);
     // socket.leave(socket.Phong);
     io.sockets.in(socket.Phong).emit("server-call-user-out", socket.Mau);
     // num_player -= 1;
   });
   var color = ["red","blue"];
   socket.on("start", (data) => {
+    console.log(data);
     if(num_room > 100) num_room = 0;
     num_player += data.join;
     socket.join(`Room${num_room}`);
     socket.Phong = `Room${num_room}`;
     socket.Mau = color[2-num_player];
-    var roomnumber = `Room${num_room}`;
-    var id = socket.id;
+    socket.Toantu = {
+      add: data.chooseAdd,
+      sub: data.chooseSub,
+      mul: data.chooseMul,
+      div: data.chooseDiv,
+      divper: data.chooseDivPer
+    }
+    // var roomnumber = `Room${num_room}`;
+    // var id = socket.id;
     // console.log(roomnumber);
     //show room
     // console.log(socket.adapter.rooms.roomnumber);

@@ -19,17 +19,3 @@
     "phaser-input": "^1.2.6"
   }
 }
-// { 
-//   '6u7Tb-AC7llKVwz1AAAB': Room{ 
-//     sockets: { 
-//       '6u7Tb-AC7llKVwz1AAAB': true
-//     }, 
-//     length: 1
-//   },
-//   Room1: Room{ 
-//     sockets: { 
-//       '6u7Tb-AC7llKVwz1AAAB': true
-//     }, 
-//     length: 1
-//   }
-// }

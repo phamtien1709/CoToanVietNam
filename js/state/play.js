@@ -45,6 +45,7 @@ var playState = {
     Co.blueWin = false;
     Co.redWin = false;
     Co.deuceGame = false;
+    console.log(Co.chooseAdd, Co.chooseSub, Co.chooseMul, Co.chooseDiv, Co.chooseDivPer);
     //drawMap
     Co.chatBox = 0;
     Co.drawBoard = false;

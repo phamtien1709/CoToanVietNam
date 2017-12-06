@@ -64,7 +64,12 @@ var menuState = {
             btn_chonpheptoan.pendingDestroy = true;
             //socket
             socket.emit("start", {
-                join : 1
+                join : 1,
+                chooseAdd: Co.chooseAdd,
+                chooseSub: Co.chooseSub,
+                chooseMul: Co.chooseMul,
+                chooseDiv: Co.chooseDiv,
+                chooseDivPer: Co.chooseDivPer
             });
             socket.on("server-send-data", (data)=>{
                 ok = data;
@@ -179,42 +184,52 @@ var menuState = {
         popup_pheptoan.addChild(btn_divPerMathChoose);
 
         btn_addMath.events.onInputDown.add(()=>{
+            Co.chooseAdd = true;
             btn_addMath.kill();
             btn_addMathChoose.revive();
         });
         btn_subMath.events.onInputDown.add(()=>{
+            Co.chooseSub = true;
             btn_subMath.kill();
             btn_subMathChoose.revive();
         });
         btn_mulMath.events.onInputDown.add(()=>{
+            Co.chooseMul = true;
             btn_mulMath.kill();
             btn_mulMathChoose.revive();
         });
         btn_divMath.events.onInputDown.add(()=>{
+            Co.chooseDiv = true;
             btn_divMath.kill();
             btn_divMathChoose.revive();
         });
         btn_divPerMath.events.onInputDown.add(()=>{
+            Co.chooseDivPer = true;
             btn_divPerMath.kill();
             btn_divPerMathChoose.revive();
         });
         btn_addMathChoose.events.onInputDown.add(()=>{
+            Co.chooseAdd = false;
             btn_addMathChoose.kill();
             btn_addMath.revive();
         });
         btn_subMathChoose.events.onInputDown.add(()=>{
+            Co.chooseSub = false;
             btn_subMathChoose.kill();
             btn_subMath.revive();
         });
         btn_mulMathChoose.events.onInputDown.add(()=>{
+            Co.chooseMul = false;
             btn_mulMathChoose.kill();
             btn_mulMath.revive();
         });
         btn_divMathChoose.events.onInputDown.add(()=>{
+            Co.chooseDiv = false;
             btn_divMathChoose.kill();
             btn_divMath.revive();
         });
         btn_divPerMathChoose.events.onInputDown.add(()=>{
+            Co.chooseDivPer = false;
             btn_divPerMathChoose.kill();
             btn_divPerMath.revive();
         });        
