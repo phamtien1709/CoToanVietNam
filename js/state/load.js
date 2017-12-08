@@ -39,6 +39,18 @@ var loadState = {
         Co.game.load.image('text_loading', 'Assets/Loading/text_loading.png');
         Co.game.load.image('oAnDuoc', 'Assets/Bandau/Quancothean.png');
         Co.game.load.image('btn_fb', 'Assets/Loading/Button_FB.png');
+        Co.game.load.image('addMath', 'Assets/Loading/addMath.png');
+        Co.game.load.image('addMathChoose', 'Assets/Loading/addMathChoose.png');
+        Co.game.load.image('subMath', 'Assets/Loading/subMath.png');
+        Co.game.load.image('subMathChoose', 'Assets/Loading/subMathChoose.png');
+        Co.game.load.image('mulMath', 'Assets/Loading/mulMath.png');
+        Co.game.load.image('mulMathChoose', 'Assets/Loading/mulMathChoose.png');
+        Co.game.load.image('divMath', 'Assets/Loading/divMath.png');
+        Co.game.load.image('divMathChoose', 'Assets/Loading/divMathChoose.png');
+        Co.game.load.image('divPerMath', 'Assets/Loading/divPerMath.png');
+        Co.game.load.image('divPerMathChoose', 'Assets/Loading/divPerMathChoose.png');
+        Co.game.load.image('btn_chonpheptoan', 'Assets/Loading/btn_chonpheptoan.png');
+        Co.game.load.image('GUIchonpheptoan', 'Assets/Loading/GUInguoichoi.png');
     },
     create: function(){
         var bg = Co.game.add.sprite(0, 0, 'bg');
@@ -58,7 +70,7 @@ var loadState = {
     update: function(){
         checkLoginState();
         Co.checkPlay += 1;
-        if ((Co.checkPlay === 30)){
+        if ((Co.checkPlay === 90)){
             this.start();
         }
     },

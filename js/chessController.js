@@ -17,7 +17,7 @@ class ChessController {
                     // console.log(Co.chessesPos);
                     return Co.onMouseDown = true;
                 }
-                if ((Co.blueFirst == 'red') && (socket.id == Co.idRed)&& (this.sprite.type == Co.blueFirst)) {
+                if ((Co.blueFirst == 'red') && (socket.id == Co.idRed) && (this.sprite.type == Co.blueFirst)) {
                     this.directRed();
                     // console.log(Co.chessesType);
                     // console.log(Co.chessesValue);
@@ -103,6 +103,45 @@ class ChessController {
                     chessesValue: this.sprite.STEP,
                     chessesType: this.sprite.type
                 });
+                //fb not socket
+                FB.ui({
+                    method: 'apprequests',
+                    message: 'your turn.',
+                    data: [{ 
+                        turn: "red",
+                        positionAfter: {
+                            x: Co.exam.x,
+                            y: Co.exam.y
+                        },
+                        positionPrev: {
+                            x: Co.prevPos.x,
+                            y: Co.prevPos.y
+                        },
+                        positionAfterOnMatrix: {
+                            x: (Co.exam.x - 50) / 100,
+                            y: (Co.exam.y - 50 - Co.configs.HEAD_HEIGHT) / 100
+                        },
+                        positionPrevOnMatrix: {
+                            x: (Co.prevPos.x - 50) / 100,
+                            y: (Co.prevPos.y - 50 - Co.configs.HEAD_HEIGHT) / 100
+                        },
+                        chessesPos: 12,
+                        chessesValue: this.sprite.STEP,
+                        chessesType: this.sprite.type
+                    }],
+                    to: 1068593363280872,
+                    action_type: 'turn'
+                }, function (response) {
+                    console.log(response);
+                });
+                // $.ajax({
+                //     type: "GET",
+                //     url: "https://graph.facebook.com/me/apprequests?access_token=EAACPDetK63wBAOLk2O0QmZAzv6sYBh3ZA1qfNrWTBj97Xtl7Qk7y93SH7KzLkRNEpFsGnwN19Fr0XG4yrZAtY4NVEBrJvZARVG1QGqpn9R48Nsp5ZAOHZCCpzq90s9O4eUHZAWfS2BHFjMHvw8GUFcPZCZAtsqx2DrUymKQiHdu3GWx8AY8XKP7vwbpnAllpvBmJ9AGuk02z5LwZDZD",
+                //     success: function (data) {
+                //         console.log(data.data[0]);
+                //     }
+                //     //    dataType: "jsonp"
+                // });
             });
         };
         //socket
@@ -158,6 +197,45 @@ class ChessController {
                     chessesValue: this.sprite.STEP,
                     chessesType: this.sprite.type
                 });
+                //fb not socket
+                FB.ui({
+                    method: 'apprequests',
+                    message: 'your turn.',
+                    data: [{ 
+                        turn: "blue",
+                        positionAfter: {
+                            x: Co.exam.x,
+                            y: Co.exam.y
+                        },
+                        positionPrev: {
+                            x: Co.prevPos.x,
+                            y: Co.prevPos.y
+                        },
+                        positionAfterOnMatrix: {
+                            x: (Co.exam.x - 50) / 100,
+                            y: (Co.exam.y - 50 - Co.configs.HEAD_HEIGHT) / 100
+                        },
+                        positionPrevOnMatrix: {
+                            x: (Co.prevPos.x - 50) / 100,
+                            y: (Co.prevPos.y - 50 - Co.configs.HEAD_HEIGHT) / 100
+                        },
+                        chessesPos: 13,
+                        chessesValue: this.sprite.STEP,
+                        chessesType: this.sprite.type
+                    }],
+                    to: 114898549297486,
+                    action_type: 'turn'
+                }, function (response) {
+                    console.log(response);
+                });
+                // $.ajax({
+                //     type: "GET",
+                //     url: "https://graph.facebook.com/me/apprequests?access_token=EAACPDetK63wBAHrrAbHJYbjxD1edu18A21ZAIW8QGEjSE1G9enWOwEGoUCygsUUaDq7Q1N4KANI2bJtCZAf2o4SolSNbNHPC2tSZAGX7XZCWrfAfyv6gZC3JgpNcHfoaMyJVt0DZAYMLV59pwgXTViHm3ZAIEyGFjprTirwZB5yzXzUbHkKEka3h6MZBDZAS2vOpJ9EZAmOhOAil3QIefCeiD6F",
+                //     success: function (data) {
+                //         console.log(data.data[0]);
+                //     }
+                //     //    dataType: "jsonp"
+                // });
             });
         };
         //socket.io
@@ -234,7 +312,7 @@ class ChessController {
                     }
                 }
                 else {
-                 }
+                }
                 // else todo
             });
         }

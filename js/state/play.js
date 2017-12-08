@@ -34,6 +34,78 @@ var playState = {
     var ava_red = Co.game.add.sprite(670, 1420, 'ava');
     ava_red.anchor.set(0.5);
     //test room
+    //defined math
+    var gui_pheptoan = Co.game.add.sprite(250, 50, 'GUIchonpheptoan');
+    gui_pheptoan.anchor.set(0.5);
+    gui_pheptoan.scale.set(0.5);
+    var btn_addMath = Co.game.make.sprite(-240, 0, 'addMath');
+    btn_addMath.anchor.set(0.5);
+    btn_addMath.scale.set(0.25);
+    btn_addMath.alpha = 0.5;
+    btn_addMath.kill();
+    var btn_subMath = Co.game.make.sprite(-120, 0, 'subMath');
+    btn_subMath.anchor.set(0.5);
+    btn_subMath.scale.set(0.25);
+    btn_subMath.alpha = 0.5;
+    btn_subMath.kill();
+    var btn_mulMath = Co.game.make.sprite(0, 0, 'mulMath');
+    btn_mulMath.anchor.set(0.5);
+    btn_mulMath.scale.set(0.25);
+    btn_mulMath.alpha = 0.5;
+    btn_mulMath.kill();
+    var btn_divMath = Co.game.make.sprite(120, 0, 'divMath');
+    btn_divMath.anchor.set(0.5);
+    btn_divMath.scale.set(0.25);
+    btn_divMath.alpha = 0.5;
+    btn_divMath.kill();
+    var btn_divPerMath = Co.game.make.sprite(240, 0, 'divPerMath');
+    btn_divPerMath.anchor.set(0.5);
+    btn_divPerMath.scale.set(0.25);
+    btn_divPerMath.alpha = 0.5;
+    btn_divPerMath.kill();
+    var btn_addMathChoose = Co.game.make.sprite(-240, 0, 'addMathChoose');
+    btn_addMathChoose.anchor.set(0.5);
+    btn_addMathChoose.scale.set(0.25);
+    btn_addMathChoose.kill();
+    var btn_subMathChoose = Co.game.make.sprite(-120, 0, 'subMathChoose');
+    btn_subMathChoose.anchor.set(0.5);
+    btn_subMathChoose.scale.set(0.25);
+    btn_subMathChoose.kill();
+    var btn_mulMathChoose = Co.game.make.sprite(0, 0, 'mulMathChoose');
+    btn_mulMathChoose.anchor.set(0.5);
+    btn_mulMathChoose.scale.set(0.25);
+    btn_mulMathChoose.kill();
+    var btn_divMathChoose = Co.game.make.sprite(120, 0, 'divMathChoose');
+    btn_divMathChoose.anchor.set(0.5);
+    btn_divMathChoose.scale.set(0.25);
+    btn_divMathChoose.kill();
+    var btn_divPerMathChoose = Co.game.make.sprite(240, 0, 'divPerMathChoose');
+    btn_divPerMathChoose.anchor.set(0.5);
+    btn_divPerMathChoose.scale.set(0.25);
+    btn_divPerMathChoose.kill();
+
+    gui_pheptoan.addChild(btn_addMath);
+    gui_pheptoan.addChild(btn_addMathChoose);
+    gui_pheptoan.addChild(btn_subMath);
+    gui_pheptoan.addChild(btn_subMathChoose);
+    gui_pheptoan.addChild(btn_mulMath);
+    gui_pheptoan.addChild(btn_mulMathChoose);
+    gui_pheptoan.addChild(btn_divMath);
+    gui_pheptoan.addChild(btn_divMathChoose);
+    gui_pheptoan.addChild(btn_divPerMath);
+    gui_pheptoan.addChild(btn_divPerMathChoose);
+
+    if(Co.chooseAdd) btn_addMathChoose.revive();
+    else btn_addMath.revive();
+    if(Co.chooseSub) btn_subMathChoose.revive();
+    else btn_subMath.revive();
+    if(Co.chooseMul) btn_mulMathChoose.revive();
+    else btn_mulMath.revive();
+    if(Co.chooseDiv) btn_divMathChoose.revive();
+    else btn_divMath.revive();
+    if(Co.chooseDivPer) btn_divPerMathChoose.revive();
+    else btn_divPerMath.revive();
+
     //TIMINGGG
     Co.timerBlue = Co.game.time.create();
     Co.timerRed = Co.game.time.create();
