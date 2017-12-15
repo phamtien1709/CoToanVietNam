@@ -43,6 +43,7 @@ function testAPI() {
     // console.log('Thanks for logging in, ' + response.name + '!');
     // console.log(response.id);
     Co.checkId = response.id;
+    Co.nameFB = response.name;
     // 1068593363280872
     // 114898549297486
     // console.log(response.status);

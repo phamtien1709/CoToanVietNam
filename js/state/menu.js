@@ -26,23 +26,20 @@ var menuState = {
         Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);
     },
     create: function () {
-        // FB.ui({
-        //     method: 'apprequests',
-        //     message: 'abcde'
-        // }, function (response) {
-        //     console.log(response);
-        // });
-
-        // FB.ui({
-        //     method: 'apprequests',
-        //     message: 'Just smashed you 78 times! It\'s your turn.',
-        //     to: 1068593363280872,
-        //     action_type: 'turn'
-        // }, function (response) {
-        //     console.log(response);
-        // });
+        if ((Co.accessToken !== undefined)) {
+            $.ajax({
+                type: "GET",
+                url: `https://graph.facebook.com/me/apprequests?access_token=${Co.accessToken}`,
+                success: function (data) {
+                    if (oldRequest !== data.data[0].id) {
+                        oldRequest = data.data[0].id;
+                        Co.runInterval = true;
+                    }
+                }
+            });
+        }
         console.log(Co.checkId);
-        
+        console.log(Co.nameFB);
         console.log(Co.accessToken);
         Co.chooseAdd = true;
         Co.chooseSub = true;
@@ -51,38 +48,42 @@ var menuState = {
         Co.chooseDivPer = false;
         Co.idBlue = 0;
         Co.idRed = 0;
+        Co.checkPlay = false;
         var tween = null;
         var tween_mini1 = null;
         var tween_mini2 = null;
         var tween_chooseMath = null;
-        var checkPlay = false;
         var ok = 0;
         var drawBoard = false;
         // this.drawBoardDefault(Co.configs.BOARD_DEFAULT, this.drawBoard);
         var bg = Co.game.add.sprite(0, 0, 'bg');
         //ten game
         var tengame = Co.game.add.sprite(Co.game.world.centerX - 300, Co.game.world.centerY - 300, 'tengame');
+        Co.txt_waiting = Co.game.add.text(Co.game.world.centerX - 140, Co.game.world.centerY - 50, "Waiting for a player...");
+        Co.txt_waiting.kill();
         //btn batdau
-        var btn_batdau = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY, 'batdau', function () {
-            checkPlay = true;
-            btn_batdau.pendingDestroy = true;
-            Co.game.add.text(Co.game.world.centerX - 140, Co.game.world.centerY - 50, "Waiting for a player...");
-            btn_chonpheptoan.pendingDestroy = true;
-            //socket
-            socket.emit("start", {
-                join: 1,
-                chooseAdd: Co.chooseAdd,
-                chooseSub: Co.chooseSub,
-                chooseMul: Co.chooseMul,
-                chooseDiv: Co.chooseDiv,
-                chooseDivPer: Co.chooseDivPer
-            });
-            socket.on("server-send-data", (data) => {
-                ok = data;
-                this.start(ok);
-            });
+        Co.play_btn_batdau = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY, 'batdau', function () {
+            //fb apprequest
+            FB.ui(
+                {
+                    method: 'apprequests',
+                    message: 'invite-player',
+                    data: {
+                        id: Co.checkId,
+                        name: Co.nameFB,
+                        math: [Co.chooseAdd, Co.chooseSub, Co.chooseMul, Co.chooseDiv, Co.chooseDivPer]
+                    }
+                }, function (response) {
+                    // console.log(response.request);
+                    if (response.request !== undefined) {
+                        Co.checkPlay = true;
+                        Co.play_btn_batdau.kill();
+                        Co.txt_waiting.revive();
+                        Co.play_btn_chonpheptoan.kill();
+                    }
+                });
         }, this);
-        btn_batdau.anchor.set(0.5);
+        Co.play_btn_batdau.anchor.set(0.5);
         //ava fb
         Co.game.add.sprite(15, 15, 'ava_fb');
         //nut Setting
@@ -241,38 +242,31 @@ var menuState = {
         //btn chon phep toan
         var txt_chonpheptoan = Co.game.make.text(0, 0, 'Chọn phép toán');
         txt_chonpheptoan.anchor.set(0.5);
-        var btn_chonpheptoan = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 200, 'btn_chonpheptoan');
-        btn_chonpheptoan.anchor.set(0.5);
-        btn_chonpheptoan.addChild(txt_chonpheptoan);
+        Co.play_btn_chonpheptoan = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 200, 'btn_chonpheptoan');
+        Co.play_btn_chonpheptoan.anchor.set(0.5);
+        Co.play_btn_chonpheptoan.addChild(txt_chonpheptoan);
 
-        var txt_okpheptoan = Co.game.make.text(0, 0, 'Hủy');
+        var txt_okpheptoan = Co.game.make.text(0, 0, 'XONG');
         txt_okpheptoan.anchor.set(0.5);
         var btn_okpheptoan = Co.game.add.button(0, 400, 'btn_chonpheptoan');
         btn_okpheptoan.anchor.set(0.5);
         btn_okpheptoan.addChild(txt_okpheptoan);
-        // btn_okpheptoan.kill();
+        // btn_okpheptoan.kill();      
 
-        // Btn_taohostmoi
-        var txt_taohostmoi = Co.game.make.text(0, 0, 'BẮT ĐẦU');
-        txt_taohostmoi.anchor.set(0.5);
-        var btn_startashost = Co.game.add.button(0, 200, 'btn_chonpheptoan');
-        btn_startashost.anchor.set(0.5);
-        btn_startashost.addChild(txt_taohostmoi);
-
-        btn_chonpheptoan.events.onInputDown.add(() => {
+        Co.play_btn_chonpheptoan.events.onInputDown.add(() => {
             tween_chooseMath = Co.game.add.tween(popup_pheptoan.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-            btn_chonpheptoan.kill();
-            btn_batdau.kill();
+            Co.play_btn_chonpheptoan.kill();
+            Co.play_btn_batdau.kill();
             // btn_okpheptoan.revive();
         });
         btn_okpheptoan.events.onInputDown.add(() => {
             tween_chooseMath = Co.game.add.tween(popup_pheptoan.scale).to({ x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
             // btn_okpheptoan.kill();
-            btn_chonpheptoan.revive();
-            btn_batdau.revive();
+            Co.play_btn_chonpheptoan.revive();
+            Co.play_btn_batdau.revive();
         });
         popup_pheptoan.addChild(btn_okpheptoan);
-        popup_pheptoan.addChild(btn_startashost);
+        // popup_pheptoan.addChild(btn_startashost);
         //txt am thanh va rung
         var txt_amthanh = Co.game.make.sprite(-100, -130, 'txt_amthanh');
         var txt_rung = Co.game.make.sprite(-100, -40, 'txt_rung');
@@ -387,7 +381,7 @@ var menuState = {
             }
             // Co.game.add.tween(bg_black.scale).to({ x:1, y:1}, 1000, Phaser.Easing.Elastic.Out, true);
             tween = Co.game.add.tween(popup.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
-            btn_chonpheptoan.kill();
+            Co.play_btn_chonpheptoan.kill();
         };
         function closePopup() {
             if (tween && tween.isRunning || popup.scale.x === 0.1) {
@@ -395,7 +389,7 @@ var menuState = {
             }
             // Co.game.add.tween(bg_black.scale).to({ x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
             tween = Co.game.add.tween(popup.scale).to({ x: 0, y: 0 }, 500, Phaser.Easing.Elastic.In, true);
-            btn_chonpheptoan.revive();
+            Co.play_btn_chonpheptoan.revive();
         };
     },
     start: function (ok) {

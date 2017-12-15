@@ -1285,8 +1285,8 @@ class directPoint {
                 let canEat = true;
                 let divy;
                 // if (div1 == 10) div1 = 0;
-                if(div2>div1){
-                    if ((div2 % div1 !== 0) &&(div2%div1 !== Infinity)) {
+                if (div2 > div1) {
+                    if ((div2 % div1 !== 0) && (div2 % div1 !== Infinity)) {
                         //top left
                         if ((posx > posx1) && (posy > posy1)) {
                             for (i = 0; i <= div2 % div1; i++) {
@@ -1569,441 +1569,521 @@ class directPoint {
         if (((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100 >= 0) && ((0.01 * this.x1 - 0.5 - 1) >= 0))) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1]) !== 0) {
                 // console.log("Top Left");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if (Co.chooseAdd) {
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         if ((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100 >= 0)) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5]) !== 0) {
                 // console.log("Top");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if(Co.chooseAdd){
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         if (((0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100) >= 0) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1]) !== 0) {
                 // console.log("Top Right");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if(Co.chooseAdd){
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         if ((0.01 * this.x1 - 0.5 + 1) < 9) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1]) !== 0) {
                 // console.log("Right");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if(Co.chooseAdd){
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         if (((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100) <= 10) && ((0.01 * this.x1 - 0.5 + 1) < 9)) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1]) !== 0) {
                 // console.log("Bot Right");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 + 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if(Co.chooseAdd){
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 + 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 + 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         if ((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100) <= 10) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5]) !== 0) {
                 // console.log("Bot");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if(Co.chooseAdd){
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         if (((0.01 * this.x1 - 0.5 - 1) >= 0) && ((0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100) <= 10)) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1]) !== 0) {
                 // console.log("Bot Left");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if(Co.chooseAdd){
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 + 1 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         if ((0.01 * this.x1 - 0.5 - 1) >= 0) {
             if ((Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1]) !== 0) {
                 // console.log("Left");
-                sumToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                subToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                mulToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
-                divperToEat(
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
-                    Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
-                    0.01 * this.x1 - 0.5,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
-                    0.01 * this.x1 - 0.5 - 1,
-                    0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
-                );
+                if(Co.chooseAdd){
+                    sumToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseSub){
+                    subToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseMul){
+                    mulToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDiv){
+                    divToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }
+                if(Co.chooseDivPer){
+                    divperToEat(
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesType[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5 - 1],
+                        Co.chessesValue[0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100][0.01 * this.x1 - 0.5],
+                        0.01 * this.x1 - 0.5,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100,
+                        0.01 * this.x1 - 0.5 - 1,
+                        0.01 * this.y1 - 0.5 - Co.configs.HEAD_HEIGHT / 100
+                    );
+                }                
             };
         }
         // console.log(Co.posKillGroup);    

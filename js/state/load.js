@@ -66,6 +66,10 @@ var loadState = {
         var txt_loading = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY+150, 'text_loading')
         txt_loading.anchor.set(0.5);
         Co.checkPlay = 0;
+        Co.firstMoveBlue = false;
+        Co.firstMoveRed = false;
+        Co.idFBBlue = 0;
+        Co.idFBRed = 0;
     },
     update: function(){
         checkLoginState();
