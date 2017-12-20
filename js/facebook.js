@@ -36,10 +36,11 @@ window.fbAsyncInit = function () {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 function testAPI() {
-  FB.api('/me', function (response) {
-    Co.checkId = response.id;
-    Co.nameFB = response.name;
-  });
+  FB.api(
+    '/me', function (response) {
+      Co.checkId = response.id;
+      Co.nameFB = response.name;
+    });
   FB.api(
     '/me/friends',
     function (response) {
@@ -47,4 +48,23 @@ function testAPI() {
       }
     }
   );
+  // FB.api(
+  //   '/me/scores',
+  //   'delete',
+  //   function (response) {
+  //     console.log(response);
+  //   });
+  // FB.api(
+  //   '/me/scores',
+  //   'post',
+  //   { score: 5000 },
+  //   function (response) {
+  //     console.log(response);
+  //   });
+  // FB.api(
+  //   '/me/scores',
+  //   'get',
+  //   function (response) {
+  //     // console.log(response);
+  //   });
 }

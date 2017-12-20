@@ -9,7 +9,7 @@ setInterval(function () {
     if ((Co.runInterval !== undefined)) {
         //check play
         if (Co.checkPlay) {
-            if ((realTime % 60 == 0) && (realTime > 0)) {
+            if ((realTime % 6 == 0) && (realTime > 0)) {
                 console.log(realTime);
                 if (Co.checkId == Co.idBlue) {
                     if (Co.blueFirst == 'blue') {

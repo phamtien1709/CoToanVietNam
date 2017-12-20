@@ -63,22 +63,22 @@ var loadState = {
             FB.login(function(response){
                 //handle
             }, {
-                scope: 'user_friends,email,public_profile'
+                scope: 'user_friends,email,public_profile,publish_actions'
             });
         });
         btn_fb.anchor.set(0.5);
         var txt_loading = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY+150, 'text_loading')
         txt_loading.anchor.set(0.5);
-        Co.checkPlay = 0;
+        Co.checkPlayTime = 0;
         Co.firstMoveBlue = false;
         Co.firstMoveRed = false;
         Co.idFBBlue = 0;
         Co.idFBRed = 0;
+        checkLoginState();
     },
     update: function(){
-        checkLoginState();
-        Co.checkPlay += 1;
-        if ((Co.checkPlay === 300)){
+        Co.checkPlayTime += 1;
+        if ((Co.checkPlayTime === 300)){
             this.start();
         }
     },
