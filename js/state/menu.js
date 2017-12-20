@@ -23,7 +23,23 @@ var menuState = {
         Co.game.load.image('uncheck', 'Assets/Setting/Khongchon.png');
         Co.game.load.image('gui_tut', 'Assets/Setting/Gui_huongdan.png');
         Co.game.load.image('bg_black', 'Assets/Bandau/BG_Black.png');
+        Co.game.load.image('gui_nguoichoi', 'Assets/Bandau/GUI_nguoi_choi.png');
+        Co.game.load.image('txt_bxh', 'Assets/Xephang/txt_bangxephang.png');
+        Co.game.load.image('gui_bxh', 'Assets/Xephang/GUI_Bangxephang.png');
+        Co.game.load.image('btnback_bxh', 'Assets/Xephang/Button_back.png');
+        Co.game.load.image('btnbanbe_bxh', 'Assets/Xephang/Button_Banbe.png');
+        Co.game.load.image('btnbanbe_dis_bxh', 'Assets/Xephang/Button_Banbedis.png');
+        Co.game.load.image('btntatca_bxh', 'Assets/Xephang/Button_tatca.png');
+        Co.game.load.image('btntatca_dis_bxh', 'Assets/Xephang/Button_Tatcadis.png');
+        Co.game.load.image('bg_xep', 'Assets/Xephang/BG_xep.png');
         Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);
+        Co.game.load.image('btn_invite', 'Assets/Xephang/Button_Moichoi.png');
+        Co.game.load.image('btn_requestkey', 'Assets/Xephang/Button_Xinkhoa.png');
+        // console.log(Co.friends_profile);
+        for(i in Co.friends_profile){
+            var friend_profile = Co.friends_profile[i];
+            Co.game.load.image(`ava_friend${i}`, `https://graph.facebook.com/${friend_profile.id}/picture?width=100`);
+        }
     },
     create: function () {
         if ((Co.accessToken !== undefined)) {
@@ -55,7 +71,6 @@ var menuState = {
         var tween_chooseMath = null;
         var ok = 0;
         var drawBoard = false;
-        // this.drawBoardDefault(Co.configs.BOARD_DEFAULT, this.drawBoard);
         var bg = Co.game.add.sprite(0, 0, 'bg');
         //ten game
         var tengame = Co.game.add.sprite(Co.game.world.centerX - 300, Co.game.world.centerY - 300, 'tengame');
@@ -85,7 +100,7 @@ var menuState = {
         }, this);
         Co.play_btn_batdau.anchor.set(0.5);
         //ava fb
-        Co.game.add.sprite(15, 15, 'ava_fb');
+        Co.game.add.button(15, 15, 'ava_fb');
         //nut Setting
         var btn_setting = Co.game.add.button(815, 20, 'caidat', openPopup, this);
         btn_setting.input.useHandCursor = true;
@@ -266,7 +281,6 @@ var menuState = {
             Co.play_btn_batdau.revive();
         });
         popup_pheptoan.addChild(btn_okpheptoan);
-        // popup_pheptoan.addChild(btn_startashost);
         //txt am thanh va rung
         var txt_amthanh = Co.game.make.sprite(-100, -130, 'txt_amthanh');
         var txt_rung = Co.game.make.sprite(-100, -40, 'txt_rung');
@@ -345,7 +359,114 @@ var menuState = {
             this.index.anchor.set(0);
             initX += 30;
         }
+        //bang xep hang
+        var btn_roles = Co.game.add.button(700, 1390,'gui_nguoichoi');
+        btn_roles.anchor.set(0.5);
+        btn_roles.scale.set(0.5);
+        var txt_bxh = Co.game.make.sprite(0, 0, 'txt_bxh');
+        txt_bxh.anchor.set(0.5);
+        txt_bxh.scale.set(1.3);
 
+        btn_roles.addChild(txt_bxh);
+
+        Co.popup_roles = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'bg_black');
+        Co.popup_roles.alpha = 1;
+        Co.popup_roles.anchor.set(0.5);
+        Co.popup_roles.scale.set(0);
+        Co.popup_roles.inputEnabled = true;
+
+        var gui_bxh = Co.game.make.sprite(0, 0, 'gui_bxh');
+        gui_bxh.anchor.set(0.5);
+        var btnback_bxh = Co.game.make.button(-260, -375, 'btnback_bxh');
+        btnback_bxh.anchor.set(0.5);
+        var txt_bxh_pop = Co.game.make.sprite(20, -370, 'txt_bxh');
+        txt_bxh_pop.anchor.set(0.5);
+        var btnbanbe_bxh = Co.game.make.button(-150, -290, 'btnbanbe_bxh');
+        btnbanbe_bxh.anchor.set(0.5);
+        var btnbanbe_dis_bxh = Co.game.make.button(-150, -290, 'btnbanbe_dis_bxh');
+        btnbanbe_dis_bxh.anchor.set(0.5);
+        btnbanbe_dis_bxh.kill();
+        var btntatca_bxh = Co.game.make.button(150, -290, 'btntatca_bxh');
+        btntatca_bxh.anchor.set(0.5);
+        btntatca_bxh.kill();
+        var btntatca_dis_bxh = Co.game.make.button(150, -290, 'btntatca_dis_bxh');
+        btntatca_dis_bxh.anchor.set(0.5);
+
+        Co.popup_roles.addChild(gui_bxh);
+        Co.popup_roles.addChild(btnback_bxh);
+        Co.popup_roles.addChild(txt_bxh_pop);
+        Co.popup_roles.addChild(btnbanbe_bxh);
+        Co.popup_roles.addChild(btnbanbe_dis_bxh);
+        Co.popup_roles.addChild(btntatca_bxh);
+        Co.popup_roles.addChild(btntatca_dis_bxh);
+        for(i in Co.friends_profile){
+            var friend_profile = Co.friends_profile[i];
+            var config_margin = 150;
+            var friend = {};
+            friend.bg = Co.game.make.sprite(0, -160 + i*config_margin, 'bg_xep');
+            friend.bg.anchor.set(0.5);
+            friend.name = Co.game.make.text(-80, -50, `${friend_profile.name}`, {
+                font: "30px Arial",
+                fill: "#00CDFF",
+                boundsAlignH: "center",
+                boundsAlignV: "middle"
+              });
+            friend.name.anchor.set(0.5);
+            friend.ava = Co.game.make.sprite(-230, 0,`ava_friend${i}`);
+            friend.ava.anchor.set(0.5);
+            friend.requestkey = Co.game.make.button(200, -35, 'btn_requestkey');
+            friend.requestkey.anchor.set(0.5);
+            friend.invite = Co.game.make.button(200, 35, 'btn_invite');
+            friend.invite.anchor.set(0.5);
+            friend.bg.addChild(friend.name);
+            friend.bg.addChild(friend.ava);
+            friend.bg.addChild(friend.requestkey);
+            friend.bg.addChild(friend.invite);
+            Co.popup_roles.addChild(friend.bg);
+            friend.invite.events.onInputDown.add(()=>{
+                FB.ui(
+                    {
+                        method: 'apprequests',
+                        message: 'invite-player',
+                        to: friend_profile.id,
+                        data: {
+                            id: Co.checkId,
+                            name: Co.nameFB,
+                            math: [Co.chooseAdd, Co.chooseSub, Co.chooseMul, Co.chooseDiv, Co.chooseDivPer]
+                        }
+                    }, function (response) {
+                        // console.log(response.request);
+                        if (response.request !== undefined) {
+                            Co.checkPlay = true;
+                            friend.invite.kill();
+                        }
+                    });
+            })
+        }
+
+        btn_roles.events.onInputDown.add(() => {
+            var run_roles = null;
+            if ((run_roles !== null && run_roles.isRunning) || Co.popup_roles.scale.x === 1) {
+                return;
+            }
+            run_roles = Co.game.add.tween(Co.popup_roles.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+        }, this);
+        btnback_bxh.events.onInputDown.add(()=>{
+            var back_popup_roles = null;
+            back_popup_roles = Co.game.add.tween(Co.popup_roles.scale).to({ x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
+        });
+        btnbanbe_dis_bxh.events.onInputDown.add(()=>{
+            btnbanbe_bxh.revive();
+            btnbanbe_dis_bxh.kill();
+            btntatca_bxh.kill();
+            btntatca_dis_bxh.revive();
+        });
+        btntatca_dis_bxh.events.onInputDown.add(()=>{
+            btntatca_bxh.revive();
+            btnbanbe_dis_bxh.revive();
+            btnbanbe_bxh.kill();
+            btntatca_dis_bxh.kill();
+        });
 
         //function settings
         function backTuts() {

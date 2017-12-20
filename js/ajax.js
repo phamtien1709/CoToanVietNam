@@ -10,6 +10,7 @@ setInterval(function () {
         //check play
         if (Co.checkPlay) {
             if ((realTime % 60 == 0) && (realTime > 0)) {
+                console.log(realTime);
                 if (Co.checkId == Co.idBlue) {
                     if (Co.blueFirst == 'blue') {
                         alert('You spend a lot time for turn. You must LOSE!');
@@ -461,6 +462,17 @@ setInterval(function () {
         });
     }
     // };
+}, 5000);
+setInterval(function () {
+    if ((Co.accessToken !== undefined)) {
+        $.ajax({
+            type: "GET",
+            url: `https://graph.facebook.com/me/friends?access_token=${Co.accessToken}`,
+            success: function (data) {
+                Co.friends_profile = data.data;
+            }
+        });
+    }
 }, 5000);
 // }, 5000);
 // var odlData;

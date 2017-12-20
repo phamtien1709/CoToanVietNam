@@ -735,7 +735,7 @@ var playState = {
                 Co.textTooltipBlue.setText(txt_chat);
                 Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
                 setTimeout(function () {
-                    Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                  Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
                 }, 3000);
               }
             }
@@ -758,7 +758,7 @@ var playState = {
                 Co.textTooltipRed.setText(txt_chat);
                 Co.game.add.tween(Co.tooltipRed.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
                 setTimeout(function () {
-                    Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                  Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
                 }, 3000);
               }
             }
@@ -792,7 +792,7 @@ var playState = {
               Co.textTooltipBlue.setText(btn_chatnhanh.children[0]._text);
               Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -815,7 +815,7 @@ var playState = {
               Co.textTooltipRed.setText(btn_chatnhanh.children[0]._text);
               Co.game.add.tween(Co.tooltipRed.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -848,7 +848,7 @@ var playState = {
               Co.textTooltipBlue.setText(btn_chatnhanh2.children[0]._text);
               Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -871,7 +871,7 @@ var playState = {
               Co.textTooltipRed.setText(btn_chatnhanh2.children[0]._text);
               Co.game.add.tween(Co.tooltipRed.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -904,7 +904,7 @@ var playState = {
               Co.textTooltipBlue.setText(btn_chatnhanh3.children[0]._text);
               Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -927,7 +927,7 @@ var playState = {
               Co.textTooltipRed.setText(btn_chatnhanh3.children[0]._text);
               Co.game.add.tween(Co.tooltipRed.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -960,7 +960,7 @@ var playState = {
               Co.textTooltipBlue.setText(btn_chatnhanh4.children[0]._text);
               Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -983,7 +983,7 @@ var playState = {
               Co.textTooltipRed.setText(btn_chatnhanh4.children[0]._text);
               Co.game.add.tween(Co.tooltipRed.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -1016,7 +1016,7 @@ var playState = {
               Co.textTooltipBlue.setText(btn_chatnhanh5.children[0]._text);
               Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -1039,7 +1039,7 @@ var playState = {
               Co.textTooltipRed.setText(btn_chatnhanh5.children[0]._text);
               Co.game.add.tween(Co.tooltipRed.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -1072,7 +1072,7 @@ var playState = {
               Co.textTooltipBlue.setText(btn_chatnhanh6.children[0]._text);
               Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipBlue.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }
@@ -1095,7 +1095,7 @@ var playState = {
               Co.textTooltipRed.setText(btn_chatnhanh6.children[0]._text);
               Co.game.add.tween(Co.tooltipRed.scale).to({ x: 1, y: 1 }, 350, Phaser.Easing.Linear.None, true);
               setTimeout(function () {
-                  Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
+                Co.game.add.tween(Co.tooltipRed.scale).to({ x: 0, y: 0 }, 350, Phaser.Easing.Linear.None, true);
               }, 3000);
             }
           }

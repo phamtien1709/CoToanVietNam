@@ -60,7 +60,11 @@ var loadState = {
         quanCoTo.anchor.set(0.5);
         //btn login fb
         var btn_fb = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 550,"btn_fb", function(){
-            FB.login();
+            FB.login(function(response){
+                //handle
+            }, {
+                scope: 'user_friends,email,public_profile'
+            });
         });
         btn_fb.anchor.set(0.5);
         var txt_loading = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY+150, 'text_loading')
@@ -74,7 +78,7 @@ var loadState = {
     update: function(){
         checkLoginState();
         Co.checkPlay += 1;
-        if ((Co.checkPlay === 90)){
+        if ((Co.checkPlay === 300)){
             this.start();
         }
     },
