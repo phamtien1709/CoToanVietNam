@@ -8,11 +8,21 @@ var winState = {
         Co.game.load.image('btn_replay', 'Assets/Bandau/button_replay.png');
     },
     create: function () {
+        // console.log(Co.pointFinishToPush);
         Co.checkPlay = false;
         document.getElementById('box-chat').style.display = 'none';
         Co.tweenLose = 0;
         Co.tweenWin = 0;
         Co.tweenDeuce = 0;
+        //fb api
+        FB.api(
+            '/me/scores',
+            'post',
+            { score: Co.pointFinishToPush + Co.userPointStorage },
+            function (response) {
+                console.log(response);
+                Co.userPointStorage += Co.pointFinishToPush;
+            });
         var win_img = 0;
         var lose_img = 0;
         var deuce_img = 0;
@@ -43,7 +53,7 @@ var winState = {
             if (Co.blueWin) {
                 if (Co.checkId == Co.idBlue) {
                     Co.game.add.tween(win_img.scale).to({ x: 1.3, y: 1.3 }, 600, Phaser.Easing.Quadratic.InOut, true);
-                    var txt_win_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, "Bạn thắng 2000$", { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+                    var txt_win_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, `Bạn thắng ${Co.pointFinishToPush}$`, { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
                     txt_win_point.anchor.set(0.5);
                     txt_win_point.scale.set(0);
                     Co.tweenWin = Co.game.add.tween(txt_win_point.scale).to({ x: 1, y: 1 }, 600, Phaser.Easing.Quadratic.InOut, true);
@@ -55,7 +65,7 @@ var winState = {
                 }
                 if (Co.checkId == Co.idRed) {
                     Co.game.add.tween(lose_img.scale).to({ x: 1.3, y: 1.3 }, 600, Phaser.Easing.Quadratic.InOut, true);
-                    var txt_lose_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, "Bạn bị trừ 2000$", { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+                    var txt_lose_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, `Bạn bị trừ ${Co.pointFinishToPush}$`, { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
                     txt_lose_point.anchor.set(0.5);
                     txt_lose_point.scale.set(0);
                     Co.tweenLose = Co.game.add.tween(txt_lose_point.scale).to({ x: 1, y: 1 }, 600, Phaser.Easing.Quadratic.InOut, true);
@@ -69,7 +79,7 @@ var winState = {
             if (Co.redWin) {
                 if (Co.checkId == Co.idBlue) {
                     Co.game.add.tween(lose_img.scale).to({ x: 1.3, y: 1.3 }, 600, Phaser.Easing.Quadratic.InOut, true);
-                    var txt_lose_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, "Bạn bị trừ 2000$", { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+                    var txt_lose_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, `Bạn bị trừ ${Co.pointFinishToPush}$`, { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
                     txt_lose_point.anchor.set(0.5);
                     txt_lose_point.scale.set(0);
                     Co.tweenLose = Co.game.add.tween(txt_lose_point.scale).to({ x: 1, y: 1 }, 600, Phaser.Easing.Quadratic.InOut, true);
@@ -81,7 +91,7 @@ var winState = {
                 }
                 if (Co.checkId == Co.idRed) {
                     Co.game.add.tween(win_img.scale).to({ x: 1.3, y: 1.3 }, 600, Phaser.Easing.Quadratic.InOut, true);
-                    var txt_win_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, "Bạn thắng 2000$", { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
+                    var txt_win_point = Co.game.add.text(Co.game.world.centerX, Co.game.world.centerY + 200, `Bạn thắng ${Co.pointFinishToPush}$`, { font: "40px Arial", fill: "yellow", boundsAlignH: "center", boundsAlignV: "middle" });
                     txt_win_point.anchor.set(0.5);
                     txt_win_point.scale.set(0);
                     Co.tweenWin = Co.game.add.tween(txt_win_point.scale).to({ x: 1, y: 1 }, 600, Phaser.Easing.Quadratic.InOut, true);
@@ -119,7 +129,6 @@ var winState = {
                         if (response.error_message == undefined) {
                             Co.win_btn_replay.kill();
                             Co.win_txt_waiting.revive();
-                            // socket.emit("leave-room-after-out", Co.checkId);
                         }
                     }
                 )
@@ -140,7 +149,6 @@ var winState = {
                         if (response.error_message == undefined) {
                             Co.win_btn_replay.kill();
                             Co.win_txt_waiting.revive();
-                            // socket.emit("leave-room-after-out", Co.checkId);
                         }
                     }
                 )
@@ -152,8 +160,7 @@ var winState = {
         btn_thoatgame.input.priorityID = 3;
         btn_thoatgame.input.useHandCursor = true;
         btn_thoatgame.events.onInputDown.add(() => {
-            Co.game.state.start('menu');
-            socket.emit("leave-room", Co.checkId);
+            Co.game.state.start('load');
         }, this);
         // console.log(Co.checkId);
     },

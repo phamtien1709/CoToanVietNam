@@ -6,11 +6,12 @@ function statusChangeCallback(response) {
     Co.accessToken = response.authResponse.accessToken;
     //socket
     // socket.emit("send-access-token", Co.accessToken);
-    testAPI();
     Co.checkConnect = response.status;
+    testAPI();
     // console.log(response.id);
     // return response;
   } else {
+    console.log('not connected');
   }
 }
 function checkLoginState() {
@@ -36,6 +37,7 @@ window.fbAsyncInit = function () {
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 function testAPI() {
+  Co.checkCallbackLogin = true;
   FB.api(
     '/me', function (response) {
       Co.checkId = response.id;
@@ -48,23 +50,20 @@ function testAPI() {
       }
     }
   );
-  // FB.api(
-  //   '/me/scores',
-  //   'delete',
-  //   function (response) {
-  //     console.log(response);
-  //   });
-  // FB.api(
-  //   '/me/scores',
-  //   'post',
-  //   { score: 5000 },
-  //   function (response) {
-  //     console.log(response);
-  //   });
-  // FB.api(
-  //   '/me/scores',
-  //   'get',
-  //   function (response) {
-  //     // console.log(response);
-  //   });
+  FB.api(
+    '/me/scores',
+    'get',
+    function (response) {
+      // console.log(response)
+      Co.userPointStorage = response.data[0].score;
+    });
+  FB.api(
+    '/157289944902524/scores',
+    'get',
+    function(response){
+      // console.log(response.data);
+      Co.storagePointFriends = response.data;
+    }
+  );
+  return Co.checkCallbackLogin, Co.userPointStorage, Co.checkId, Co.nameFB;
 }

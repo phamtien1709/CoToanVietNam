@@ -1,6 +1,5 @@
 var menuState = {
     preload: function () {
-        checkLoginState();
         Co.game.load.image('background', 'Assets/Bandau/Banco.png');
         Co.game.load.image('oden', 'Assets/Bandau/oden.png');
         Co.game.load.image('otrang', 'Assets/Bandau/otrang.png');
@@ -32,13 +31,20 @@ var menuState = {
         Co.game.load.image('btntatca_bxh', 'Assets/Xephang/Button_tatca.png');
         Co.game.load.image('btntatca_dis_bxh', 'Assets/Xephang/Button_Tatcadis.png');
         Co.game.load.image('bg_xep', 'Assets/Xephang/BG_xep.png');
+        Co.game.load.image('gui_in_bxh', 'Assets/Xephang/GUI_in_bxh.png');
         Co.game.load.image('ava_fb', `https://graph.facebook.com/${Co.checkId}/picture?width=100`);
         Co.game.load.image('btn_invite', 'Assets/Xephang/Button_Moichoi.png');
         Co.game.load.image('btn_requestkey', 'Assets/Xephang/Button_Xinkhoa.png');
+        Co.game.load.image('popup_ava', 'Assets/Xephang/gui_player_popup.png');
+        Co.game.load.image('btn_thoat_popup_ava', 'Assets/Xephang/btn_thoat_gui_player.png');
+        Co.game.load.image('txt_score', 'Assets/Xephang/txt_score.png');
+        Co.game.load.image('dollar', 'Assets/Xephang/dollar.png');
+        Co.game.load.image('btn_demo', 'Assets/Setting/btn_demo.png');
         // console.log(Co.friends_profile);
-        for(i in Co.friends_profile){
-            var friend_profile = Co.friends_profile[i];
-            Co.game.load.image(`ava_friend${i}`, `https://graph.facebook.com/${friend_profile.id}/picture?width=100`);
+        for (i in Co.storagePointFriends) {
+            var friend_profile = Co.storagePointFriends[i];
+            Co.game.load.image(`ava_friend${i}`, `https://graph.facebook.com/${friend_profile.user.id}/picture?width=100`);
+
         }
     },
     create: function () {
@@ -65,6 +71,7 @@ var menuState = {
         Co.idBlue = 0;
         Co.idRed = 0;
         Co.checkPlay = false;
+        Co.invites = [];
         var tween = null;
         var tween_mini1 = null;
         var tween_mini2 = null;
@@ -99,8 +106,44 @@ var menuState = {
                 });
         }, this);
         Co.play_btn_batdau.anchor.set(0.5);
-        //ava fb
-        Co.game.add.button(15, 15, 'ava_fb');
+        //ava fb + money user
+        var ava_fb = Co.game.add.button(65, 65, 'ava_fb');
+        ava_fb.anchor.set(0.5);
+        var popup_ava = Co.game.add.sprite(Co.game.world.centerX, 400, 'popup_ava');
+        popup_ava.anchor.set(0.5);
+        popup_ava.scale.set(0);
+        var btn_thoat_popup_ava = Co.game.make.button(300, -200, 'btn_thoat_popup_ava');
+        btn_thoat_popup_ava.anchor.set(0.5);
+        var ava_in_popup_ava = Co.game.make.sprite(-145, -33, 'ava_fb');
+        ava_in_popup_ava.anchor.set(0.5);
+        ava_in_popup_ava.scale.set(0.7);
+        var name_in_popup_ava = Co.game.make.text(80, -35, `${Co.nameFB}`, { font: "40px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
+        name_in_popup_ava.anchor.set(0.5);
+        var txt_score = Co.game.make.sprite(-140, 90, 'txt_score');
+        txt_score.anchor.set(0.5);
+        var score_in_popup = Co.game.make.text(140, 90, `${Co.userPointStorage}`, { font: "40px Arial", fill: "black", boundsAlignH: "center", boundsAlignV: "middle" });
+        score_in_popup.anchor.set(0.5);
+
+        popup_ava.addChild(btn_thoat_popup_ava);
+        popup_ava.addChild(ava_in_popup_ava);
+        popup_ava.addChild(name_in_popup_ava);
+        popup_ava.addChild(txt_score);
+        popup_ava.addChild(score_in_popup);
+        ava_fb.events.onInputDown.add(() => {
+            var run_popup;
+            run_popup = Co.game.add.tween(popup_ava.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
+        });
+        btn_thoat_popup_ava.events.onInputDown.add(() => {
+            var exit_popup;
+            exit_popup = Co.game.add.tween(popup_ava.scale).to({ x: 0, y: 0 }, 600, Phaser.Easing.Elastic.In, true);
+        });
+
+        var scoreCoinIco = Co.game.add.sprite(150, 70, 'dollar');
+        scoreCoinIco.anchor.set(0.5);
+        scoreCoinIco.scale.set(0.25);
+        var scoreCoinPoint = Co.game.add.text(210, 75, `${Co.userPointStorage}`, { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
+        scoreCoinPoint.anchor.set(0.5);
+
         //nut Setting
         var btn_setting = Co.game.add.button(815, 20, 'caidat', openPopup, this);
         btn_setting.input.useHandCursor = true;
@@ -342,6 +385,9 @@ var menuState = {
         var initX = 10;
         var txt_huongdan = Co.game.make.sprite(-230, -470, 'txt_huongdan');
         var btn_back = Co.game.make.button(-300, -450, 'btn_back', backTuts);
+        var btn_demo = Co.game.make.button(230, 360, 'btn_demo');
+        btn_demo.anchor.set(0.5);
+        btn_demo.scale.set(0.5);
         //popup hướng dẫn
         var popup_tut = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'gui_tut');
         popup_tut.alpha = 1;
@@ -351,6 +397,12 @@ var menuState = {
         popup_tut.scale.set(0);
         popup_tut.addChild(txt_huongdan);
         popup_tut.addChild(btn_back);
+        popup_tut.addChild(btn_demo);
+
+        //btn_demo
+        btn_demo.events.onInputDown.add(()=>{
+            Co.game.state.start('tutorial');
+        });
 
         for (var i = 0; i < text_tuts.length; i++) {
             this.index = this.game.add.text(-290, initX - 340, text_tuts[i],
@@ -360,7 +412,7 @@ var menuState = {
             initX += 30;
         }
         //bang xep hang
-        var btn_roles = Co.game.add.button(700, 1390,'gui_nguoichoi');
+        var btn_roles = Co.game.add.button(700, 1390, 'gui_nguoichoi');
         btn_roles.anchor.set(0.5);
         btn_roles.scale.set(0.5);
         var txt_bxh = Co.game.make.sprite(0, 0, 'txt_bxh');
@@ -374,6 +426,14 @@ var menuState = {
         Co.popup_roles.anchor.set(0.5);
         Co.popup_roles.scale.set(0);
         Co.popup_roles.inputEnabled = true;
+
+        var scrollMask = Co.game.add.graphics(0, 0);
+        scrollMask.beginFill();
+        scrollMask.drawRect(100, 510, 650, 630);
+        scrollMask.endFill();
+        var gui_in_bxh = Co.game.make.sprite(0, 74, 'gui_in_bxh');
+        gui_in_bxh.anchor.set(0.5);
+        gui_in_bxh.mask = scrollMask;
 
         var gui_bxh = Co.game.make.sprite(0, 0, 'gui_bxh');
         gui_bxh.anchor.set(0.5);
@@ -391,7 +451,7 @@ var menuState = {
         btntatca_bxh.kill();
         var btntatca_dis_bxh = Co.game.make.button(150, -290, 'btntatca_dis_bxh');
         btntatca_dis_bxh.anchor.set(0.5);
-
+        // var gui_rank = Co.game.make.sprite
         Co.popup_roles.addChild(gui_bxh);
         Co.popup_roles.addChild(btnback_bxh);
         Co.popup_roles.addChild(txt_bxh_pop);
@@ -399,36 +459,54 @@ var menuState = {
         Co.popup_roles.addChild(btnbanbe_dis_bxh);
         Co.popup_roles.addChild(btntatca_bxh);
         Co.popup_roles.addChild(btntatca_dis_bxh);
-        for(i in Co.friends_profile){
-            var friend_profile = Co.friends_profile[i];
+        Co.popup_roles.addChild(gui_in_bxh);
+
+        for (i in Co.storagePointFriends) {
+            // console.log(Co.storagePointFriends[i]);
+            var friend_profile = Co.storagePointFriends[i];
+            // console.log(friend_profile.user.id);
+            // console.log(Co.checkId);
             var config_margin = 150;
             var friend = {};
-            friend.bg = Co.game.make.sprite(0, -160 + i*config_margin, 'bg_xep');
+            friend.userid = 111;
+            friend.bg = Co.game.make.sprite(0, -230 + i * config_margin, 'bg_xep');
             friend.bg.anchor.set(0.5);
-            friend.name = Co.game.make.text(-80, -50, `${friend_profile.name}`, {
+            friend.name = Co.game.make.text(-80, -50, `${friend_profile.user.name}`, {
                 font: "30px Arial",
                 fill: "#00CDFF",
                 boundsAlignH: "center",
                 boundsAlignV: "middle"
-              });
+            });
             friend.name.anchor.set(0.5);
-            friend.ava = Co.game.make.sprite(-230, 0,`ava_friend${i}`);
+            friend.ava = Co.game.make.sprite(-230, 0, `ava_friend${i}`);
             friend.ava.anchor.set(0.5);
+            friend.point = Co.game.make.text(-100, 0, `${friend_profile.score} $`, {
+                font: "30px Arial",
+                fill: "yellow",
+                boundsAlignH: "center",
+                boundsAlignV: "middle"
+            });
+            // Co.invites.push(friend_profile.user.id);
+            friend.point.anchor.set(0.5);
             friend.requestkey = Co.game.make.button(200, -35, 'btn_requestkey');
             friend.requestkey.anchor.set(0.5);
             friend.invite = Co.game.make.button(200, 35, 'btn_invite');
             friend.invite.anchor.set(0.5);
             friend.bg.addChild(friend.name);
             friend.bg.addChild(friend.ava);
-            friend.bg.addChild(friend.requestkey);
-            friend.bg.addChild(friend.invite);
-            Co.popup_roles.addChild(friend.bg);
-            friend.invite.events.onInputDown.add(()=>{
+            if (Co.checkId !== friend_profile.user.id) {
+                friend.bg.addChild(friend.requestkey);
+                friend.bg.addChild(friend.invite);
+            }
+            friend.bg.addChild(friend.point);
+            gui_in_bxh.addChild(friend.bg);
+            friend.invite.userid = friend_profile.user.id;
+            friend.invite.events.onInputDown.add((sprite) => {
                 FB.ui(
                     {
                         method: 'apprequests',
                         message: 'invite-player',
-                        to: friend_profile.id,
+                        to: sprite.userid,
                         data: {
                             id: Co.checkId,
                             name: Co.nameFB,
@@ -438,10 +516,14 @@ var menuState = {
                         // console.log(response.request);
                         if (response.request !== undefined) {
                             Co.checkPlay = true;
-                            friend.invite.kill();
+                            sprite.kill();
                         }
                     });
-            })
+            });
+            gui_in_bxh.inputEnabled = true;
+            gui_in_bxh.input.enableDrag();
+            gui_in_bxh.input.boundsRect = new Phaser.Rectangle(-300, -350, 650, 730);
+            gui_in_bxh.input.allowHorizontalDrag = false;
         }
 
         btn_roles.events.onInputDown.add(() => {
@@ -451,17 +533,17 @@ var menuState = {
             }
             run_roles = Co.game.add.tween(Co.popup_roles.scale).to({ x: 1, y: 1 }, 1000, Phaser.Easing.Elastic.Out, true);
         }, this);
-        btnback_bxh.events.onInputDown.add(()=>{
+        btnback_bxh.events.onInputDown.add(() => {
             var back_popup_roles = null;
-            back_popup_roles = Co.game.add.tween(Co.popup_roles.scale).to({ x:0, y:0}, 1000, Phaser.Easing.Elastic.Out, true);
+            back_popup_roles = Co.game.add.tween(Co.popup_roles.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Elastic.Out, true);
         });
-        btnbanbe_dis_bxh.events.onInputDown.add(()=>{
+        btnbanbe_dis_bxh.events.onInputDown.add(() => {
             btnbanbe_bxh.revive();
             btnbanbe_dis_bxh.kill();
             btntatca_bxh.kill();
             btntatca_dis_bxh.revive();
         });
-        btntatca_dis_bxh.events.onInputDown.add(()=>{
+        btntatca_dis_bxh.events.onInputDown.add(() => {
             btntatca_bxh.revive();
             btnbanbe_dis_bxh.revive();
             btnbanbe_bxh.kill();

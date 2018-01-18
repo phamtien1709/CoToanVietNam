@@ -126,12 +126,6 @@ class directPoint {
         //update is test function!!!!
         // this.update();
     }
-    // update() {
-    //     console.log(Co.directGroup);
-    //     console.log(Co.chessesPos);
-    //     console.log(Co.chessesType);
-    //     console.log(Co.chessesValue);
-    // }
     //tìm quân cờ nằm cạnh quân đã chọn
     findObNear() {
         //SUMTOEAT--------------------------------------------

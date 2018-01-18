@@ -9,8 +9,8 @@ setInterval(function () {
     if ((Co.runInterval !== undefined)) {
         //check play
         if (Co.checkPlay) {
-            if ((realTime % 6 == 0) && (realTime > 0)) {
-                console.log(realTime);
+            if ((realTime % 60 == 0) && (realTime > 0)) {
+                // console.log(realTime);
                 if (Co.checkId == Co.idBlue) {
                     if (Co.blueFirst == 'blue') {
                         alert('You spend a lot time for turn. You must LOSE!');
@@ -208,6 +208,7 @@ setInterval(function () {
                         if (json.id === Co.idBlue) {
                             Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "XANH đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                             Co.redWin = true;
+                            Co.pointFinishToPush = 2000;
                             setTimeout(function () {
                                 Co.game.state.start('win');
                             }, 1800);
@@ -215,6 +216,7 @@ setInterval(function () {
                         if (json.id === Co.idRed) {
                             Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "ĐỎ đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                             Co.blueWin = true;
+                            Co.pointFinishToPush = 2000;
                             setTimeout(function () {
                                 Co.game.state.start('win');
                             }, 1800);
@@ -296,6 +298,7 @@ setInterval(function () {
                                         if (response.error_message == undefined) {
                                             Co.cauhoa_answer_agree = Co.game.add.text(Co.game.world.centerX - 190, Co.game.world.centerY + 560, "Bạn đồng ý", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                                             Co.deuceGame = true;
+                                            Co.pointFinishToPush = 0;
                                             setTimeout(function () {
                                                 Co.game.state.start('win');
                                             }, 1200);
@@ -319,6 +322,7 @@ setInterval(function () {
                                         if (response.error_message == undefined) {
                                             Co.cauhoa_answer_agree = Co.game.add.text(Co.game.world.centerX - 190, Co.game.world.centerY + 560, "Bạn đồng ý", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                                             Co.deuceGame = true;
+                                            Co.pointFinishToPush = 0;
                                             setTimeout(function () {
                                                 Co.game.state.start('win');
                                             }, 1200);
@@ -331,6 +335,7 @@ setInterval(function () {
                     if (data.data[0].message == 'agree_promise_deuce') {
                         Co.cauhoa_answer_agree = Co.game.add.text(Co.game.world.centerX - 190, Co.game.world.centerY + 560, "Đối phương đồng ý", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                         Co.deuceGame = true;
+                        Co.pointFinishToPush = 0;
                         setTimeout(function () {
                             Co.game.state.start('win');
                         }, 1200);
@@ -349,6 +354,7 @@ setInterval(function () {
                         if (json.id === Co.idBlue) {
                             Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "XANH đã xin xử thua", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                             Co.redWin = true;
+                            Co.pointFinishToPush = 1000;
                             setTimeout(function () {
                                 Co.game.state.start('win');
                             }, 1800);
@@ -356,6 +362,7 @@ setInterval(function () {
                         if (json.id === Co.idRed) {
                             Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "XANH đã xin xử thua", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                             Co.blueWin = true;
+                            Co.pointFinishToPush = 1000;
                             setTimeout(function () {
                                 Co.game.state.start('win');
                             }, 1800);
@@ -463,17 +470,4 @@ setInterval(function () {
     }
     // };
 }, 5000);
-setInterval(function () {
-    if ((Co.accessToken !== undefined)) {
-        $.ajax({
-            type: "GET",
-            url: `https://graph.facebook.com/me/friends?access_token=${Co.accessToken}`,
-            success: function (data) {
-                Co.friends_profile = data.data;
-            }
-        });
-    }
-}, 5000);
-// }, 5000);
-// var odlData;
 

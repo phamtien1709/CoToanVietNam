@@ -4,13 +4,14 @@ var bootState = {
         Co.game.input.maxPointers = 1;
         Co.game.stage.disableVisibilityChange = true;
 
-        Co.game.scale.minWidth = 450;
-        Co.game.scale.minHeight = 550;
-        Co.game.scale.maxWidth = 900;
-        Co.game.scale.maxHeight = 1100;
+        //    Co.game.scale.minWidth = 450;
+        //    Co.game.scale.minHeight = 550;
+        //    Co.game.scale.maxWidth = 900;
+        //    Co.game.scale.maxHeight = 1100;
 
-        Co.game.scale.pageAlignHorizontally = true;
         Co.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        Co.game.scale.pageAlignHorizontally = true;
+        Co.game.scale.pageAlignVertically = true;
 
 
         Co.game.load.image('tengame', 'Assets/Loading/tengame.png');

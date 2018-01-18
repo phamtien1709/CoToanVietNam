@@ -1,7 +1,7 @@
 var Co = {};
 Co.configs = {
     GAME_WIDTH : 900,
-    GAME_HEIGHT : 1500,
+    GAME_HEIGHT : 1550,
     WIN_POINT : 20,
     HEAD_HEIGHT: 200,
     BOARD_DEFAULT : [
@@ -46,11 +46,13 @@ Co.configs = {
 };
 
 window.onload = function(){
-    Co.game = new Phaser.Game(Co.configs.GAME_WIDTH, Co.configs.GAME_HEIGHT, Phaser.CANVAS,'', null, false, false);
+    Co.game = new Phaser.Game(Co.configs.GAME_WIDTH, Co.configs.GAME_HEIGHT, Phaser.CANVAS,'gameArea', null, false, false);
+    // Co.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     
     Co.game.state.add('boot', bootState);
     Co.game.state.add('load', loadState);
     Co.game.state.add('menu', menuState);
+    Co.game.state.add('tutorial', tutorialState);
     Co.game.state.add('play', playState);
     Co.game.state.add('win', winState);
     Co.game.state.start('boot');

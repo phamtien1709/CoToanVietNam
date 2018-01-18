@@ -119,6 +119,7 @@ var playState = {
     Co.blueWin = false;
     Co.redWin = false;
     Co.deuceGame = false;
+    Co.timingToNextState = 0;
     // console.log(Co.chooseAdd, Co.chooseSub, Co.chooseMul, Co.chooseDiv, Co.chooseDivPer);
     //drawMap
     Co.chatBox = 0;
@@ -194,6 +195,7 @@ var playState = {
     });
 
     //get point
+    Co.pointFinishToPush = 0;
     Co.pointBlueNow = 0;
     Co.pointBluePrev = 0;
     Co.pointRedNow = 0;
@@ -222,7 +224,7 @@ var playState = {
       boundsAlignH: "center",
       boundsAlignV: "middle"
     });
-    Co.turnPlayer = Co.game.add.text(455, 1450, '', Co.style2);
+    Co.turnPlayer = Co.game.add.text(455, 1500, '', Co.style2);
     Co.turnPlayer.anchor.set(0.5);
     Co.game.add.text(480, 60, 'Xanh ăn: ', {
       font: "30px Arial",
@@ -320,13 +322,7 @@ var playState = {
               if (Co.checkId === Co.idBlue) {
                 Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                 Co.redWin = true;
-                setTimeout(function () {
-                  Co.game.state.start('win');
-                }, 1800);
-              }
-              if (Co.checkId === Co.idRed) {
-                Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
-                Co.blueWin = true;
+                Co.pointFinishToPush = -2000;
                 setTimeout(function () {
                   Co.game.state.start('win');
                 }, 1800);
@@ -348,16 +344,10 @@ var playState = {
           }, function (response) {
             console.log(response);
             if (response.error_message == undefined) {
-              if (Co.checkId === Co.idBlue) {
-                Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
-                Co.redWin = true;
-                setTimeout(function () {
-                  Co.game.state.start('win');
-                }, 1800);
-              }
               if (Co.checkId === Co.idRed) {
                 Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã rời khỏi bàn", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                 Co.blueWin = true;
+                Co.pointFinishToPush = -2000;
                 setTimeout(function () {
                   Co.game.state.start('win');
                 }, 1800);
@@ -540,13 +530,7 @@ var playState = {
               if (Co.checkId === Co.idBlue) {
                 Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã xin xử thua", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                 Co.redWin = true;
-                setTimeout(function () {
-                  Co.game.state.start('win');
-                }, 1800);
-              }
-              if (Co.checkId === Co.idRed) {
-                Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã xin xử thua", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
-                Co.blueWin = true;
+                Co.pointFinishToPush = -1000;
                 setTimeout(function () {
                   Co.game.state.start('win');
                 }, 1800);
@@ -568,16 +552,10 @@ var playState = {
           }, function (response) {
             console.log(response);
             if (response.error_message == undefined) {
-              if (Co.checkId === Co.idBlue) {
-                Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã xin xử thua", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
-                Co.redWin = true;
-                setTimeout(function () {
-                  Co.game.state.start('win');
-                }, 1800);
-              }
               if (Co.checkId === Co.idRed) {
                 Co.game.add.text(Co.game.world.centerX - 180, Co.game.world.centerY + 560, "Bạn đã xin xử thua", { font: "35px Arial", fill: "white", boundsAlignH: "center", boundsAlignV: "middle" });
                 Co.blueWin = true;
+                Co.pointFinishToPush = -1000;
                 setTimeout(function () {
                   Co.game.state.start('win');
                 }, 1800);
@@ -1263,12 +1241,22 @@ var playState = {
       Co.displayingUserBluePoint.setText(`${Co.userBluePoint} $`);
       Co.displayingUserRedPoint.setText(`${Co.userRedPoint} $`);
     }
+    if (Co.timingToNextState == 180) {
+      Co.game.state.start('win');
+    }
     if ((Co.pointBluePrev >= Co.configs.WIN_POINT) || (Co.pointRedPrev >= Co.configs.WIN_POINT)) {
-      if (Co.pointBluePrev >= Co.configs.WIN_POINT) Co.blueWin = true;
-      if (Co.pointRedPrev >= Co.configs.WIN_POINT) Co.redWin = true;
-      setTimeout(function () {
-        Co.game.state.start('win');
-      }, 1200);;
+      if (Co.pointBluePrev >= Co.configs.WIN_POINT) {
+        Co.blueWin = true;
+        Co.timingToNextState += 1;
+        if (Co.checkId == Co.idBlue) Co.pointFinishToPush = 2000 + (Co.userBluePoint - 2000);
+        if (Co.checkId == Co.idRed) Co.pointFinishToPush = -(2000 + (Co.userRedPoint - 2000));
+      }
+      if (Co.pointRedPrev >= Co.configs.WIN_POINT) {
+        Co.redWin = true;
+        Co.timingToNextState += 1;
+        if (Co.checkId == Co.idBlue) Co.pointFinishToPush = -(2000 + (Co.userBluePoint - 2000));
+        if (Co.checkId == Co.idRed) Co.pointFinishToPush = 2000 + (Co.userRedPoint - 2000);
+      }
     }
     if (Co.blueFirst == 'blue') {
       Co.turnPlayer.setText(`Lượt bên XANH..`);

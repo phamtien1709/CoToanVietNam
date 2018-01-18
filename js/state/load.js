@@ -1,13 +1,12 @@
 var loadState = {
-    preload: function(){
+    preload: function () {
         Co.game.time.advancedTiming = true;
         Co.game.input.maxPointers = 1;
         Co.game.stage.disableVisibilityChange = true;
-
-        Co.game.scale.minWidth = 450;
-        Co.game.scale.minHeight = 550;
-        Co.game.scale.maxWidth = 900;
-        Co.game.scale.maxHeight = 1100;
+        // Co.game.scale.minWidth = 450;
+        // Co.game.scale.minHeight = 550;
+        // Co.game.scale.maxWidth = 900;
+        // Co.game.scale.maxHeight = 1100;
         Co.game.scale.pageAlignHorizontally = true;
         Co.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         Co.game.load.image('tengame', 'Assets/Loading/tengame.png');
@@ -52,37 +51,78 @@ var loadState = {
         Co.game.load.image('btn_chonpheptoan', 'Assets/Loading/btn_chonpheptoan.png');
         Co.game.load.image('GUIchonpheptoan', 'Assets/Loading/GUInguoichoi.png');
     },
-    create: function(){
+    create: function () {
         var bg = Co.game.add.sprite(0, 0, 'bg');
-        Co.tengame = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY-300, 'tengame');
-        Co.tengame.anchor = new Phaser.Point(0.5,0.5);
-        var quanCoTo = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY,'quancoto');
+        Co.tengame = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY - 300, 'tengame');
+        Co.tengame.anchor = new Phaser.Point(0.5, 0.5);
+        var quanCoTo = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY, 'quancoto');
         quanCoTo.anchor.set(0.5);
+        Co.checkPlayTime = false;
+        // Co.checkCallbackLogin = false;
+        Co.checkTimeState = 0;
         //btn login fb
-        var btn_fb = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 550,"btn_fb", function(){
-            FB.login(function(response){
+        Co.btn_FB = Co.game.add.button(Co.game.world.centerX, Co.game.world.centerY + 550, "btn_fb", function () {
+            FB.login(function (response) {
                 //handle
+                // console.log(response.status);
+                if (response.status == 'unknown') {
+                    alert("Đăng nhập lỗi, hãy đăng nhập lại! :'(");
+                }
+                if (response.status == 'connected') {
+                    Co.checkPlayTime = true;
+                    // FB.api(
+                    //     '/me/scores',
+                    //     'delete',
+                    //     function (response) {
+                    //         console.log(response);
+                    //     });
+                    FB.api(
+                        '/me/scores',
+                        'get',
+                        function (response) {
+                            // console.log(response.data[0]);
+                            if (response.data[0] == undefined) {
+                                FB.api(
+                                    '/me/scores',
+                                    'post',
+                                    { score: 5000 },
+                                    function (response) {
+                                        console.log(response);
+                                        Co.game.state.start('load');
+                                    });
+                            } else {
+                                Co.game.state.start('load');
+                            }
+                        }
+                    );
+
+                }
             }, {
-                scope: 'user_friends,email,public_profile,publish_actions'
-            });
+                    scope: 'user_friends,email,public_profile,publish_actions'
+                });
         });
-        btn_fb.anchor.set(0.5);
-        var txt_loading = Co.game.add.sprite(Co.game.world.centerX,Co.game.world.centerY+150, 'text_loading')
+        Co.btn_FB.anchor.set(0.5);
+        checkLoginState();
+        var txt_loading = Co.game.add.sprite(Co.game.world.centerX, Co.game.world.centerY + 150, 'text_loading')
         txt_loading.anchor.set(0.5);
-        Co.checkPlayTime = 0;
         Co.firstMoveBlue = false;
         Co.firstMoveRed = false;
         Co.idFBBlue = 0;
         Co.idFBRed = 0;
-        checkLoginState();
     },
-    update: function(){
-        Co.checkPlayTime += 1;
-        if ((Co.checkPlayTime === 300)){
-            this.start();
+    update: function () {
+        // Co.checkPlayTime += 1;
+        if (Co.checkCallbackLogin) {
+            Co.btn_FB.kill();
+        }
+        if ((Co.checkPlayTime) || (Co.checkCallbackLogin)) {
+            Co.checkTimeState += 1;
+            if (Co.checkTimeState == 300) {
+                this.start();
+            }
         }
     },
-    start: function(){
+    start: function () {
         Co.game.state.start('menu');
     }
 };

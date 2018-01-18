@@ -7,8 +7,6 @@ class ChessController {
         this.sprite.inputEnabled = true;
         this.sprite.update = this.update.bind(this);
         this.sprite.events.onInputDown.add(function () {
-            // console.log(Co.blueFirst);
-            // if(this.sprite.type == Co.blueFirst){
             if (!Co.onMouseDown) {
                 if ((Co.blueFirst == 'blue') && (Co.checkId == Co.idBlue) && (this.sprite.type == Co.blueFirst)) {
                     this.directBlue();
@@ -19,9 +17,6 @@ class ChessController {
                 }
                 if ((Co.blueFirst == 'red') && (Co.checkId == Co.idRed) && (this.sprite.type == Co.blueFirst)) {
                     this.directRed();
-                    // console.log(Co.chessesType);
-                    // console.log(Co.chessesValue);
-                    // console.log(Co.chessesPos);
                     return Co.onMouseDown = true;
                 }
             }
@@ -30,9 +25,6 @@ class ChessController {
             }
             // }
         }, this);
-        // console.log(Co.chessesType);
-        // console.log(Co.chessesValue);
-        // console.log(Co.chessesPos);
         this.sprite.update = this.update.bind(this);
     }
     update() {
